@@ -1,0 +1,26 @@
+{
+  // Worker name = site-<project-slug>. /adopt registers `site-yom-website`;
+  // keep this identical to the workerScriptName /adopt returns.
+  "name": "site-yom-website",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "kv_namespaces": [
+    // Shared platform namespace (SHARED_NEXT_INC_CACHE_KV_ID in the addendum).
+    { "binding": "NEXT_INC_CACHE_KV", "id": "426d3a7563b14b9ab194d8495ae1c7ef" }
+  ],
+  "vars": {
+    "TYASHIN_API_URL": "https://website-api.tyashin.com",
+    // Preview canary: keep "true" until cutover, then flip to "false" AND
+    // rebuild — prerendered pages bake this at BUILD time (export it in the
+    // build env too).
+    "ROBOTS_NOINDEX": "true",
+    // Canonical origin. Placeholder until the production domain is decided
+    // (docs/ASSET-DEBT.md #2). Must also be exported at build time.
+    "SITE_URL": "https://yom-website.sites.tyashin.com"
+  }
+}

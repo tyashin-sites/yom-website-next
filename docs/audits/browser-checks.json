@@ -1,0 +1,234 @@
+{
+  "base": "http://localhost:3300",
+  "checks": [
+    {
+      "name": "no horizontal scroll on mobile /",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /why-yom",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /product",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /solutions",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /solutions/ecommerce",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /solutions/agencies",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /solutions/platforms",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /solutions/regulated",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /compare",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /pricing",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /developers",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /security",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /about",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /contact",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /faq",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /privacy",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /terms",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /this-page-does-not-exist",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "hero h1 visible at first paint (LCP law)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ledger scan running",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "ledger rows pinged",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Δ reads 0.00",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "below-fold reveals armed",
+      "pass": true,
+      "detail": "12 pending"
+    },
+    {
+      "name": "no above-fold element hidden",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "header .is-scrolled after scroll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "header height constant (CLS law)",
+      "pass": true,
+      "detail": "65 → 65"
+    },
+    {
+      "name": "consent stream advances while visible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "cookieless rows rendered",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "fan-out draws on scroll",
+      "pass": true,
+      "detail": "--p 0 → 0.924"
+    },
+    {
+      "name": "reduced motion: no pending reveals",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced motion: scan not running",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced motion: fan fully drawn",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "calculator 1M USD = $90.00",
+      "pass": true,
+      "detail": "$90.00"
+    },
+    {
+      "name": "calculator 1M CAD = CA$126.00",
+      "pass": true,
+      "detail": "CA$126.00"
+    },
+    {
+      "name": "calculator 100K = free",
+      "pass": true,
+      "detail": "CA$0.00"
+    },
+    {
+      "name": "contact form submits (200 + thank-you state)",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "screenshots": [
+    "home--desktop--light.png",
+    "why-yom--desktop--light.png",
+    "product--desktop--light.png",
+    "solutions--desktop--light.png",
+    "solutions_ecommerce--desktop--light.png",
+    "solutions_agencies--desktop--light.png",
+    "solutions_platforms--desktop--light.png",
+    "solutions_regulated--desktop--light.png",
+    "compare--desktop--light.png",
+    "pricing--desktop--light.png",
+    "developers--desktop--light.png",
+    "security--desktop--light.png",
+    "about--desktop--light.png",
+    "contact--desktop--light.png",
+    "faq--desktop--light.png",
+    "privacy--desktop--light.png",
+    "terms--desktop--light.png",
+    "this-page-does-not-exist--desktop--light.png",
+    "home--mobile--light.png",
+    "why-yom--mobile--light.png",
+    "product--mobile--light.png",
+    "solutions--mobile--light.png",
+    "solutions_ecommerce--mobile--light.png",
+    "solutions_agencies--mobile--light.png",
+    "solutions_platforms--mobile--light.png",
+    "solutions_regulated--mobile--light.png",
+    "compare--mobile--light.png",
+    "pricing--mobile--light.png",
+    "developers--mobile--light.png",
+    "security--mobile--light.png",
+    "about--mobile--light.png",
+    "contact--mobile--light.png",
+    "faq--mobile--light.png",
+    "privacy--mobile--light.png",
+    "terms--mobile--light.png",
+    "this-page-does-not-exist--mobile--light.png",
+    "home--desktop--dark.png",
+    "product--desktop--dark.png",
+    "compare--desktop--dark.png",
+    "pricing--desktop--dark.png",
+    "this-page-does-not-exist--desktop--dark.png",
+    "home--mobile--dark.png",
+    "product--mobile--dark.png",
+    "compare--mobile--dark.png",
+    "pricing--mobile--dark.png",
+    "this-page-does-not-exist--mobile--dark.png",
+    "home--desktop--light--reduced-motion.png"
+  ]
+}

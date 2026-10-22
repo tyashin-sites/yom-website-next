@@ -1,0 +1,8 @@
+{
+  "framework": "nextjs",
+  "projectSlug": "yom-website",
+  "workerScriptName": "site-yom-website",
+  "pages": ["/", "/why-yom", "/product", "/solutions", "/solutions/ecommerce", "/solutions/agencies", "/solutions/platforms", "/solutions/regulated", "/compare", "/pricing", "/developers", "/security", "/about", "/contact", "/faq", "/privacy", "/terms"],
+  "routeHandlers": ["/sitemap-pages.xml", "/llms.txt", "/api/contact"],
+  "tyashinOwnedRoutes": ["/brand-kit.css", "/tyashin-runtime.js", "/sitemap.xml", "/robots.txt", "/blog", "/blog/[slug]", "/blog/rss.xml"]
+}

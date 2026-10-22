@@ -25,3 +25,7 @@ clears a row. "Blocks" names the phase or launch step it gates.
 | 18 | Pricing in CAD | Mirrors `EVENT_TIERS.pricePerKCAD` in the YOM repo (14/8/4/2 cents per 1K) | Re-sync if `packages/shared/src/constants/index.ts` changes | Pricing |
 | 19 | Retention numbers | Free 90 days / PAYG 365 days per the brief (`PLANS` in shared constants). Note: `ANALYTICS_ENTITLEMENTS` in YOM-PLATFORM-PLAN §9 lists different max values (180 / 1,825) | YOM team confirms which is customer-facing | Pricing, FAQ |
 | 20 | Response-time promise on /contact | No SLA or reply-time claim is made | A real support commitment | — |
+| 21 | Quebec Law 25 statement on /solutions/regulated | Cited to McCarthy Tétrault; the research marks Law 25 summaries "verify against the statute" | Counsel confirms wording against the statute | Launch of /solutions/regulated |
+| 22 | Bot-blocked citations | White & Case (403), TrustArc (403) and McCarthy Tétrault (429) refuse automated checks; they load in a browser | Manual click-through before each re-verification | — |
+| 23 | Tyashin brand kit values | Not set (no project yet). Values to mirror are in docs/BRAND.md | Parent PATCHes the brand kit after project creation | Platform pages (consent centre, etc.) styling |
+| 24 | Pricing source of truth drift | `src/lib/pricing.ts` is a copy of the YOM repo's `EVENT_TIERS`; cross-checked 702 samples vs the real `calculateEventCost` on 2026-10-21 (0 mismatches) | Re-run the cross-check whenever YOM pricing changes | Pricing |

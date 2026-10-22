@@ -56,7 +56,7 @@ Tailwind v3 maps tokens through `var(--brand-*)` (hex values in vars, so the okl
 |---|---|---|---|
 | Display (h1, h2, big numerals) | **Instrument Serif** | 400 + italic | Lighter as it grows. Tracking −0.01em at display sizes. Italic is reserved for the one emphasised word per headline. |
 | Body / UI | **Schibsted Grotesk** (variable) | 400–600 | Editorial grotesk; reads like a financial paper, not a SaaS template. |
-| Data / code / labels | **Geist Mono** (variable) | 400–500 | All numbers in tables, ledgers, prices, event names. `font-variant-numeric: tabular-nums`. Not preloaded. |
+| Data / code / labels | **Geist Mono** (variable) | 400–500 | All numbers in tables, ledgers, prices, event names. `font-variant-numeric: tabular-nums`. Preloaded (it is above the fold in the hero; a late swap measured CLS 0.023). |
 
 Scale (clamp):
 - `tt-display` `clamp(2.6rem, 6.2vw, 5.6rem)` / 1.02
@@ -167,5 +167,5 @@ OG image is an SVG-built PNG generated at build time from the wordmark (no photo
 - LCP element = hero h1 (text), painted from SSR HTML with no JS dependency. Above-the-fold
   elements animate transform-only, never hidden.
 - First-load JS per route ≤ 120 KB gzip. No animation library.
-- Fonts: 3 woff2 files, body + display preloaded, mono not preloaded.
+- Fonts: 4 woff2 files (≈113 KB), all preloaded except the display italic.
 - No third-party runtime origins.
