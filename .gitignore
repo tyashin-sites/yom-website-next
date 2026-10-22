@@ -1,0 +1,10 @@
+node_modules
+.next
+.open-next
+.env*.local
+.wrangler/
+next-env.d.ts
+tsconfig.tsbuildinfo
+.DS_Store
+.claude/
+docs/audits/**/*.json.tmp
