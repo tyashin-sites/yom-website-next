@@ -472,8 +472,49 @@ html:root {
     column-gap: 2rem;
   }
   .prose-y .legal-toc li {
-    margin: 0.2rem 0;
+    margin: 0 0 0.35rem;
     break-inside: avoid;
+  }
+  /* Prose tables: proportional figures (tabular-nums widens commas and full stops in Schibsted). */
+  .prose-y .stack-table {
+    font-variant-numeric: normal;
+  }
+  /* Legal tables: stacked label/value rows on small screens (no sideways scrolling). */
+  @media (max-width: 47.99rem) {
+    .prose-y .stack-table thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+    .prose-y .stack-table,
+    .prose-y .stack-table tbody,
+    .prose-y .stack-table tr,
+    .prose-y .stack-table th,
+    .prose-y .stack-table td {
+      display: block;
+      width: 100%;
+    }
+    .prose-y .stack-table tr {
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--brand-border);
+    }
+    .prose-y .stack-table th,
+    .prose-y .stack-table td {
+      border: 0;
+      padding: 0.2rem 0;
+    }
+    .prose-y .stack-table td::before {
+      content: attr(data-label);
+      display: block;
+      font-family: var(--brand-mono-font);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--brand-text-muted);
+      margin-top: 0.45rem;
+    }
   }
   .prose-y .table-wrap {
     overflow-x: auto;

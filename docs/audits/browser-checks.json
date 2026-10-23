@@ -87,6 +87,31 @@
       "detail": "overflow 0px"
     },
     {
+      "name": "no horizontal scroll on mobile /dpa",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /acceptable-use",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /cookies",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /subprocessors",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
+      "name": "no horizontal scroll on mobile /security/disclosure",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
       "name": "no horizontal scroll on mobile /this-page-does-not-exist",
       "pass": true,
       "detail": "overflow 0px"
@@ -200,6 +225,11 @@
     "faq--desktop--light.png",
     "privacy--desktop--light.png",
     "terms--desktop--light.png",
+    "dpa--desktop--light.png",
+    "acceptable-use--desktop--light.png",
+    "cookies--desktop--light.png",
+    "subprocessors--desktop--light.png",
+    "security_disclosure--desktop--light.png",
     "this-page-does-not-exist--desktop--light.png",
     "home--mobile--light.png",
     "why-yom--mobile--light.png",
@@ -218,6 +248,11 @@
     "faq--mobile--light.png",
     "privacy--mobile--light.png",
     "terms--mobile--light.png",
+    "dpa--mobile--light.png",
+    "acceptable-use--mobile--light.png",
+    "cookies--mobile--light.png",
+    "subprocessors--mobile--light.png",
+    "security_disclosure--mobile--light.png",
     "this-page-does-not-exist--mobile--light.png",
     "home--desktop--dark.png",
     "product--desktop--dark.png",

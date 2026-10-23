@@ -21,7 +21,7 @@ type Row = [name: string, kind: string, when: string, purpose: string, lasts: st
 function StorageTable({ rows, caption }: { rows: Row[]; caption: string }) {
   return (
     <div className="table-wrap">
-      <table className="data-table">
+      <table className="data-table stack-table">
         <caption className="sr-only">{caption}</caption>
         <thead>
           <tr>
@@ -38,10 +38,10 @@ function StorageTable({ rows, caption }: { rows: Row[]; caption: string }) {
               <th scope="row" className="font-mono text-[0.84rem] font-normal">
                 {n}
               </th>
-              <td>{k}</td>
-              <td>{w}</td>
-              <td>{p}</td>
-              <td>{l}</td>
+              <td data-label="Type">{k}</td>
+              <td data-label="Set when">{w}</td>
+              <td data-label="Purpose">{p}</td>
+              <td data-label="Lasts">{l}</td>
             </tr>
           ))}
         </tbody>

@@ -13,7 +13,7 @@ type Row = [name: string, purpose: string, data: string, location: string];
 function Table({ rows, caption }: { rows: Row[]; caption: string }) {
   return (
     <div className="table-wrap">
-      <table className="data-table">
+      <table className="data-table stack-table">
         <caption className="sr-only">{caption}</caption>
         <thead>
           <tr>
@@ -27,9 +27,9 @@ function Table({ rows, caption }: { rows: Row[]; caption: string }) {
           {rows.map(([n, p, d, l]) => (
             <tr key={n + p}>
               <th scope="row">{n}</th>
-              <td>{p}</td>
-              <td>{d}</td>
-              <td>{l}</td>
+              <td data-label="What it does for YOM">{p}</td>
+              <td data-label="Data involved">{d}</td>
+              <td data-label="Location">{l}</td>
             </tr>
           ))}
         </tbody>

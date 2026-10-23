@@ -14,7 +14,7 @@ mkdirSync(outDir, { recursive: true });
 const PAGES = [
   '/', '/why-yom', '/product', '/solutions', '/solutions/ecommerce', '/solutions/agencies', '/solutions/platforms',
   '/solutions/regulated', '/compare', '/pricing', '/developers', '/security', '/about', '/contact', '/faq', '/privacy',
-  '/terms', '/this-page-does-not-exist',
+  '/terms', '/dpa', '/acceptable-use', '/cookies', '/subprocessors', '/security/disclosure', '/this-page-does-not-exist',
 ];
 const FULL = new Set(['/', '/pricing', '/product', '/compare']);
 const VIEWPORTS = {
