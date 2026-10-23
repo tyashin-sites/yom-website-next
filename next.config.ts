@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
   env: {
     // Build-time constants (inlined). SITE_URL is the canonical origin used by
     // metadataBase, canonicals, the sitemap and JSON-LD — one source.
-    NEXT_PUBLIC_SITE_URL: process.env.SITE_URL || 'https://yom-website.sites.tyashin.com',
+    NEXT_PUBLIC_SITE_URL: process.env.SITE_URL || 'https://yom.aapastech.com',
     NEXT_PUBLIC_PROJECT_ID: process.env.PROJECT_ID || '',
   },
   async rewrites() {

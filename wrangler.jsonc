@@ -15,12 +15,11 @@
   ],
   "vars": {
     "TYASHIN_API_URL": "https://website-api.tyashin.com",
-    // Preview canary: keep "true" until cutover, then flip to "false" AND
-    // rebuild — prerendered pages bake this at BUILD time (export it in the
-    // build env too).
-    "ROBOTS_NOINDEX": "true",
-    // Canonical origin. Placeholder until the production domain is decided
-    // (docs/ASSET-DEBT.md #2). Must also be exported at build time.
-    "SITE_URL": "https://yom-website.sites.tyashin.com"
+    // Indexing switch. "false" for the production build (going live
+    // 2026-10-23). Set "true" for a preview build — prerendered pages bake
+    // this at BUILD time, so export it in the build env too and rebuild.
+    "ROBOTS_NOINDEX": "false",
+    // Canonical origin (decided 2026-10-23). Must also be exported at build time.
+    "SITE_URL": "https://yom.aapastech.com"
   }
 }

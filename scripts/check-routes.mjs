@@ -4,6 +4,9 @@
 //  2. crawl from "/" following internal <a href>; every link resolves 200
 //  3. every listed route is reached by the crawl (no orphans), and has ≥1 inbound link from another page
 //  4. every in-page #anchor exists on its target page
+//  5. router collisions: no app route, listed route or crawled internal link
+//     at/under a dashboard path (src/config/router-paths.json), except the
+//     allowed sign-up / log-in CTAs, which are not crawled (the router owns them)
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
 
@@ -24,7 +27,14 @@ const fsRoutes = pages(appDir).sort();
 const listed = [...readFileSync(path.join(root, 'src/lib/site-routes.ts'), 'utf8').matchAll(/path: '([^']+)'/g)].map((m) => m[1]);
 const solutionHrefs = [...readFileSync(path.join(root, 'src/config/site.ts'), 'utf8').matchAll(/href: '(\/solutions\/[^']+)'/g)].map((m) => m[1]);
 const routeList = new Set([...listed, ...solutionHrefs]);
+const reserved = JSON.parse(readFileSync(path.join(root, 'src/config/router-paths.json'), 'utf8'));
+const isReserved = (p) => {
+  const clean = p.split(/[?#]/)[0].replace(/\/+$/, '') || '/';
+  return reserved.exact.includes(clean) || reserved.prefix.some((pre) => clean === pre || clean.startsWith(`${pre}/`));
+};
 let fail = 0;
+for (const r of [...fsRoutes, ...routeList]) if (isReserved(r)) { console.log('ROUTER COLLISION (route):', r); fail++; }
+let ctaLinks = 0;
 for (const r of fsRoutes) if (!routeList.has(r)) { console.log('NOT IN getSiteRoutes():', r); fail++; }
 
 const seen = new Map(); // path -> html
@@ -42,6 +52,10 @@ while (queue.length) {
     const href = m[1].replace(/&amp;/g, '&');
     if (/^(https?:|mailto:|tel:)/.test(href)) continue;
     if (href === '#' || href === '') { console.log('GHOST LINK on', p); fail++; continue; }
+    if (isReserved(href)) {
+      if (reserved.allowedLinks.includes(href.split(/[?#]/)[0])) { ctaLinks++; continue; }
+      console.log(`ROUTER COLLISION (link) ${href} on ${p}`); fail++; continue;
+    }
     const [pathPart, hash] = href.split('#');
     const target = pathPart === '' ? p : pathPart;
     if (hash) anchors.push([target, hash, p]);
@@ -60,5 +74,5 @@ for (const r of routeList) {
   if (!seen.has(r)) { console.log('ORPHAN (not reached by crawl):', r); fail++; }
   else if (r !== '/' && !(inbound.get(r)?.size)) { console.log('NO INBOUND LINK:', r); fail++; }
 }
-console.log(`pages crawled: ${seen.size}, app routes: ${fsRoutes.length}, listed: ${routeList.size}, failures: ${fail}`);
+console.log(`pages crawled: ${seen.size}, app routes: ${fsRoutes.length}, listed: ${routeList.size}, sign-up/log-in CTA links: ${ctaLinks}, failures: ${fail}`);
 process.exit(fail ? 1 : 0);

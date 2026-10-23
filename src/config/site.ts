@@ -13,8 +13,8 @@ export const siteConfig = {
   description:
     'YOM (Your Own Metrics) is first-party, consent-aware analytics. Conversion counts are exact and reconcile with your order system; collection stays cookieless after an opt-out; one org serves many clients.',
 
-  /** Canonical origin — build-time env (SITE_URL). Placeholder: ASSET-DEBT #2. */
-  url: (process.env.NEXT_PUBLIC_SITE_URL || 'https://yom-website.sites.tyashin.com').replace(/\/+$/, ''),
+  /** Canonical origin — build-time env (SITE_URL). Production domain decided 2026-10-23. */
+  url: (process.env.NEXT_PUBLIC_SITE_URL || 'https://yom.aapastech.com').replace(/\/+$/, ''),
   /** Tyashin project id — build-time env (PROJECT_ID). Placeholder: ASSET-DEBT #1. */
   projectId: process.env.NEXT_PUBLIC_PROJECT_ID || '',
   projectSlug: 'yom-website',
@@ -31,9 +31,14 @@ export const siteConfig = {
     email: 'contact@aapastech.com',
   },
 
+  /**
+   * The dashboard shares this host: the yom.aapastech.com path router sends
+   * these paths (and everything in src/config/router-paths.json) to the app.
+   * Relative on purpose — same host, never owned by this site.
+   */
   app: {
-    signUp: 'https://yom.aapastech.com/register',
-    logIn: 'https://yom.aapastech.com/login',
+    signUp: '/signup',
+    logIn: '/login',
   },
 
   /** Real SDK facts (npm, verified 2026-10-21). */
