@@ -12,9 +12,11 @@ import { getCloudflareContext } from '@opennextjs/cloudflare';
  *     Tyashin **Contact Form & Lead Capture** plugin
  *     (`/api/v1/contact/public/submit`, X-API-Key auth). The plugin owns the
  *     inbox, CRM sync, email and Slack destinations — this route invents none.
- *     Until the plugin is installed on the project the forward is a no-op
- *     (docs/ASSET-DEBT.md #3).
- *  4. Honeypot field `website` silently drops bots.
+ *     Without the secret the forward is skipped (log-only).
+ *  4. Honeypot field `website` silently drops bots; `renderedAt` (set when the
+ *     form mounts) is passed through so the plugin's 2-second time-trap works.
+ *
+ * Setup (secret name, plugin settings, smoke test): docs/CONTACT-FORM.md.
  */
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -41,6 +43,7 @@ export async function POST(request: Request) {
   const topic = TOPICS.includes(topicRaw) ? topicRaw : 'Other';
   const volume = str(body.volume, 60);
   const message = str(body.message, 5000);
+  const renderedAt = Number(body.renderedAt);
 
   if (!name) return NextResponse.json({ ok: false, error: 'Please add your name.' }, { status: 400 });
   if (!email || !EMAIL_RE.test(email))
@@ -66,6 +69,7 @@ export async function POST(request: Request) {
           subject: `YOM website — ${topic}`,
           message: [message, volume ? `Monthly events: ${volume}` : ''].filter(Boolean).join('\n\n') || undefined,
           source: 'yom-website-contact',
+          renderedAt: Number.isFinite(renderedAt) && renderedAt > 0 ? renderedAt : undefined,
           pageUrl: request.headers.get('referer') || undefined,
           metadata: { company, topic, volume },
         }),

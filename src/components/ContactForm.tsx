@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { siteConfig } from '@/config/site';
 
 const TOPICS = ['Demo', 'Pricing', 'Agency / multi-client', 'Platform / embedding', 'Privacy & security', 'Other'];
@@ -12,6 +12,9 @@ const field =
 export function ContactForm() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
   const [error, setError] = useState('');
+  // Time-trap for the Contact Form plugin: submissions < 2 s after render are spam.
+  const [renderedAt, setRenderedAt] = useState(0);
+  useEffect(() => setRenderedAt(Date.now()), []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -22,7 +25,7 @@ export function ContactForm() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(Object.fromEntries(fd.entries())),
+        body: JSON.stringify({ ...Object.fromEntries(fd.entries()), renderedAt }),
       });
       const data = (await res.json()) as { ok?: boolean; error?: string };
       if (!res.ok || !data.ok) throw new Error(data.error || 'Something went wrong.');
