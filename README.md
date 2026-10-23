@@ -1,6 +1,6 @@
 # yom-website-next
 
-Marketing site for **YOM (Your Own Metrics)**, a Tyashin-hosted Next.js 15 site (OpenNext on Cloudflare Workers).
+Marketing site for **YOM (Your Own Metrics)**, a Tyashin-hosted Next.js 16 site (OpenNext on Cloudflare Workers).
 Project slug `yom-website`, worker `site-yom-website`, preview host `yom-website.sites.tyashin.com`.
 
 Read first: `docs/DESIGN-SPEC.md` (canonical), `docs/BRAND.md`, `docs/BUILD-PLAN.md`, `docs/ASSET-DEBT.md`,

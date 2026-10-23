@@ -10,7 +10,6 @@ const SLUG_HOST = 'https://yom-website.sites.tyashin.com';
 
 const nextConfig: NextConfig = {
   typescript: { ignoreBuildErrors: false },
-  eslint: { ignoreDuringBuilds: true },
   poweredByHeader: false,
   env: {
     // Build-time constants (inlined). SITE_URL is the canonical origin used by
