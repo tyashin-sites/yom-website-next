@@ -278,7 +278,7 @@ export default function ProductPage() {
         }
         aside={
           <div className="card p-7">
-            <h3 className="tt-h3">Delivery guarantees</h3>
+            <h3 className="tt-h3">How delivery works</h3>
             <ul className="mt-5 space-y-3 text-[0.95rem]">
               <li><span className="font-mono text-sm text-muted">Signature</span><br />YOM-Signature: t=…, v1=HMAC-SHA256</li>
               <li><span className="font-mono text-sm text-muted">Retries</span><br />Backoff from 30 seconds to 6 hours, about 24 hours in total</li>

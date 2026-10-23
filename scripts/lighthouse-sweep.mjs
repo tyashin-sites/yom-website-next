@@ -1,6 +1,6 @@
 // Lighthouse mobile sweep of every route against the PROD build (`next start`).
 // Writes docs/audits/lighthouse/summary.json. Usage: BASE=http://localhost:3300 node scripts/lighthouse-sweep.mjs
-// Note: SEO scores are depressed by the deliberate ROBOTS_NOINDEX preview canary
+// Note: SEO scores are depressed when built with ROBOTS_NOINDEX=true (preview)
 // (is-crawlable) and the absent robots.txt (platform-owned, proxied to the slug host).
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -11,7 +11,7 @@ const BASE = process.env.BASE || 'http://localhost:3300';
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const out = path.join(root, 'docs/audits/lighthouse');
 mkdirSync(out, { recursive: true });
-const PAGES = (process.env.PAGES || '/,/why-yom,/product,/solutions,/solutions/ecommerce,/solutions/agencies,/solutions/platforms,/solutions/regulated,/compare,/pricing,/developers,/security,/about,/contact,/faq,/privacy,/terms').split(',');
+const PAGES = (process.env.PAGES || '/,/why-yom,/product,/solutions,/solutions/ecommerce,/solutions/agencies,/solutions/platforms,/solutions/regulated,/compare,/pricing,/developers,/security,/about,/contact,/faq,/terms,/privacy,/dpa,/acceptable-use,/cookies,/subprocessors,/security/disclosure').split(',');
 process.env.CHROME_PATH ||= '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 const rows = [];
