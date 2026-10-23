@@ -130,8 +130,18 @@ export const footerNav: { heading: string; links: NavItem[] }[] = [
     links: [
       { label: 'About', href: '/about' },
       { label: 'Contact', href: '/contact' },
-      { label: 'Privacy', href: '/privacy' },
+    ],
+  },
+  {
+    heading: 'Legal',
+    links: [
       { label: 'Terms', href: '/terms' },
+      { label: 'Privacy', href: '/privacy' },
+      { label: 'DPA', href: '/dpa' },
+      { label: 'Acceptable use', href: '/acceptable-use' },
+      { label: 'Cookies', href: '/cookies' },
+      { label: 'Sub-processors', href: '/subprocessors' },
+      { label: 'Security disclosure', href: '/security/disclosure' },
     ],
   },
 ];

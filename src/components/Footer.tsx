@@ -28,7 +28,7 @@ export function Footer() {
             </li>
           </ul>
         </div>
-        <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 xl:grid-cols-5">
           {footerNav.map((col) => (
             <nav key={col.heading} aria-label={col.heading}>
               <h2 className="eyebrow">{col.heading}</h2>

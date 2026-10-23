@@ -31,7 +31,12 @@ export function getSiteRoutes(): SiteRoute[] {
     { path: '/faq', title: 'FAQ', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/about', title: 'About', priority: 0.5, changeFrequency: 'yearly' },
     { path: '/contact', title: 'Contact', priority: 0.6, changeFrequency: 'yearly' },
-    { path: '/privacy', title: 'Privacy', priority: 0.2, changeFrequency: 'yearly' },
-    { path: '/terms', title: 'Terms', priority: 0.2, changeFrequency: 'yearly' },
+    { path: '/security/disclosure', title: 'Vulnerability disclosure policy', priority: 0.3, changeFrequency: 'yearly' },
+    { path: '/terms', title: 'Terms of Service', priority: 0.3, changeFrequency: 'yearly' },
+    { path: '/privacy', title: 'Privacy Policy', priority: 0.3, changeFrequency: 'yearly' },
+    { path: '/dpa', title: 'Data Processing Addendum', priority: 0.3, changeFrequency: 'yearly' },
+    { path: '/acceptable-use', title: 'Acceptable Use Policy', priority: 0.2, changeFrequency: 'yearly' },
+    { path: '/cookies', title: 'Cookie Policy', priority: 0.2, changeFrequency: 'yearly' },
+    { path: '/subprocessors', title: 'Sub-processors', priority: 0.3, changeFrequency: 'monthly' },
   ];
 }

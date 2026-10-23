@@ -24,7 +24,7 @@ ${siteConfig.name} is built by ${company.builder}. North American legal entity: 
 ## What ships today
 - Exact, deduplicated counts for purchase, refund, generate_lead, form_submit and sign_up (deduplicated on the event id).
 - Cookieless-by-default, consent-aware collection; DNT and Global Privacy Control honoured (cookieless by default, or drop).
-- PII scrubbing on browser events; path-only URLs (query strings never sent); click ids never stored.
+- PII scrubbing on browser events; path-only URLs (query strings never sent); click ids recorded only as present or absent (with marketing consent and Meta CAPI configured, the Meta click id is passed to Meta for matching).
 - First-party edge ingest: text/plain batches via sendBeacon, no CORS preflight.
 - Server events to /v2/events with a secret key or HMAC signature.
 - Bot filtering at the edge.

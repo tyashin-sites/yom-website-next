@@ -179,7 +179,7 @@ export default function ProductPage() {
             ['DNT / GPC', 'Treated as denied: cookieless by default. Per project you can choose drop or ignore instead.'],
             ['Required mode', 'Optionally drop every event whose consent is denied.'],
             ['URLs', 'Path only. Query strings and fragments never leave the browser; referrers are reduced to a host.'],
-            ['Click ids', 'Presence only (e.g. “gclid present”). The ids themselves are never stored.'],
+            ['Click ids', 'Reports record presence only (e.g. “gclid present”). The one exception: with marketing consent and Meta CAPI configured, the Meta click id is passed to Meta for matching.'],
             ['PII scrubbing', 'Email-, phone-, name-, address- and card-like params are removed from browser events.'],
             ['Forwarding', 'Browser forwarding to your own GA4 or Meta Pixel, and server-side Meta CAPI / GA4 Measurement Protocol, run only with explicit marketing consent and no GPC signal.'],
             ['Internal traffic', 'Flagged internal events are excluded from reports and never sent to destinations.'],

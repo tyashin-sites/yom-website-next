@@ -448,6 +448,42 @@ html:root {
     color: var(--brand-match);
     text-decoration: underline;
   }
+  .prose-y ol {
+    list-style: decimal;
+    padding-left: 1.4rem;
+    margin: 0 0 1rem;
+  }
+  .prose-y h2 {
+    scroll-margin-top: 6rem;
+  }
+  .prose-y strong {
+    font-weight: 600;
+  }
+  .prose-y .legal-toc {
+    margin: 0 0 2.5rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--brand-border);
+    border-radius: var(--brand-radius-md);
+    background: var(--brand-paper);
+  }
+  .prose-y .legal-toc ol {
+    margin: 0.75rem 0 0;
+    columns: 2 16rem;
+    column-gap: 2rem;
+  }
+  .prose-y .legal-toc li {
+    margin: 0.2rem 0;
+    break-inside: avoid;
+  }
+  .prose-y .table-wrap {
+    overflow-x: auto;
+    margin: 0 0 1.25rem;
+  }
+  .prose-y .caps {
+    text-transform: uppercase;
+    font-size: 0.92rem;
+    letter-spacing: 0.01em;
+  }
 
   .skip-link {
     position: absolute;

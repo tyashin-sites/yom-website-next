@@ -3,7 +3,7 @@ import { siteConfig } from '@/config/site';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { PageHero } from '@/components/ui/PageHero';
 import { GhostLink } from '@/components/ui/Cta';
-import { ComingSoon, Live } from '@/components/ui/Section';
+import { Live } from '@/components/ui/Section';
 import { CtaBand } from '@/components/ui/CtaBand';
 
 const TITLE = 'Security';
@@ -36,6 +36,7 @@ const TODAY: { area: string; items: string[] }[] = [
       'Keys and embed tokens can be bound to one sub-tenant; asking for another returns 403.',
       'Server events can be HMAC-signed instead of sending the key.',
       'Webhook secrets are shown once and encrypted at rest; every delivery is HMAC-signed.',
+      'Passwords stored as bcrypt hashes; API keys stored hashed; destination credentials encrypted with AES-GCM.',
     ],
   },
   {
@@ -43,7 +44,7 @@ const TODAY: { area: string; items: string[] }[] = [
     items: [
       'Cookieless until analytics consent; enforced server-side.',
       'GPC and DNT honoured; PII-like params scrubbed from browser events; path-only URLs.',
-      'Retention windows applied to reports, archive and delivery logs by plan.',
+      'Retention windows applied to report data and delivery logs; the raw archive is kept for the life of the project so you can export it.',
       'Export any time as CSV or NDJSON.',
     ],
   },
@@ -54,7 +55,6 @@ const NOT_YET = [
   'Business associate agreements',
   'Commitments about the geographic location of stored data',
   'Sign-in through your own identity provider',
-  'A published data processing agreement and subprocessor list',
   'A public status page or a contractual availability commitment',
 ];
 
@@ -115,14 +115,23 @@ export default function SecurityPage() {
         </div>
       </section>
 
-      <section aria-labelledby="roadmap-h">
+      <section aria-labelledby="docs-h">
         <div className="container-y section-tight grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-          <h2 id="roadmap-h" className="tt-h2">On the roadmap</h2>
+          <h2 id="docs-h" className="tt-h2">Legal and trust documents</h2>
           <ul className="divide-y divide-border border-y border-border">
-            <li className="flex items-center justify-between gap-4 py-4">
-              <span>Opt-out evidence report (proof that GPC and consent were honoured)</span>
-              <ComingSoon />
-            </li>
+            {[
+              { href: '/dpa', label: 'Data Processing Addendum, with SCCs and the UK Addendum by reference' },
+              { href: '/subprocessors', label: 'Sub-processor list, with 30 days’ notice of changes' },
+              { href: '/privacy', label: 'Privacy Policy' },
+              { href: '/cookies', label: 'Cookie Policy: what the SDK stores, and when' },
+              { href: '/security/disclosure', label: 'Vulnerability disclosure policy' },
+            ].map((d) => (
+              <li key={d.href} className="py-4">
+                <a href={d.href} className="link-arrow">
+                  {d.label} →
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </section>
@@ -135,8 +144,11 @@ export default function SecurityPage() {
             <a href={`mailto:${siteConfig.contact.email}?subject=Security%20report`} className="underline">
               {siteConfig.contact.email}
             </a>{' '}
-            with &ldquo;Security report&rdquo; in the subject. Please don&rsquo;t test against other customers&rsquo;
-            data.
+            with &ldquo;Security report&rdquo; in the subject. Read the{' '}
+            <a href="/security/disclosure" className="underline">
+              disclosure policy
+            </a>{' '}
+            first: it says what&rsquo;s in scope and how we protect good-faith research.
           </p>
         </div>
       </section>

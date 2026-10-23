@@ -26,7 +26,7 @@ const c: SolutionContent = {
     { title: 'Cookieless by default', body: 'No persistent id and no storage writes until analytics consent is granted; enforced server-side too.' },
     { title: 'GPC & DNT at the edge', body: 'Treated as denied: cookieless by default, or dropped if you set the policy to drop.' },
     { title: 'PII scrubbing', body: 'Email-, phone-, name-, address- and card-like params are removed from browser events.' },
-    { title: 'Path-only URLs', body: 'Query strings and fragments never leave the browser; click ids are recorded as present, never stored.' },
+    { title: 'Path-only URLs', body: 'Query strings and fragments never leave the browser; click ids are recorded only as present or absent in reports.' },
     { title: 'Access controls', body: 'Google sign-in, multi-factor authentication, and audit logs on pay-as-you-go.' },
     { title: 'Opt-out evidence report', body: 'Per event: consent state, GPC, DNT, kept cookieless, PII scrubbed, forwarding suppressed. Evidence for your own review, not a compliance certificate.' },
   ],
