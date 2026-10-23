@@ -153,9 +153,7 @@ export default function ProductPage() {
             ['Server events', 'Send the conversion from your backend so ad blockers never see it.'],
             [
               'Reconciliation report',
-              <span key="r" className="flex flex-wrap items-center gap-3">
-                A side-by-side report against your order list <ComingSoon />
-              </span>,
+              'Send your orders (API or CSV) and YOM matches each order id to the purchase event’s transaction id, using exact, unsampled events. Missing and extra orders are listed.',
             ],
           ]}
         />
@@ -183,13 +181,11 @@ export default function ProductPage() {
             ['URLs', 'Path only. Query strings and fragments never leave the browser; referrers are reduced to a host.'],
             ['Click ids', 'Presence only (e.g. “gclid present”). The ids themselves are never stored.'],
             ['PII scrubbing', 'Email-, phone-, name-, address- and card-like params are removed from browser events.'],
-            ['Forwarding', 'Browser forwarding to your own GA4 or Meta Pixel runs only with marketing consent, isolated from other tags on the page.'],
+            ['Forwarding', 'Browser forwarding to your own GA4 or Meta Pixel, and server-side Meta CAPI / GA4 Measurement Protocol, run only with explicit marketing consent and no GPC signal.'],
             ['Internal traffic', 'Flagged internal events are excluded from reports and never sent to destinations.'],
             [
               'Opt-out evidence report',
-              <span key="o" className="flex flex-wrap items-center gap-3">
-                Downloadable proof of what was dropped or kept cookieless <ComingSoon />
-              </span>,
+              'Per event: the consent state, GPC, DNT, whether it was kept cookieless, PII scrubbed or forwarding suppressed.',
             ],
           ]}
         />
@@ -241,6 +237,7 @@ export default function ProductPage() {
             ['Enrichment', 'Channel from UTM + referrer, device / browser / OS, country and region from the edge.'],
             ['Bot filtering', 'User-agent rules and missing-UA checks at the edge; webdriver detection in the SDK.'],
             ['SDK', 'Browser, React and Node, from one npm package, around 12 KB gzipped with every plugin.'],
+            ['Commerce connectors', 'Shopify app and WooCommerce plugin, in early access: not yet listed in the Shopify App Store or on wordpress.org, so we set them up with you.'],
           ]}
         />
       </Block>
@@ -295,16 +292,14 @@ export default function ProductPage() {
           rows={[
             ['Filters', 'All events, a family (event.*) or named events.'],
             ['Never sent', 'Internal traffic.'],
+            ['Meta CAPI / GA4 MP', 'Server-side forwarding to your Meta pixel and GA4 property. Sent only with explicit marketing consent and no GPC; everything else is logged as suppressed. Pay-as-you-go.'],
+            ['Warehouse exports', 'Hourly files to S3, Google Cloud Storage or R2 (NDJSON or Parquet), or BigQuery. Snowflake reads the S3 export through an external stage. Pay-as-you-go, up to 5 per project.'],
+            ['Looker Studio', 'A community connector that reads your reports with a read-scoped key. Early access: you deploy it from our repository.'],
+            ['Moving from GA4', 'A gtag shim in the SDK so existing gtag() calls keep working, and an import of daily totals from your GA4 BigQuery export for the days before YOM.'],
             [
-              'Meta CAPI / GA4 MP',
-              <span key="m" className="flex flex-wrap items-center gap-3">
-                Server-side forwarding with consent gating and dedup <ComingSoon />
-              </span>,
-            ],
-            [
-              'Warehouse sync',
-              <span key="w" className="flex flex-wrap items-center gap-3">
-                Managed export to your warehouse <ComingSoon />
+              'Google Ads Enhanced Conversions',
+              <span key="g" className="flex flex-wrap items-center gap-3">
+                Not built yet <ComingSoon />
               </span>,
             ],
           ]}
@@ -329,7 +324,9 @@ export default function ProductPage() {
               <li className="flex flex-wrap items-center gap-3"><Live label="Live" /> Scoped keys and embed tokens per sub-tenant</li>
               <li className="flex flex-wrap items-center gap-3"><Live label="Live" /> Usage by sub-tenant, for re-billing</li>
               <li className="flex flex-wrap items-center gap-3"><Live label="Live" /> White-label webhook headers</li>
-              <li className="flex flex-wrap items-center gap-3"><ComingSoon /> White-label client portal</li>
+              <li className="flex flex-wrap items-center gap-3"><Live label="Live" /> White-label client portals with read-only client logins (own domain on pay-as-you-go)</li>
+              <li className="flex flex-wrap items-center gap-3"><Live label="Live" /> <span className="font-mono">&lt;yom-report&gt;</span> embed and scheduled email reports</li>
+              <li className="flex flex-wrap items-center gap-3"><Live label="Live" /> Partner API: create projects and mint keys</li>
             </ul>
           </div>
           <FanOut />
@@ -340,20 +337,21 @@ export default function ProductPage() {
         id="ai-ready"
         n="07"
         eyebrow="AI-ready"
-        title="An API an agent can use today. An MCP server next."
+        title="An MCP server and an API an agent can use."
         lead={
           <p>
-            YOM&rsquo;s reports are served by a report API you can call with a read-scoped key: overview,
-            timeseries, breakdowns, a generic counters query and CSV/NDJSON export. A script or an agent can ask
-            &ldquo;why did leads drop?&rdquo; without anyone exporting a spreadsheet.
+            YOM&rsquo;s MCP server gives Claude and other AI agents 13 read-only tools over your reports, authorised
+            by a read-scoped secret key or a short-lived embed token. The same reports are served by an API: overview,
+            timeseries, breakdowns, a generic counters query and CSV/NDJSON export. An agent can ask &ldquo;why did
+            leads drop?&rdquo; without anyone exporting a spreadsheet.
           </p>
         }
       >
         <ul className="mt-8 divide-y divide-border border-y border-border">
           {[
-            ['MCP server for Claude and other AI agents, scoped by key and sub-tenant', true],
-            ['AI-assistant traffic channel (ChatGPT, Perplexity, Claude and others stop landing in Direct)', true],
-            ['AI-crawler report: crawler hits counted, not silently dropped', true],
+            ['MCP server for Claude and other AI agents: read-only, scoped by key', false],
+            ['AI-assistant traffic channel: ChatGPT, Perplexity, Claude and 9 others stop landing in Direct', false],
+            ['AI-crawler report (last 88 days): sees crawlers that reach YOM through server-side tracking or the pixel', false],
             ['Report API with read-scoped keys', false],
           ].map(([t, soon]) => (
             <li key={String(t)} className="flex items-center justify-between gap-4 py-3.5 text-[0.95rem]">

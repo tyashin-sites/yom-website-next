@@ -27,9 +27,11 @@ const c: SolutionContent = {
     { title: 'Ecommerce auto-capture', body: 'The browser SDK captures GA4-style ecommerce events and can detect common storefront platforms.' },
     { title: 'Ecommerce report', body: 'View item → add to cart → checkout → purchase, revenue, AOV and item-level revenue.' },
     { title: 'Channel attribution', body: 'First-, last- or any-touch by channel from UTM and referrer. A statistical estimate, labelled as one.' },
-    { title: 'Consent-gated forwarding', body: 'Optionally forward conversions to your own GA4 or Meta Pixel from the browser, only with marketing consent.' },
+    { title: 'Consent-gated forwarding', body: 'Browser forwarding to your own GA4 or Meta Pixel, or server-side Meta CAPI and GA4 Measurement Protocol, only with explicit marketing consent and no GPC.' },
+    { title: 'Revenue reconciliation', body: 'Send your orders by API or CSV; YOM matches each order id to its purchase event and lists what’s missing or extra.' },
+    { title: 'Shopify & WooCommerce', body: 'A Shopify app and a WooCommerce plugin, in early access: not yet in the app stores, so we install them with you.' },
   ],
-  soon: ['Shopify app', 'Server-side Meta CAPI and GA4 Measurement Protocol forwarding', 'Revenue reconciliation report'],
+  soon: ['Shopify App Store and wordpress.org listings', 'Google Ads Enhanced Conversions'],
 };
 
 export const metadata = pageMetadata({ title: 'Analytics for e-commerce & DTC brands', description: c.description, path: '/solutions/ecommerce' });

@@ -37,9 +37,8 @@ const PILLARS = [
   {
     n: '04',
     title: 'An API agents can call',
-    body: 'Scoped keys, a generic counters query, timeseries, breakdowns and CSV/NDJSON export today. An MCP server for AI agents is next.',
+    body: 'An MCP server with read-only report tools, scoped keys, a generic counters query and CSV/NDJSON export. AI-assistant visits get their own channel.',
     href: '/product#ai-ready',
-    soon: 'MCP coming soon',
   },
 ];
 
@@ -96,7 +95,6 @@ export default function HomePage() {
                   <span className="tt-num text-sm text-primary">{p.n}</span>
                   <h3 className="tt-h3 mt-4 flex flex-wrap items-center gap-3">
                     {p.title}
-                    {p.soon ? <ComingSoon label={p.soon} /> : null}
                   </h3>
                   <p className="mt-3 text-muted">{p.body}</p>
                   <span className="link-arrow mt-auto pt-6 text-sm">Read how →</span>
@@ -246,13 +244,10 @@ export default function HomePage() {
             <h3 className="tt-h3">On the roadmap, not shipped</h3>
             <ul className="mt-6 divide-y divide-border">
               {[
-                'MCP server for Claude and other AI agents',
-                'AI-assistant traffic channel and AI-crawler report',
-                'Server-side Meta CAPI and GA4 Measurement Protocol forwarding',
-                'Revenue reconciliation report',
-                'Opt-out evidence report',
-                'White-label client portal',
-                'Shopify app and warehouse sync',
+                'Google Ads Enhanced Conversions',
+                'Shopify App Store listing (the app is in early access)',
+                'WooCommerce plugin on wordpress.org (early access today)',
+                'Looker Studio connector in the public gallery',
               ].map((t) => (
                 <li key={t} className="flex items-center justify-between gap-4 py-3 text-[0.95rem]">
                   <span>{t}</span>

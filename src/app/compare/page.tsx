@@ -2,7 +2,6 @@ import { pageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { PageHero } from '@/components/ui/PageHero';
 import { PrimaryCta, GhostLink } from '@/components/ui/Cta';
-import { ComingSoon } from '@/components/ui/Section';
 import { CtaBand } from '@/components/ui/CtaBand';
 import { footnotes } from '@/components/ui/Footnotes';
 import { LAST_VERIFIED, LAST_VERIFIED_LABEL } from '@/lib/sources';
@@ -144,7 +143,7 @@ export default function ComparePage() {
                 them: <>Free daily BigQuery export capped at 1 million events a day.<fn.Ref id="ga4Export" /></>,
                 yom: (
                   <span className="flex flex-wrap items-center gap-2">
-                    CSV / NDJSON export today. Warehouse sync <ComingSoon />
+                    CSV / NDJSON export, plus hourly warehouse exports to S3, GCS, R2 or BigQuery on pay-as-you-go.
                   </span>
                 ),
               },
@@ -229,7 +228,7 @@ export default function ComparePage() {
                 them: 'Routing events to downstream tools is what a CDP is for.',
                 yom: (
                   <span className="flex flex-wrap items-center gap-2">
-                    Signed realtime or batched webhooks with retries, log and redelivery. Meta CAPI / GA4 MP <ComingSoon />
+                    Signed realtime or batched webhooks with retries, log and redelivery, plus consent-gated Meta CAPI and GA4 Measurement Protocol forwarding.
                   </span>
                 ),
               },

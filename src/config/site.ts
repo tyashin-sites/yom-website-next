@@ -41,10 +41,10 @@ export const siteConfig = {
     logIn: '/login',
   },
 
-  /** Real SDK facts (npm, verified 2026-10-21). */
+  /** Real SDK facts (npm `latest`, verified 2026-10-23). */
   sdk: {
     package: '@yourownmetric/sdk',
-    version: '0.2.0',
+    version: '0.3.0',
     ingestUrl: 'https://ingest.yourownmetrics.aapastech.com',
   },
 

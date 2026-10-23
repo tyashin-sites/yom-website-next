@@ -28,7 +28,7 @@ const GROUPS: { id: string; title: string; items: Faq[] }[] = [
     items: [
       { q: 'What happens when a visitor opts out or sends Global Privacy Control?', a: 'By default the event is collected cookieless: no visitor id, nothing written to browser storage, and the server forces the id empty regardless of what the browser sent. Conversions are still counted. Per project you can instead drop those events or ignore the signal.' },
       { q: 'Does YOM collect personal data?', a: 'Browser events are path-only (query strings never leave the browser), click ids are recorded only as present or absent, and email-, phone-, name-, address- and card-like params are scrubbed. Server events you send keep the fields you include, which is how lead details can reach your CRM through a destination.' },
-      { q: 'Does YOM forward data to ad platforms?', a: 'Only if you configure browser forwarding to your own GA4 or Meta Pixel, and only for visitors who granted marketing consent. Server-side Meta CAPI and GA4 Measurement Protocol forwarding is coming soon.' },
+      { q: 'Does YOM forward data to ad platforms?', a: 'Only to destinations you configure: browser forwarding to your own GA4 or Meta Pixel, or server-side Meta Conversions API and GA4 Measurement Protocol forwarding. Either way an event is sent only when the visitor gave explicit marketing consent and sent no Global Privacy Control signal; everything else is logged as suppressed.' },
       { q: 'Is YOM compliant with my privacy law?', a: 'Compliance depends on how you use any tool, so we can’t promise it for you. YOM is privacy-first by design; have your counsel review your setup. Nothing on this site is legal advice.' },
     ],
   },
@@ -47,7 +47,7 @@ const GROUPS: { id: string; title: string; items: Faq[] }[] = [
     items: [
       { q: 'How do I separate clients?', a: 'Each client or customer is a sub-tenant inside your project. Keys and embed tokens can be bound to one sub-tenant, and a bound key can only read that sub-tenant’s data.' },
       { q: 'Can I re-bill clients for usage?', a: 'Yes. The usage report breaks event volume down by sub-tenant, so you can bill at your own margin.' },
-      { q: 'Is there a white-label client portal?', a: 'Not yet; it is coming soon. Today you can white-label webhook headers and embed scoped reports with embed tokens.' },
+      { q: 'Is there a white-label client portal?', a: 'Yes. Each client gets a branded portal with read-only logins limited to the reports you choose, and you can send scheduled weekly or monthly email reports. On pay-as-you-go a portal can run on your own domain without the “Powered by” line. You can also embed reports in your own product with the <yom-report> element.' },
     ],
   },
   {
@@ -62,10 +62,12 @@ const GROUPS: { id: string; title: string; items: Faq[] }[] = [
   },
   {
     id: 'roadmap',
-    title: 'Roadmap',
+    title: 'AI agents & roadmap',
     items: [
-      { q: 'Is there an MCP server for Claude or other AI agents?', a: 'Coming soon, scoped by key and sub-tenant. Today agents can use the report API with a read-scoped key.' },
-      { q: 'What else is coming soon?', a: 'An AI-assistant traffic channel and AI-crawler report, server-side Meta CAPI and GA4 Measurement Protocol forwarding, a white-label client portal, a Shopify app, warehouse sync, a revenue reconciliation report and an opt-out evidence report.' },
+      { q: 'Is there an MCP server for Claude or other AI agents?', a: 'Yes. It exposes 13 read-only report tools and accepts a read-scoped secret key or a short-lived embed token. Publishable keys are refused.' },
+      { q: 'Can I see traffic from ChatGPT and other AI assistants?', a: 'Yes. Visits referred by 12 AI assistants, including ChatGPT, Perplexity, Claude and Gemini, get their own channel instead of landing in Direct. A separate AI-crawler report covers the last 88 days, for crawlers that reach YOM through server-side tracking or the pixel; most crawlers don’t run JavaScript, so a browser-only install sees few.' },
+      { q: 'Is there a Shopify app or WooCommerce plugin?', a: 'Both exist and are in early access. Neither is listed in the Shopify App Store or on wordpress.org yet, so we set them up with you. Talk to us.' },
+      { q: 'What is still coming soon?', a: 'Google Ads Enhanced Conversions, and the public Shopify App Store, wordpress.org and Looker Studio gallery listings.' },
     ],
   },
 ];

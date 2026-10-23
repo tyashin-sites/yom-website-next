@@ -28,8 +28,10 @@ const c: SolutionContent = {
     { title: 'White-label webhooks', body: 'Your header prefix and user agent on every signed delivery.' },
     { title: 'Unlimited seats & projects', body: 'On pay-as-you-go, add your whole team and every client project.' },
     { title: 'Exact client conversions', body: 'Leads and purchases counted exactly, even for low-traffic clients.' },
+    { title: 'White-label client portals', body: 'A branded portal per client with read-only logins. Your own domain, without “Powered by”, on pay-as-you-go.' },
+    { title: 'Scheduled email reports', body: 'Weekly or monthly digests to each client, with a CSV attachment on pay-as-you-go.' },
   ],
-  soon: ['White-label client portal'],
+  soon: [],
 };
 
 export const metadata = pageMetadata({ title: 'Multi-client analytics for agencies', description: c.description, path: '/solutions/agencies' });

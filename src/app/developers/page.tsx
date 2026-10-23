@@ -229,12 +229,30 @@ export default function DevelopersPage() {
 
       <section aria-labelledby="soon-h" className="rule-top">
         <div className="container-y section-tight grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
-          <h2 id="soon-h" className="tt-h2 text-balance">Next for developers</h2>
+          <h2 id="soon-h" className="tt-h2 text-balance">More for developers</h2>
           <ul className="divide-y divide-border border-y border-border">
-            {['MCP server over the report API', 'Shopify app (Customer Events pixel + order webhooks)', 'Meta CAPI and GA4 Measurement Protocol destinations', 'Warehouse sync'].map((t) => (
+            {(
+              [
+                ['MCP server: 13 read-only report tools over Streamable HTTP, Bearer read-scoped key', 'live'],
+                ['Partner API: management keys create projects and mint keys', 'live'],
+                ['<yom-report> web component (@yourownmetric/embed) with embed tokens', 'live'],
+                ['Meta CAPI and GA4 Measurement Protocol destinations, consent-gated', 'live'],
+                ['Warehouse exports: S3, GCS, R2, BigQuery; Snowflake via external stage', 'live'],
+                ['GA4 gtag shim (@yourownmetric/sdk/gtag-shim) and GA4 BigQuery import', 'live'],
+                ['Shopify app and WooCommerce plugin', 'early'],
+                ['Looker Studio community connector (self-deploy)', 'early'],
+                ['Google Ads Enhanced Conversions', 'soon'],
+              ] as const
+            ).map(([t, state]) => (
               <li key={t} className="flex items-center justify-between gap-4 py-3.5">
                 <span>{t}</span>
-                <ComingSoon />
+                {state === 'live' ? (
+                  <span className="chip chip-live">Live</span>
+                ) : state === 'early' ? (
+                  <span className="chip chip-soon">Early access</span>
+                ) : (
+                  <ComingSoon />
+                )}
               </li>
             ))}
           </ul>

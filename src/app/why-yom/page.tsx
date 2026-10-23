@@ -2,7 +2,6 @@ import { pageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { PageHero } from '@/components/ui/PageHero';
 import { PrimaryCta, GhostLink } from '@/components/ui/Cta';
-import { ComingSoon } from '@/components/ui/Section';
 import { CtaBand } from '@/components/ui/CtaBand';
 import { footnotes } from '@/components/ui/Footnotes';
 import { calculateEventCost, formatMoney } from '@/lib/pricing';
@@ -118,10 +117,8 @@ export default function WhyYomPage() {
           <>
             <p>Treats Global Privacy Control and DNT as denied consent: collection goes cookieless, or is dropped if you choose.</p>
             <p>Enforces it on the server: without consent the visitor id is forced empty whatever the browser sent.</p>
-            <p>Forwards to ad platforms only with marketing consent.</p>
-            <p className="flex flex-wrap items-center gap-2">
-              Downloadable opt-out evidence report <ComingSoon />
-            </p>
+            <p>Forwards to ad platforms only with explicit marketing consent and no GPC signal.</p>
+            <p>Records the evidence: an opt-out report shows, per event, the consent state and what was dropped, kept cookieless or suppressed.</p>
           </>
         }
       >
@@ -206,7 +203,7 @@ export default function WhyYomPage() {
         <div className="container-y section grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <p className="eyebrow">
-              <span className="tt-num text-on-ink-signal">05</span> What&rsquo;s next
+              <span className="tt-num text-on-ink-signal">05</span> AI search and agents
             </p>
             <h2 id="ai-h" className="tt-h2 mt-4 text-balance">
               AI assistants send traffic. Agents want to ask questions.
@@ -227,7 +224,7 @@ export default function WhyYomPage() {
             {['AI-assistant traffic channel', 'AI-crawler report', 'MCP server for Claude and other agents'].map((t) => (
               <li key={t} className="flex items-center justify-between gap-4 py-4">
                 <span>{t}</span>
-                <ComingSoon />
+                <span className="chip chip-live">Live</span>
               </li>
             ))}
           </ul>

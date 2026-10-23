@@ -33,19 +33,24 @@ ${siteConfig.name} is built by ${company.builder}. North American legal entity: 
 - Goals, funnels, attribution, retention, realtime, CSV/NDJSON export and a raw archive.
 - GA4-aligned event taxonomy.
 - Google sign-in and multi-factor authentication.
+- MCP server for Claude and other AI agents: 13 read-only report tools, authorised by a read-scoped secret key or a short-lived embed token.
+- AI-assistant traffic channel (12 assistants including ChatGPT, Perplexity, Claude and Gemini) and an AI-crawler report (last 88 days; sees crawlers that reach YOM through server-side tracking or the pixel).
+- Server-side Meta Conversions API and GA4 Measurement Protocol forwarding (pay-as-you-go), sent only with explicit marketing consent and no GPC signal.
+- White-label client portals with read-only client logins, scheduled weekly/monthly email reports, and the <yom-report> embeddable web component (@yourownmetric/embed).
+- Warehouse exports (pay-as-you-go): hourly files to S3, Google Cloud Storage or R2 (NDJSON or Parquet), or BigQuery; Snowflake reads the S3 export through an external stage.
+- Revenue reconciliation (orders by API or CSV matched to purchase events by order id) and an opt-out evidence report.
+- GA4 migration: a gtag shim in the SDK and an import of daily totals from a GA4 BigQuery export.
+- Partner API: management keys create and suspend projects and mint keys; they cannot read analytics data.
+
+## Early access
+- Shopify app and WooCommerce plugin (not yet listed in the Shopify App Store or on wordpress.org).
+- Looker Studio community connector (self-deployed; not in the public gallery).
 
 ## Exact vs estimated
 Only conversion counts are exact. Funnels, attribution and unique-visitor counts are statistical estimates.
 
 ## Coming soon (not shipped)
-- MCP server for Claude and other AI agents
-- AI-assistant traffic channel and AI-crawler report
-- Server-side Meta CAPI and GA4 Measurement Protocol forwarding
-- White-label client portal
-- Shopify app
-- Warehouse sync
-- Revenue reconciliation report
-- Opt-out evidence report
+- Google Ads Enhanced Conversions
 
 ## Not offered
 Session replay, feature flags and experiments.
@@ -74,11 +79,20 @@ ${solutions.map((s) => `- ${s.label}: ${siteUrl(s.href)}`).join('\n')}
 - About: ${siteUrl('/about')}
 - Contact: ${siteUrl('/contact')}
 
+## Legal
+- Terms of Service: ${siteUrl('/terms')}
+- Privacy Policy: ${siteUrl('/privacy')}
+- Data Processing Addendum: ${siteUrl('/dpa')}
+- Acceptable Use Policy: ${siteUrl('/acceptable-use')}
+- Cookie Policy: ${siteUrl('/cookies')}
+- Sub-processors: ${siteUrl('/subprocessors')}
+- Security disclosure: ${siteUrl('/security/disclosure')}
+
 ## Contact
 - Email: ${contact.email}
 - Phone: ${contact.phone}
-- Sign up: ${app.signUp}
-- Log in: ${app.logIn}
+- Sign up: ${siteUrl(app.signUp)}
+- Log in: ${siteUrl(app.logIn)}
 `;
   return new Response(body, {
     headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'public, max-age=3600' },

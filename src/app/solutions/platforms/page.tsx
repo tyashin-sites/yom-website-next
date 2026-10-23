@@ -28,8 +28,12 @@ const c: SolutionContent = {
     { title: 'Usage per customer', body: 'Event volume by sub-tenant for your own billing.' },
     { title: 'White-label data-out', body: 'Signed webhooks under your brand’s header prefix, so customers never see YOM.' },
     { title: 'Custom dimensions', body: 'Map your own context (plan, region, cohort) into reportable dimensions and metrics.' },
+    { title: 'Partner API', body: 'Management keys create and suspend projects and mint their keys from your own backend. They can never read analytics data.' },
+    { title: 'The <yom-report> element', body: 'Drop a report into your product with one HTML element and an embed token; around 9 KB gzipped.' },
+    { title: 'MCP server for agents', body: 'Read-only report tools for Claude and other AI agents, authorised by a read-scoped key or an embed token.' },
+    { title: 'Warehouse exports', body: 'Hourly files to S3, GCS or R2, or BigQuery, so your data team works from the raw events.' },
   ],
-  soon: ['White-label client portal', 'MCP server scoped by key and sub-tenant'],
+  soon: [],
 };
 
 export const metadata = pageMetadata({ title: 'Embedded, multi-tenant analytics for SaaS platforms', description: c.description, path: '/solutions/platforms' });
