@@ -20,8 +20,8 @@ are created by the parent session.
 
 1. Create the Tyashin project (slug `yom-website`) and the PUBLIC repo `tyashin-sites/yom-website-next`; push `main`.
 2. `/adopt` with `overwriteWorkflow:true` (worker `site-yom-website`). Do not hand-write `deploy.yml`.
-3. Set build-time env: `SITE_URL`, `PROJECT_ID`, `ROBOTS_NOINDEX` (keep `"true"` until cutover).
-4. Install + configure the **Contact Form & Lead Capture** plugin (form posts through `/api/contact` → `/api/v1/contact/public/submit` with the project `TYASHIN_API_KEY`).
+3. Set build-time env: `SITE_URL=https://yom.aapastech.com` (default), `PROJECT_ID`, `ROBOTS_NOINDEX="false"` (default; `"true"` only for a preview build).
+4. Install + configure the **Contact Form & Lead Capture** plugin and set the `TYASHIN_API_KEY` Worker secret, exactly as `docs/CONTACT-FORM.md` says; run its smoke test.
 5. Install SEO Co-Pilot once a custom domain exists; set phone `+1 437 800 0190`.
-6. Verify on `yom-website.sites.tyashin.com`, then flip `ROBOTS_NOINDEX` to `"false"` and rebuild.
+6. Verify on `yom-website.sites.tyashin.com`, then cut over yom.aapastech.com through the path router (dashboard paths: `src/config/router-paths.json`; `/`, marketing pages, `/api/contact`, `/llms.txt`, `/sitemap-pages.xml`, `/.well-known/security.txt` and `/_next/*` go to this site).
 7. Register the site in `CUSTOMERS.md` + `CUSTOMER_URLS` in `safe-deploy.sh`.

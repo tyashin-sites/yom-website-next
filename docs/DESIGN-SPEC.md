@@ -74,7 +74,7 @@ Custom type classes use the `tt-` namespace so they never shadow Tailwind utilit
 - Hero headline ≤ 9 words. Hero sub ≤ 32 words.
 - Section heading ≤ 10 words; section lead ≤ 40 words.
 - Card title ≤ 6 words; card body ≤ 30 words.
-- One primary CTA per viewport: **"Start free — no credit card"** (→ https://yom.aapastech.com/register).
+- One primary CTA per viewport: **"Start free — no credit card"** (→ `/signup`, same host; the router sends it to the dashboard).
   The secondary is always a ghost link (Talk to us / See pricing / Read the docs).
 
 ## 5. Space, grid, surfaces
@@ -147,7 +147,7 @@ OG image is an SVG-built PNG generated at build time from the wordmark (no photo
 | `/about` | Who builds YOM (Aapastech; 14818032 Canada Inc., Burlington, Ontario) | Talk to us |
 | `/contact` | Demo / contact form → Tyashin Contact Form plugin | Submit |
 | `/faq` | Every common question, answered plainly | Start free |
-| `/privacy`, `/terms` | Draft legal (marked for legal review) | — |
+| `/terms`, `/privacy`, `/dpa`, `/acceptable-use`, `/cookies`, `/subprocessors`, `/security/disclosure` | Published legal (delegated 2026-10-23; `docs/LEGAL-SOURCES.md`) | — |
 | 404 | Elegant "no reading" instrument page | Home |
 
 ## 10. UX laws
