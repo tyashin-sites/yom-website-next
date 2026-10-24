@@ -18,7 +18,7 @@ const TODAY: { area: string; items: string[] }[] = [
     items: [
       'Runs on Cloudflare Workers, with D1, KV, R2 and Queues for storage and processing.',
       'Bot filtering at the edge before events are processed.',
-      'Per-principal API rate limits (120 requests/min on Free, 1,200 on pay-as-you-go).',
+      'Per-key API rate limits on the v2 API (120 requests/min on Free, 1,200 on pay-as-you-go).',
     ],
   },
   {
@@ -26,7 +26,6 @@ const TODAY: { area: string; items: string[] }[] = [
     items: [
       'Email and password, or Google sign-in.',
       'TOTP multi-factor authentication.',
-      'Audit logs on pay-as-you-go.',
     ],
   },
   {
@@ -36,7 +35,7 @@ const TODAY: { area: string; items: string[] }[] = [
       'Keys and embed tokens can be bound to one sub-tenant; asking for another returns 403.',
       'Server events can be HMAC-signed instead of sending the key.',
       'Webhook secrets are shown once and encrypted at rest; every delivery is HMAC-signed.',
-      'Passwords stored as bcrypt hashes; API keys stored hashed; destination credentials encrypted with AES-GCM.',
+      'Passwords stored as salted hashes (bcrypt); API keys stored hashed; destination credentials encrypted with AES-GCM.',
     ],
   },
   {
@@ -44,8 +43,8 @@ const TODAY: { area: string; items: string[] }[] = [
     items: [
       'Cookieless until analytics consent; enforced server-side.',
       'GPC and DNT honoured; PII-like params scrubbed from browser events; path-only URLs.',
-      'Retention windows applied to report data and delivery logs; the raw archive is kept for the life of the project so you can export it.',
-      'Export any time as CSV or NDJSON.',
+      'Retention windows applied to events, the raw archive and reports; delivery logs kept 30 days.',
+      'Export the last 88 days as CSV or NDJSON over the API.',
     ],
   },
 ];

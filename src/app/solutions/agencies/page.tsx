@@ -22,16 +22,15 @@ const c: SolutionContent = {
     'Create a sub-tenant per client, bind a key or embed token to it, and that principal is forced to its own data. Ask for another client’s data and the API answers 403.',
   showcase: <FanOut orgLabel="Your agency" />,
   today: [
-    { title: 'Sub-tenants', body: 'Open (created on first event) or registered, inside one project.' },
+    { title: 'Sub-tenants', body: 'Open (a new client id becomes a partition on its first event) or registered, inside one project. Free includes 3; pay-as-you-go has no limit.' },
     { title: 'Scoped keys & embed tokens', body: 'Bound to one client; embed tokens also carry report and origin allow-lists.' },
     { title: 'Usage by client', body: 'Event volume per sub-tenant, so you can re-bill at your own margin.' },
     { title: 'White-label webhooks', body: 'Your header prefix and user agent on every signed delivery.' },
-    { title: 'Unlimited seats & projects', body: 'On pay-as-you-go, add your whole team and every client project.' },
+    { title: 'Unlimited projects', body: 'On pay-as-you-go, every client can have its own project, with no per-client seat price.' },
     { title: 'Exact client conversions', body: 'Leads and purchases counted exactly, even for low-traffic clients.' },
-    { title: 'White-label client portals', body: 'A branded portal per client with read-only logins. On pay-as-you-go it can run on your own domain without “Powered by”.' },
-    { title: 'Scheduled email reports', body: 'Weekly or monthly digests to each client, with a CSV attachment on pay-as-you-go.' },
+    { title: 'White-label client portals', body: 'A branded portal per client with read-only logins limited to the reports you pick. On pay-as-you-go the “Powered by” line goes away.' },
   ],
-  soon: [],
+  soon: ['Client portals on your own domain', 'Scheduled weekly or monthly email reports to each client'],
 };
 
 export const metadata = pageMetadata({ title: 'Multi-client analytics for agencies', description: c.description, path: '/solutions/agencies' });

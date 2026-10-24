@@ -50,7 +50,7 @@ export const siteConfig = {
   /** Real SDK facts (npm `latest`, verified 2026-10-23). */
   sdk: {
     package: '@yourownmetric/sdk',
-    version: '0.3.0',
+    version: '0.3.1',
     ingestUrl: 'https://ingest.yourownmetrics.aapastech.com',
   },
 

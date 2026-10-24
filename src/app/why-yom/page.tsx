@@ -90,8 +90,8 @@ export default function WhyYomPage() {
         answer={
           <>
             <p>Counts purchase, refund, generate_lead, form_submit and sign_up exactly, deduplicated on the event id. No thresholds or sampling on those counts.</p>
-            <p>Keeps your raw events in an archive you can export as CSV or NDJSON.</p>
-            <p className="text-muted">Funnels, attribution and unique visitors are estimates in YOM too, and are labelled as such.</p>
+            <p>Lets you export events as CSV or NDJSON over the API, and send conversions from your own backend.</p>
+            <p className="text-muted">Funnels, attribution and unique visitors are estimates in YOM too, and we say so.</p>
           </>
         }
       >
@@ -118,7 +118,7 @@ export default function WhyYomPage() {
             <p>Treats Global Privacy Control and DNT as denied consent: collection goes cookieless, or is dropped if you choose.</p>
             <p>Enforces it on the server: without consent the visitor id is forced empty whatever the browser sent.</p>
             <p>Forwards to ad platforms only with explicit marketing consent and no GPC signal.</p>
-            <p>Records the evidence: an opt-out report shows, per event, the consent state and what was dropped, kept cookieless or suppressed.</p>
+            <p>Records the evidence: every event stores its consent state and whether it was kept cookieless, scrubbed or held back from forwarding, and the opt-out report totals them.</p>
           </>
         }
       >
@@ -183,7 +183,7 @@ export default function WhyYomPage() {
               YOM&rsquo;s list price is <span className="tt-num font-semibold">{yom20m}</span>.{' '}
               <a href="/pricing" className="underline">Check the calculator</a>.
             </p>
-            <p>Unlimited projects and team members on pay-as-you-go. Clients are sub-tenants, so they don&rsquo;t cost extra seats.</p>
+            <p>Unlimited projects and sub-tenants on pay-as-you-go. A client is a sub-tenant, not a paid seat.</p>
           </>
         }
       >

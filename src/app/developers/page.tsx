@@ -47,13 +47,14 @@ YOM.lead('contact-form')
 
 // Any custom event (snake_case, up to 64 chars)
 YOM.track('trial_started', { plan: 'pro' })`,
-  react: `import { YOMProvider, PageTracker, useTrack } from '@yourownmetric/sdk/react'
+  react: `import { YOMProvider, useTrack } from '@yourownmetric/sdk/react'
 
 export function App() {
   return (
-    <YOMProvider config={{ apiKey: 'yom_pk_live_…', consent: { default: 'unknown' } }}>
-      <PageTracker />
-      {/* your routes */}
+    <YOMProvider
+      config={{ apiKey: 'yom_pk_live_…', consent: { default: 'unknown' }, autoCapture: { pageviews: true } }}
+    >
+      {/* your routes: page views are captured on every route change */}
     </YOMProvider>
   )
 }
@@ -71,8 +72,8 @@ const yom = new YOMServer({
 
 yom.track({
   event: 'purchase',
-  id: 'order-1043',                        // stable id = safe retries
-  subTenant: 'client-a',                   // optional: platforms & agencies
+  id: '1043',                              // same id as the browser purchase = counted once
+  subTenant: 'client-a',                   // optional: needs sub-tenants on for the project
   params: { transaction_id: '1043', value: 212.0, currency: 'USD' },
 })
 
@@ -89,13 +90,12 @@ process.on('SIGTERM', async () => {
     "v": 2,
     "events": [{
       "e": "purchase",
-      "t": 1760960000000,
-      "id": "order-1043",
+      "id": "1043",
       "p": { "transaction_id": "1043", "value": 212.0, "currency": "USD" }
     }]
   }'`,
   hmac: `# HMAC instead of a bearer key: sign "<unix-ts>.<raw body>" with your secret key
-BODY='{"v":2,"events":[{"e":"sign_up","t":1760960000000,"id":"u-88"}]}'
+BODY='{"v":2,"events":[{"e":"sign_up","id":"u-88"}]}'
 TS=$(date +%s)
 SIG=$(printf '%s.%s' "$TS" "$BODY" | openssl dgst -sha256 -hmac "$YOM_SECRET_KEY" -hex | sed 's/^.* //')
 
@@ -175,8 +175,8 @@ export default function DevelopersPage() {
         <CodeBlock code={S.browser} label="analytics.ts" lang="TypeScript" />
         <p className="text-muted">
           Until <code className="font-mono">setConsent</code> grants analytics, the SDK keeps no persistent id and
-          writes nothing to storage. DNT and Global Privacy Control are treated as denied unless you opt out of that
-          behaviour. Batches go out as <code className="font-mono">text/plain</code> through{' '}
+          writes nothing to storage. DNT and Global Privacy Control are treated as denied; the project&rsquo;s privacy
+          setting decides whether those visits are kept cookieless, dropped or counted normally. Batches go out as <code className="font-mono">text/plain</code> through{' '}
           <code className="font-mono">sendBeacon</code> on page hide, with a <code className="font-mono">fetch(keepalive)</code> fallback.
         </p>
       </Step>
@@ -193,6 +193,7 @@ export default function DevelopersPage() {
 
       <Step n="03" id="react" title="React">
         <CodeBlock code={S.react} label="App.tsx" lang="React" />
+        <p className="text-muted">The React components need React 19.</p>
       </Step>
 
       <Step n="04" id="server" title="Send conversions from your server">
@@ -207,7 +208,7 @@ export default function DevelopersPage() {
       <Step n="05" id="http" title="Or call the HTTP API directly">
         <CodeBlock code={S.curl} label="bearer auth" lang="curl" />
         <CodeBlock code={S.hmac} label="HMAC auth" lang="shell" />
-        <p className="text-muted">Up to 50 events or 64 KB per request. 429 and 5xx responses are safe to retry with the same ids.</p>
+        <p className="text-muted">Up to 50 events or 256 KB per request. 429 and 5xx responses are safe to retry with the same ids. For HMAC, send the key&rsquo;s id (<code className="font-mono">key_…</code>, returned by the keys API) as YOM-Key-Id and sign with the secret key itself.</p>
       </Step>
 
       <Step n="06" id="webhooks" title="Verify signed webhooks">
@@ -235,10 +236,10 @@ export default function DevelopersPage() {
               [
                 ['MCP server: 13 read-only report tools over Streamable HTTP, Bearer read-scoped key', 'live'],
                 ['Partner API: management keys create projects and mint keys', 'live'],
-                ['<yom-report> web component (@yourownmetric/embed) with embed tokens', 'live'],
+                ['<yom-report> web component (@yourownmetric/embed) with embed tokens', 'soon'],
                 ['Meta CAPI and GA4 Measurement Protocol destinations, consent-gated', 'live'],
-                ['Warehouse exports: S3, GCS, R2, BigQuery; Snowflake via external stage', 'live'],
-                ['GA4 gtag shim (@yourownmetric/sdk/gtag-shim) and GA4 BigQuery import', 'live'],
+                ['Warehouse exports: S3, GCS, R2, BigQuery; Snowflake via external stage', 'soon'],
+                ['GA4 gtag shim (@yourownmetric/sdk/gtag-shim) and a GA4 BigQuery import API', 'live'],
                 ['Shopify app and WooCommerce plugin', 'early'],
                 ['Looker Studio community connector (self-deploy)', 'early'],
                 ['Google Ads Enhanced Conversions', 'soon'],

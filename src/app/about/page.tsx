@@ -15,7 +15,7 @@ export const metadata = pageMetadata({ title: 'About YOM', description: DESCRIPT
 const PRINCIPLES = [
   { t: 'Exact where it matters', b: 'Money and lead events are counted exactly. Anything estimated is labelled as an estimate.' },
   { t: 'An opt-out is final', b: 'Consent is enforced where the data lands, not only where the banner sits.' },
-  { t: 'Your data, portable', b: 'Raw archive, CSV and NDJSON export, and signed webhooks, because leaving should be easy.' },
+  { t: 'Your data, portable', b: 'CSV and NDJSON export, signed webhooks and an open API, because leaving should be easy.' },
   { t: 'Say what isn’t shipped', b: 'Roadmap items carry a “Coming soon” label until they are real.' },
 ];
 
