@@ -107,3 +107,19 @@ export function eventsToSlider(events: number): number {
   const e = Math.min(Math.max(events, 10_000), 1_000_000_000);
   return Math.round(((Math.log10(e) - LOG_MIN) / (LOG_MAX - LOG_MIN)) * 1000);
 }
+
+/** Shrink the readout as digits grow so the full number always fits its column. */
+export function readoutSize(chars: number): string {
+  if (chars <= 9) return 'text-3xl sm:text-4xl'; // up to 999,999
+  if (chars <= 11) return 'text-2xl sm:text-3xl'; // up to 99,999,999
+  return 'text-xl sm:text-2xl'; // 100,000,000 and up
+}
+
+/** Plain-language scale, e.g. "250 million", "1 billion", "2.5 million". */
+export function scaleWords(n: number): string {
+  const fmt = (v: number) => new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 }).format(v);
+  if (n >= 1_000_000_000) return `${fmt(n / 1_000_000_000)} billion`;
+  if (n >= 1_000_000) return `${fmt(n / 1_000_000)} million`;
+  if (n >= 1_000) return `${fmt(n / 1_000)} thousand`;
+  return fmt(n);
+}

@@ -7,8 +7,7 @@ import {
   formatMoney,
   formatRate,
   quote,
-  sliderToEvents,
-} from '@/lib/pricing';
+  sliderToEvents, readoutSize, scaleWords } from '@/lib/pricing';
 
 /**
  * Reference implementation, copied VERBATIM (modulo types) from the YOM repo:
@@ -126,5 +125,27 @@ describe('formatting', () => {
     expect(sliderToEvents(1000)).toBe(1_000_000_000);
     expect(eventsToSlider(10_000)).toBe(0);
     expect(eventsToSlider(1_000_000_000)).toBe(1000);
+  });
+});
+
+describe('readout legibility (calculator)', () => {
+  const fmt = (n: number) => new Intl.NumberFormat('en-US').format(n);
+
+  it('names the scale in words so 1,000,000,000 can never read as 1,000,000', () => {
+    expect(scaleWords(1_000_000_000)).toBe('1 billion');
+    expect(scaleWords(250_000_000)).toBe('250 million');
+    expect(scaleWords(2_500_000)).toBe('2.5 million');
+    expect(scaleWords(100_000)).toBe('100 thousand');
+  });
+
+  it('shrinks the readout as digits grow', () => {
+    expect(readoutSize(fmt(999_999).length)).toBe('text-3xl sm:text-4xl');
+    expect(readoutSize(fmt(10_000_000).length)).toBe('text-2xl sm:text-3xl');
+    expect(readoutSize(fmt(1_000_000_000).length)).toBe('text-xl sm:text-2xl');
+    expect(readoutSize(fmt(5_000_000_000).length)).toBe('text-xl sm:text-2xl');
+  });
+
+  it('the slider maximum is exactly the 1B preset', () => {
+    expect(sliderToEvents(1000)).toBe(1_000_000_000);
   });
 });

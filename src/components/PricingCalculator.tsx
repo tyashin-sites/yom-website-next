@@ -1,6 +1,6 @@
 'use client';
 
-import { useId, useMemo, useState } from 'react';
+import { useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   EVENT_TIERS,
   eventsToSlider,
@@ -8,11 +8,41 @@ import {
   formatMoney,
   formatRate,
   quote,
+  readoutSize,
+  scaleWords,
   sliderToEvents,
   type Currency,
 } from '@/lib/pricing';
 
-const PRESETS = [100_000, 1_000_000, 10_000_000, 50_000_000, 250_000_000];
+const PRESETS = [100_000, 1_000_000, 10_000_000, 50_000_000, 250_000_000, 1_000_000_000];
+
+/**
+ * Fit the readout to its field: start from the design size and step down until the whole
+ * number is visible, re-checking when the value or the field width changes. `readoutSize`
+ * stays as the SSR/first-paint class; this only ever shrinks.
+ */
+function useFitText(value: string) {
+  const ref = useRef<HTMLInputElement>(null);
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const fit = () => {
+      el.style.fontSize = '';
+      let size = parseFloat(getComputedStyle(el).fontSize);
+      while (el.scrollWidth > el.clientWidth && size > 14) {
+        size -= 1;
+        el.style.fontSize = `${size}px`;
+      }
+    };
+    fit();
+    // Web fonts can land after first paint and widen the digits: fit again once they have.
+    document.fonts?.ready.then(fit).catch(() => {});
+    const ro = new ResizeObserver(fit);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [value]);
+  return ref;
+}
 
 export function PricingCalculator() {
   const [events, setEvents] = useState(2_000_000);
@@ -21,6 +51,8 @@ export function PricingCalculator() {
   const id = useId();
   const q = useMemo(() => quote(events, currency), [events, currency]);
   const fmtInt = (n: number) => new Intl.NumberFormat('en-US').format(n);
+  const readout = draft ?? fmtInt(events);
+  const readoutRef = useFitText(readout);
 
   return (
     <div className="ink-panel on-ink p-5 sm:p-8">
@@ -44,25 +76,30 @@ export function PricingCalculator() {
         </div>
       </div>
 
-      <div className="mt-8 grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-end">
+      <div className="mt-8 grid gap-8">
         <div>
           <label htmlFor={`${id}-events`} className="block text-sm text-on-ink-muted">
             Events per month
           </label>
-          <div className="mt-2 flex items-baseline gap-3">
+          <div className="mt-2">
             <input
               id={`${id}-events`}
               inputMode="numeric"
               autoComplete="off"
-              value={draft ?? fmtInt(events)}
+              aria-describedby={`${id}-scale`}
+              ref={readoutRef}
+              value={readout}
               onChange={(e) => {
                 setDraft(e.target.value);
                 const n = Number(e.target.value.replace(/[^0-9]/g, ''));
                 if (Number.isFinite(n)) setEvents(Math.min(n, 5_000_000_000));
               }}
               onBlur={() => setDraft(null)}
-              className="tt-num w-full min-w-0 border-b border-[color:var(--on-ink-border)] bg-transparent pb-1 text-3xl text-on-ink outline-none focus:border-[color:var(--on-ink-signal)] sm:text-4xl"
+              className={`tt-num w-full min-w-0 border-b border-[color:var(--on-ink-border)] bg-transparent pb-1 text-on-ink outline-none transition-[font-size] duration-150 focus:border-[color:var(--on-ink-signal)] ${readoutSize(readout.length)}`}
             />
+            <p id={`${id}-scale`} className="mt-2 font-mono text-xs text-on-ink-muted">
+              {scaleWords(events)} events / month
+            </p>
           </div>
           <label htmlFor={`${id}-range`} className="sr-only">
             Events per month (logarithmic slider)
@@ -102,7 +139,7 @@ export function PricingCalculator() {
           </div>
         </div>
 
-        <div className="lg:text-right" aria-live="polite">
+        <div aria-live="polite">
           <p className="text-sm text-on-ink-muted">Estimated monthly cost</p>
           <p className="tt-num mt-1 text-5xl leading-none text-on-ink sm:text-6xl">{formatMoney(q.total, currency)}</p>
           <p className="mt-3 text-sm text-on-ink-muted">
