@@ -10,7 +10,8 @@
     "test": "vitest run",
     "og": "node scripts/generate-og.mjs",
     "build:worker": "npx @opennextjs/cloudflare build",
-    "deploy": "npx @opennextjs/cloudflare deploy"
+    "deploy": "npx @opennextjs/cloudflare deploy",
+    "claims:check": "node scripts/check-claims.mjs"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.20.13",
