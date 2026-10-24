@@ -147,6 +147,7 @@ OG image is an SVG-built PNG generated at build time from the wordmark (no photo
 | `/about` | Who builds YOM (Aapastech; 14818032 Canada Inc., Burlington, Ontario) | Talk to us |
 | `/contact` | Demo / contact form → Tyashin Contact Form plugin | Submit |
 | `/faq` | Every common question, answered plainly | Start free |
+| `/blog`, `/blog/[slug]` | Native blog over the Tyashin Blog plugin; dormant (noindex, unlinked) until posts exist (`docs/BLOG.md`) | Start free |
 | `/terms`, `/privacy`, `/dpa`, `/acceptable-use`, `/cookies`, `/subprocessors`, `/security/disclosure` | Published legal (delegated 2026-10-23; `docs/LEGAL-SOURCES.md`) | — |
 | 404 | Elegant "no reading" instrument page | Home |
 
