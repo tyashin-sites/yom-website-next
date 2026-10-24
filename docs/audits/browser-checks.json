@@ -112,6 +112,11 @@
       "detail": "overflow 0px"
     },
     {
+      "name": "no horizontal scroll on mobile /blog",
+      "pass": true,
+      "detail": "overflow 0px"
+    },
+    {
       "name": "no horizontal scroll on mobile /this-page-does-not-exist",
       "pass": true,
       "detail": "overflow 0px"
@@ -230,6 +235,7 @@
     "cookies--desktop--light.png",
     "subprocessors--desktop--light.png",
     "security_disclosure--desktop--light.png",
+    "blog--desktop--light.png",
     "this-page-does-not-exist--desktop--light.png",
     "home--mobile--light.png",
     "why-yom--mobile--light.png",
@@ -253,6 +259,7 @@
     "cookies--mobile--light.png",
     "subprocessors--mobile--light.png",
     "security_disclosure--mobile--light.png",
+    "blog--mobile--light.png",
     "this-page-does-not-exist--mobile--light.png",
     "home--desktop--dark.png",
     "product--desktop--dark.png",
