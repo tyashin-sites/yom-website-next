@@ -99,7 +99,7 @@ export default function PrivacyPage() {
           </li>
           <li>
             <strong>Organisation:</strong> organisation name, plan, currency, the country inferred from your IP address at
-            sign-up (used for currency, tax and payment-provider selection), your role, and team members you invite.
+            sign-up (used for currency, tax and payment-provider selection) and your role.
           </li>
           <li>
             <strong>Billing:</strong> billing contact details, invoices, tax information and payment-provider references.
