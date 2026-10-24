@@ -72,3 +72,46 @@ describe('blog: knowledge graph', () => {
     expect(g['@graph'].some((n) => n['@type'] === 'BreadcrumbList')).toBe(true);
   });
 });
+
+describe('blog: fetch fallbacks', () => {
+  const setEnv = () => {
+    process.env.TYASHIN_API_URL = 'https://api.test';
+    process.env.TYASHIN_API_KEY = 'k';
+    process.env.TYASHIN_BLOG_ORIGIN = 'https://slug.test';
+  };
+
+  it('a 404 from the keyed API is final: no second (slow) hop to the keyless API', async () => {
+    setEnv();
+    const { getPost } = await import('@/lib/blog');
+    const calls: string[] = [];
+    const prev = globalThis.fetch;
+    globalThis.fetch = (async (u: string) => {
+      calls.push(String(u));
+      return new Response('{"success":false}', { status: 404 });
+    }) as typeof fetch;
+    try {
+      expect(await getPost('no-such-post')).toBeNull();
+      expect(calls).toEqual(['https://api.test/api/v1/public/blog/posts/no-such-post']);
+    } finally {
+      globalThis.fetch = prev;
+    }
+  });
+
+  it('an error from the keyed API falls back to the keyless data API', async () => {
+    setEnv();
+    const { getPost } = await import('@/lib/blog');
+    const calls: string[] = [];
+    const prev = globalThis.fetch;
+    globalThis.fetch = (async (u: string) => {
+      calls.push(String(u));
+      if (String(u).startsWith('https://api.test')) return new Response('boom', { status: 500 });
+      return Response.json({ active: true, post: { slug: 'p', title: 'P' } });
+    }) as typeof fetch;
+    try {
+      expect((await getPost('p'))?.title).toBe('P');
+      expect(calls[1]).toBe('https://slug.test/_tyashin/blog/posts/p');
+    } finally {
+      globalThis.fetch = prev;
+    }
+  });
+});

@@ -76,11 +76,16 @@ function apiEnv(): { url: string; key: string } {
  * AbortSignal) keeps Next's fetch cache and dedupe in play.
  */
 const FETCH_DEADLINE_MS = 4000;
+/** Optional extras (categories, the status check) get a shorter leash. */
+const OPTIONAL_DEADLINE_MS = 1500;
+/** A definite "no such post" from the API, distinct from an error or timeout. */
+const GONE = Object.freeze({ gone: true });
 
 async function getJson<T>(
   url: string,
   init: RequestInit & { next?: { revalidate?: number } } = {},
   deadlineMs = FETCH_DEADLINE_MS,
+  notFoundIsAnswer = false,
 ): Promise<T | null> {
   const run = (async () => {
     try {
@@ -89,6 +94,7 @@ async function getJson<T>(
         ...init,
         headers: { accept: 'application/json', ...(init.headers || {}) },
       });
+      if (res.status === 404 && notFoundIsAnswer) return GONE as T;
       if (!res.ok) return null;
       return (await res.json()) as T;
     } catch {
@@ -132,7 +138,7 @@ function normalise(p: Record<string, unknown>): BlogPost | null {
  * caller then decides from the posts it fetched in parallel.
  */
 export async function getBlogStatus(): Promise<BlogStatus & { known: boolean }> {
-  const data = await getJson<Partial<BlogStatus>>(`${dataHost()}/_tyashin/blog/meta`, {}, 1500);
+  const data = await getJson<Partial<BlogStatus>>(`${dataHost()}/_tyashin/blog/meta`, {}, OPTIONAL_DEADLINE_MS);
   return { active: data?.active === true, hasPosts: data?.hasPosts === true, known: data !== null };
 }
 
@@ -192,10 +198,16 @@ export async function getPost(slug: string): Promise<BlogPost | null> {
   if (!/^[a-z0-9][a-z0-9-]{0,190}$/i.test(slug)) return null;
   const { url, key } = apiEnv();
   if (key) {
-    const json = await getJson<{ data?: Record<string, unknown> }>(`${url}/api/v1/public/blog/posts/${slug}`, {
-      headers: { 'X-API-Key': key },
-    });
+    const json = await getJson<{ data?: Record<string, unknown>; gone?: true }>(
+      `${url}/api/v1/public/blog/posts/${slug}`,
+      { headers: { 'X-API-Key': key } },
+      FETCH_DEADLINE_MS,
+      true,
+    );
     if (json?.data) return normalise(json.data);
+    // The API answered "no such post": that's final. Only an error or a
+    // timeout falls back to the keyless API (a second cold hop).
+    if (json?.gone) return null;
   }
   const json = await getJson<{ post?: Record<string, unknown> | null }>(
     `${dataHost()}/_tyashin/blog/posts/${slug}`,
@@ -206,9 +218,13 @@ export async function getPost(slug: string): Promise<BlogPost | null> {
 export async function listCategories(): Promise<BlogCategory[]> {
   const { url, key } = apiEnv();
   if (!key) return [];
-  const json = await getJson<{ data?: BlogCategory[] }>(`${url}/api/v1/public/blog/categories`, {
-    headers: { 'X-API-Key': key },
-  });
+  // Not edge-cached on the platform, so a cold call costs a Mongo connect; the
+  // chips are optional, so they get the short deadline.
+  const json = await getJson<{ data?: BlogCategory[] }>(
+    `${url}/api/v1/public/blog/categories`,
+    { headers: { 'X-API-Key': key } },
+    OPTIONAL_DEADLINE_MS,
+  );
   return (json?.data || []).filter((c) => c && c.id && c.name && c.slug);
 }
 
