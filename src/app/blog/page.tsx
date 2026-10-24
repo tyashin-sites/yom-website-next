@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo';
-import { getBlogStatus, listCategories, listPosts } from '@/lib/blog';
+import { cache } from 'react';
+import { blogIsLive, getBlogStatus, listCategories, listPosts } from '@/lib/blog';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { PageHero } from '@/components/ui/PageHero';
 import { GhostLink } from '@/components/ui/Cta';
@@ -29,27 +30,30 @@ function parse(sp: { page?: string; category?: string }) {
   return { page, category };
 }
 
+/** Status, posts and categories in parallel (one cold platform hop, not three in a row). Shared by metadata and page. */
+const loadIndex = cache(async (page: number, category: string | undefined) => {
+  const [status, list, categories] = await Promise.all([getBlogStatus(), listPosts({ page, category }), listCategories()]);
+  const live = blogIsLive(status, list.total);
+  return { status, live, posts: live ? list.posts : [], totalPages: live ? list.totalPages : 1, categories: live ? categories : [] };
+});
+
 export async function generateMetadata({ searchParams }: { searchParams: Search }): Promise<Metadata> {
   const { page, category } = parse(await searchParams);
-  const status = await getBlogStatus();
+  const { live } = await loadIndex(page, category);
   const path = page > 1 && !category ? `/blog?page=${page}` : '/blog';
   const meta = pageMetadata({
     title: page > 1 ? `${TITLE}, page ${page}` : TITLE,
     description: DESCRIPTION,
     path,
     // Dormant, or a category filter (a view of /blog, not its own page).
-    noindex: !status.active || !status.hasPosts || Boolean(category),
+    noindex: !live || Boolean(category),
   });
-  return status.active ? { ...meta, alternates: { ...meta.alternates, types: { 'application/rss+xml': [{ url: '/blog/rss.xml', title: 'YOM blog' }] } } } : meta;
+  return live ? { ...meta, alternates: { ...meta.alternates, types: { 'application/rss+xml': [{ url: '/blog/rss.xml', title: 'YOM blog' }] } } } : meta;
 }
 
 export default async function BlogIndex({ searchParams }: { searchParams: Search }) {
   const { page, category } = parse(await searchParams);
-  const status = await getBlogStatus();
-  const live = status.active && status.hasPosts;
-  const [{ posts, totalPages }, categories] = live
-    ? await Promise.all([listPosts({ page, category }), listCategories()])
-    : [{ posts: [], totalPages: 1 }, []];
+  const { live, posts, totalPages, categories } = await loadIndex(page, category);
 
   const featured = page === 1 && !category ? posts[0] : undefined;
   const rows = featured ? posts.slice(1) : posts;

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { pageMetadata, siteUrl } from '@/lib/seo';
+import { cache } from 'react';
 import { formatPostDate, getBlogStatus, getPost, listCategories, listPosts, pickRelated, postBodyHtml, postSeo } from '@/lib/blog';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
@@ -17,11 +18,18 @@ export const dynamic = 'force-dynamic';
 
 type Params = Promise<{ slug: string }>;
 
-async function load(slug: string) {
-  const status = await getBlogStatus();
-  if (!status.active) return null;
-  return getPost(slug);
-}
+/** Status, the post, related candidates and categories in parallel; shared by metadata and page. */
+const load = cache(async (slug: string) => {
+  const [status, post, recent, categories] = await Promise.all([
+    getBlogStatus(),
+    getPost(slug),
+    listPosts({ limit: 24 }),
+    listCategories(),
+  ]);
+  // Plugin switched off → dormant, even if the API still has the row.
+  if (!post || (status.known && !status.active)) return null;
+  return { post, recent: recent.posts, categories };
+});
 
 function absolute(src?: string): string | undefined {
   if (!src) return undefined;
@@ -30,7 +38,7 @@ function absolute(src?: string): string | undefined {
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await load(slug);
+  const post = (await load(slug))?.post;
   if (!post) return { title: 'Article not found', robots: { index: false, follow: true } };
   const { title, description } = postSeo(post);
   const meta = pageMetadata({
@@ -56,10 +64,9 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
 export default async function BlogPost({ params }: { params: Params }) {
   const { slug } = await params;
-  const post = await load(slug);
-  if (!post) notFound();
-
-  const [{ posts: recent }, categories] = await Promise.all([listPosts({ limit: 24 }), listCategories()]);
+  const loaded = await load(slug);
+  if (!loaded) notFound();
+  const { post, recent, categories } = loaded;
   const related = pickRelated(post, recent);
   const { description } = postSeo(post);
   const category = categoryName(post, categories);

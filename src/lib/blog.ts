@@ -68,17 +68,41 @@ function apiEnv(): { url: string; key: string } {
   return { url: url.replace(/\/+$/, ''), key: typeof key === 'string' ? key : '' };
 }
 
-async function getJson<T>(url: string, init: RequestInit & { next?: { revalidate?: number } } = {}): Promise<T | null> {
+/**
+ * Cold platform calls can take 2 to 3 s (an Atlas connect on Tyashin's side),
+ * and the YOM router gives the whole page 8 s. Every blog fetch is therefore
+ * raced against a deadline: on timeout the page renders without that piece
+ * and the fetch keeps running to warm the data cache. The race (not an
+ * AbortSignal) keeps Next's fetch cache and dedupe in play.
+ */
+const FETCH_DEADLINE_MS = 4000;
+
+async function getJson<T>(
+  url: string,
+  init: RequestInit & { next?: { revalidate?: number } } = {},
+  deadlineMs = FETCH_DEADLINE_MS,
+): Promise<T | null> {
+  const run = (async () => {
+    try {
+      const res = await fetch(url, {
+        next: { revalidate: BLOG_REVALIDATE },
+        ...init,
+        headers: { accept: 'application/json', ...(init.headers || {}) },
+      });
+      if (!res.ok) return null;
+      return (await res.json()) as T;
+    } catch {
+      return null;
+    }
+  })();
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const deadline = new Promise<null>((resolve) => {
+    timer = setTimeout(() => resolve(null), deadlineMs);
+  });
   try {
-    const res = await fetch(url, {
-      next: { revalidate: BLOG_REVALIDATE },
-      ...init,
-      headers: { accept: 'application/json', ...(init.headers || {}) },
-    });
-    if (!res.ok) return null;
-    return (await res.json()) as T;
-  } catch {
-    return null;
+    return await Promise.race([run, deadline]);
+  } finally {
+    clearTimeout(timer);
   }
 }
 
@@ -102,10 +126,19 @@ function normalise(p: Record<string, unknown>): BlogPost | null {
   };
 }
 
-/** Is the Blog plugin on, and is anything published? Never throws. */
-export async function getBlogStatus(): Promise<BlogStatus> {
-  const data = await getJson<Partial<BlogStatus>>(`${dataHost()}/_tyashin/blog/meta`);
-  return { active: data?.active === true, hasPosts: data?.hasPosts === true };
+/**
+ * Is the Blog plugin on, and is anything published? Never throws. `known` is
+ * false when the platform didn't answer in time (a cold /_tyashin hop): the
+ * caller then decides from the posts it fetched in parallel.
+ */
+export async function getBlogStatus(): Promise<BlogStatus & { known: boolean }> {
+  const data = await getJson<Partial<BlogStatus>>(`${dataHost()}/_tyashin/blog/meta`, {}, 1500);
+  return { active: data?.active === true, hasPosts: data?.hasPosts === true, known: data !== null };
+}
+
+/** Live = plugin on with posts. If the status call timed out, trust the post list. */
+export function blogIsLive(status: BlogStatus & { known: boolean }, postsFound: number): boolean {
+  return status.known ? status.active && status.hasPosts : postsFound > 0;
 }
 
 /**
