@@ -12,6 +12,10 @@
  *   VERIFIED-IN-PROD, EXTERNAL-SOURCE   pass anywhere
  *   SHIPPED-NOT-DEPLOYED                pass only when the line, one of the 6 lines
  *                                       above it or 2 below it says Coming soon / Early access
+ *   BUILD-PENDING (<owner>, until YYYY-MM-DD)
+ *                                       pass until that date (at most 14 days after the
+ *                                       row was marked), then fail so a pending build
+ *                                       can't linger
  *   PARTIAL, NOT-TRUE, missing row      fail, naming the file and line
  *
  *   npm run claims:check               scan src/
@@ -66,7 +70,12 @@ export function parseLedger(md) {
   for (const r of table(md, '## Claims')) {
     if (!r.ID) continue;
     if (claims.has(r.ID)) throw new Error(`ledger: duplicate row ${r.ID}`);
-    claims.set(r.ID, { status: (r.Status.replace(/[*`]/g, '').match(/^[A-Z-]+/) ?? [''])[0], claim: r.Claim });
+    const st = r.Status.replace(/[*`]/g, '');
+    claims.set(r.ID, {
+      status: (st.match(/^[A-Z-]+/) ?? [''])[0],
+      until: st.match(/until (\d{4}-\d{2}-\d{2})/)?.[1] ?? null,
+      claim: r.Claim,
+    });
   }
   const gate = table(md, '## Keyword gate').map((r) => {
     const src = r['Keyword (regex)'].replace(/^`|`$/g, '');
@@ -106,7 +115,7 @@ function htmlText(html) {
     .replace(/\n\s*\n+/g, '\n');
 }
 
-export function check(ledger, docs) {
+export function check(ledger, docs, today = new Date().toISOString().slice(0, 10)) {
   const failures = [];
   const hits = new Map();
   for (const { name, text } of docs) {
@@ -120,6 +129,11 @@ export function check(ledger, docs) {
           const row = ledger.claims.get(id);
           if (!row) failures.push(`${name}:${i + 1}  /${k.src}/ → ${id}: no such ledger row`);
           else if (PASS.has(row.status) || (LABELLED.has(row.status) && labelled)) continue;
+          else if (row.status === 'BUILD-PENDING' && row.until && today <= row.until) continue;
+          else if (row.status === 'BUILD-PENDING')
+            failures.push(
+              `${name}:${i + 1}  /${k.src}/ → ${id} BUILD-PENDING ${row.until ? `expired ${row.until}` : 'has no "until" date'}: ${row.claim.slice(0, 90)}`,
+            );
           else
             failures.push(
               `${name}:${i + 1}  /${k.src}/ → ${id} is ${row.status}${LABELLED.has(row.status) ? ' (needs a Coming soon label)' : ''}: ${row.claim.slice(0, 90)}`,
@@ -166,7 +180,12 @@ async function main() {
     console.error('\nFix the copy, or verify the claim and update docs/CLAIMS-LEDGER.md (see "How to add a row").');
     process.exit(1);
   }
-  console.log('  every gated capability maps to a VERIFIED-IN-PROD or EXTERNAL-SOURCE row.');
+  const pending = [...ledger.claims.entries()].filter(([, r]) => r.status === 'BUILD-PENDING');
+  console.log('  every gated capability maps to a passing row.');
+  if (pending.length) {
+    const next = pending.map(([, r]) => r.until ?? '?').sort()[0];
+    console.log(`  ${pending.length} BUILD-PENDING rows; the first expires ${next}.`);
+  }
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) main();

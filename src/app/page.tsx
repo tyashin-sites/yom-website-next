@@ -121,8 +121,8 @@ export default function HomePage() {
             <ul className="mt-7 space-y-3 text-[0.95rem]">
               {[
                 'GPC and DNT default to cookieless; a project can choose to drop instead.',
-                'Pages are recorded by path. The SDK drops the query string before sending.',
-                'Params named email, phone, name, address or card are scrubbed from browser events.',
+                'Only the path is sent. Query strings never leave the browser.',
+                'Email, phone and card-like params are scrubbed from browser events.',
                 'Nothing is forwarded to ad platforms without marketing consent.',
               ].map((t) => (
                 <li key={t} className="flex gap-3">
@@ -232,7 +232,7 @@ export default function HomePage() {
             </h2>
             <p className="tt-lead mt-5">
               Conversion counts are exact. Funnels, attribution and unique-visitor counts are statistical estimates,
-              and we say so. YOM doesn&rsquo;t do session replay, feature flags or experiments. Pair it with
+              and the product says so. YOM doesn&rsquo;t do session replay, feature flags or experiments. Pair it with
               a product-analytics tool if you need those.
             </p>
             <a href="/compare" className="link-arrow mt-8 inline-block text-sm">
@@ -244,10 +244,9 @@ export default function HomePage() {
             <ul className="mt-6 divide-y divide-border">
               {[
                 'Google Ads Enhanced Conversions',
-                'Shopify app (built, waiting on Shopify app setup and review)',
+                'Shopify App Store listing (the app is in early access)',
                 'WooCommerce plugin on wordpress.org (early access today)',
                 'Looker Studio connector in the public gallery',
-                'Warehouse exports and scheduled email reports',
               ].map((t) => (
                 <li key={t} className="flex items-center justify-between gap-4 py-3 text-[0.95rem]">
                   <span>{t}</span>

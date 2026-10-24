@@ -18,7 +18,7 @@ export const metadata = pageMetadata({ title: 'Pricing: 100,000 events free ever
 const FAQ: Faq[] = [
   {
     q: 'Do I need a credit card to start?',
-    a: 'No. The Free plan needs no credit card and includes 100,000 events every month (at most 20,000 in one day), one project and 180 days of data retention.',
+    a: 'No. The Free plan needs no credit card and includes 100,000 events every month (at most 20,000 in one day), one project and one team member, with 180 days of data retention.',
   },
   {
     q: 'How does graduated pricing work?',
@@ -30,11 +30,11 @@ const FAQ: Faq[] = [
   },
   {
     q: 'What does pay-as-you-go add over Free?',
-    a: 'No daily or monthly event cap, unlimited projects and sub-tenants, 395-day retention by default (adjustable up to five years), realtime webhooks with up to 25 destinations per project, Meta CAPI and GA4 Measurement Protocol forwarding, embed tokens, and client portals without the “Powered by” line. The first 100,000 events each month are still free.',
+    a: 'Unlimited projects and team members, 395-day retention by default (adjustable up to five years), custom events, API access, funnels, embedded dashboards, webhooks and destinations, and audit logs. The first 100,000 events each month are still free.',
   },
   {
     q: 'Do you publish prices in Canadian dollars?',
-    a: 'We publish CAD rates so you can estimate in Canadian dollars: CA$0.14, CA$0.08, CA$0.04 and CA$0.02 per 1,000 events for the same four bands, after the same 100,000 free events. Use the currency switch in the calculator. Pay-as-you-go is billed in US dollars.',
+    a: 'Yes. The CAD rates are CA$0.14, CA$0.08, CA$0.04 and CA$0.02 per 1,000 events for the same four bands, after the same 100,000 free events. Use the currency switch in the calculator.',
   },
   {
     q: 'Are conversion counts priced differently?',
@@ -68,11 +68,11 @@ export default function PricingPage() {
             <ul className="mt-8 space-y-3 text-[0.97rem]">
               {[
                 '100,000 events a month included (at most 20,000 a day)',
-                '1 project and up to 3 sub-tenants',
+                '1 project',
+                '1 team member',
                 '180-day data retention',
                 'Cookieless, consent-aware tracking',
-                'Reports, funnels, custom events and API access',
-                'One batched webhook destination',
+                'Dashboard',
               ].map((t) => (
                 <li key={t} className="flex gap-3">
                   <span aria-hidden="true" className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full bg-foreground" />
@@ -95,12 +95,12 @@ export default function PricingPage() {
             <ul className="mt-8 space-y-3 text-[0.97rem]">
               {[
                 'Everything in Free, and the first 100,000 events still free',
-                'No daily or monthly event cap',
-                'Unlimited projects and sub-tenants',
+                'Unlimited projects and team members',
                 '395-day data retention by default, up to five years',
-                'Realtime webhooks, up to 25 destinations per project',
-                'Meta CAPI and GA4 Measurement Protocol forwarding',
-                'Embed tokens and client portals without “Powered by”',
+                'Custom events and API access',
+                'Funnels and embedded dashboards',
+                'Webhooks / destinations',
+                'Audit logs',
               ].map((t) => (
                 <li key={t} className="flex gap-3">
                   <span aria-hidden="true" className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--on-ink-signal)]" />

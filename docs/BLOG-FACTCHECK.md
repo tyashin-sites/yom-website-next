@@ -8,7 +8,7 @@ The checker records the result in the draft's review note: draft title, date, ch
 
 - [ ] Mark every sentence that says what YOM does, has, costs, stores, blocks, counts or supports. Feature lists, comparisons, captions and image alt text count too.
 - [ ] Each one maps to a row in [CLAIMS-LEDGER.md](CLAIMS-LEDGER.md) with status **VERIFIED-IN-PROD**. Write the row id next to the sentence in the review note (e.g. "C29").
-- [ ] A **SHIPPED-NOT-DEPLOYED** row may appear only as "coming soon" in the same sentence. Never as a benefit the reader can use today, and never in the title, excerpt, meta description or CTA.
+- [ ] A **BUILD-PENDING** or **SHIPPED-NOT-DEPLOYED** row may appear only as "coming soon". A post is permanent and the build may slip, so it never states these as available today. It also stays out of the title, excerpt, meta description and CTA.
 - [ ] A **PARTIAL** or **NOT-TRUE** row, or no row at all: cut the sentence or rewrite it to what the row says is true. If the claim matters to the post, verify it in production first (ledger "How to add a row"), then cite the new row.
 - [ ] Numbers about YOM (prices, retention, limits, sizes, counts of tools or assistants) match the ledger exactly. Use "at most 20,000 events a day on Free", "180 days on Free", "395 days by default on pay-as-you-go". Don't round or upgrade them.
 - [ ] Run the gate on the draft as markdown or html: `npm run claims:check -- --file path/to/draft.md`. It must print "every gated capability…". It can't catch claims outside its keyword list, so the manual pass above still applies.

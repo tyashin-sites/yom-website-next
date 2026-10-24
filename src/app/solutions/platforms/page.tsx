@@ -22,16 +22,18 @@ const c: SolutionContent = {
     'Set subTenant in the SDK or on server events. In open mode the sub-tenant appears the first time it sends data, so you don’t need a provisioning call or any per-customer setup.',
   showcase: <FanOut orgLabel="Your platform" />,
   today: [
-    { title: 'Zero-touch sub-tenants', body: 'Turn on open mode once and each new customer id becomes a partition on its first event. Unlimited on pay-as-you-go.' },
+    { title: 'Zero-touch sub-tenants', body: 'Open mode creates a customer partition on its first event.' },
     { title: 'Embed tokens', body: 'Bound to one customer, with report and origin allow-lists.' },
     { title: 'Generic counters query', body: 'Count, sum, unique sessions or visitors and percentiles, grouped by up to two dimensions or by time: the building block for your own charts.' },
     { title: 'Usage per customer', body: 'Event volume by sub-tenant for your own billing.' },
     { title: 'White-label data-out', body: 'Signed webhooks under your brand’s header prefix, so customers never see YOM.' },
     { title: 'Custom dimensions', body: 'Map your own context (plan, region, cohort) into reportable dimensions and metrics.' },
-    { title: 'Partner API', body: 'Management keys create and suspend projects and mint their keys from your own backend. They can’t call the report API themselves.' },
+    { title: 'Partner API', body: 'Management keys create and suspend projects and mint their keys from your own backend. They can never read analytics data.' },
+    { title: 'The <yom-report> element', body: 'Drop a report into your product with one HTML element and an embed token; around 9 KB gzipped.' },
     { title: 'MCP server for agents', body: 'Read-only report tools for Claude and other AI agents, authorised by a read-scoped key or an embed token.' },
+    { title: 'Warehouse exports', body: 'Hourly files to S3, GCS or R2, or BigQuery, so your data team works from the raw events.' },
   ],
-  soon: ['The <yom-report> element: one HTML tag and an embed token to drop a report into your product', 'Warehouse exports: hourly files to S3, GCS or R2, or BigQuery loads'],
+  soon: [],
 };
 
 export const metadata = pageMetadata({ title: 'Embedded, multi-tenant analytics for SaaS platforms', description: c.description, path: '/solutions/platforms' });

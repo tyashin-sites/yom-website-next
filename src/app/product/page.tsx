@@ -16,7 +16,7 @@ export const metadata = pageMetadata({ title: 'Product: what YOM does today', de
 const TOC = [
   { id: 'conversions', label: 'Exact conversions' },
   { id: 'privacy', label: 'Consent & privacy' },
-  { id: 'collection', label: 'Collection' },
+  { id: 'collection', label: 'First-party collection' },
   { id: 'reports', label: 'Reports' },
   { id: 'destinations', label: 'Destinations' },
   { id: 'multi-tenant', label: 'Multi-tenant & embedding' },
@@ -167,8 +167,8 @@ export default function ProductPage() {
         lead={
           <p>
             Without analytics consent, the browser SDK keeps no persistent id and writes nothing to storage, and the
-            server forces the visitor id empty regardless of what the client sent. Withdrawing consent clears the stored
-            visitor, session and consent keys.
+            server forces the visitor id empty regardless of what the client sent. Withdrawing consent wipes the stored
+            ids.
           </p>
         }
         aside={<ConsentStream />}
@@ -178,14 +178,14 @@ export default function ProductPage() {
             ['Consent states', 'granted · denied · unknown. Only granted allows a first-party visitor id.'],
             ['DNT / GPC', 'Treated as denied: cookieless by default. Per project you can choose drop or ignore instead.'],
             ['Required mode', 'Optionally drop every event whose consent is denied.'],
-            ['URLs', 'Pages are recorded by path: the SDK drops the query string and fragment before sending, and referrers are reduced to a host. With search tracking on, the site-search term is sent as its own field.'],
-            ['Click ids', 'Not stored. A click id only decides the channel (a gclid means paid search, for example). The one exception: with marketing consent and Meta CAPI configured, the Meta click id is passed to Meta for matching.'],
-            ['PII scrubbing', 'Params named like personal data (email, phone, name, address, card and similar) are removed from browser events, as are values that look like an email address or a card number.'],
+            ['URLs', 'Path only. Query strings and fragments never leave the browser; referrers are reduced to a host.'],
+            ['Click ids', 'Reports record presence only (e.g. “gclid present”). The one exception: with marketing consent and Meta CAPI configured, the Meta click id is passed to Meta for matching.'],
+            ['PII scrubbing', 'Email-, phone-, name-, address- and card-like params are removed from browser events.'],
             ['Forwarding', 'Browser forwarding to your own GA4 or Meta Pixel, and server-side Meta CAPI / GA4 Measurement Protocol, run only with explicit marketing consent and no GPC signal.'],
-            ['Internal traffic', 'Flagged internal events are excluded from reports and never sent to webhook or server-side destinations.'],
+            ['Internal traffic', 'Flagged internal events are excluded from reports and never sent to destinations.'],
             [
               'Opt-out evidence report',
-              'Every event records its consent state, GPC, DNT, and whether it was kept cookieless, scrubbed or held back from forwarding. The report totals those flags.',
+              'Per event: the consent state, GPC, DNT, whether it was kept cookieless, PII scrubbed or forwarding suppressed.',
             ],
           ]}
         />
@@ -194,7 +194,7 @@ export default function ProductPage() {
       <Block
         id="collection"
         n="03"
-        eyebrow="Collection"
+        eyebrow="First-party collection"
         title="Collection that copes with ad blockers, Safari and closing tabs."
         lead={
           <p>
@@ -225,8 +225,7 @@ export default function ProductPage() {
               </tbody>
             </table>
             <p className="mt-5 text-sm text-muted">
-              Up to 50 events per request (64 KB from browsers, 256 KB from servers). Retries use backoff on network
-              errors, 429 and 5xx.
+              ≤ 50 events or 64 KB per request. Retries use backoff on network errors, 429 and 5xx.
             </p>
           </div>
         }
@@ -238,7 +237,7 @@ export default function ProductPage() {
             ['Enrichment', 'Channel from UTM + referrer, device / browser / OS, country and region from the edge.'],
             ['Bot filtering', 'User-agent rules and missing-UA checks at the edge; webdriver detection in the SDK.'],
             ['SDK', 'Browser, React and Node, from one npm package, around 12 KB gzipped with every plugin.'],
-            ['Commerce connectors', 'WooCommerce plugin in early access: not yet on wordpress.org, so we install it with you. The Shopify app is built and coming soon.'],
+            ['Commerce connectors', 'Shopify app and WooCommerce plugin, in early access: not yet listed in the Shopify App Store or on wordpress.org, so we set them up with you.'],
           ]}
         />
       </Block>
@@ -247,7 +246,7 @@ export default function ProductPage() {
         id="reports"
         n="04"
         eyebrow="Reports"
-        title="The reports a growth team uses."
+        title="The reports a growth team uses, with the estimates labelled."
         lead={
           <p>
             Overview, timeseries, breakdowns by any dimension, ecommerce (view → cart → checkout → purchase, revenue,
@@ -258,8 +257,8 @@ export default function ProductPage() {
       >
         <Spec
           rows={[
-            ['Export', 'CSV or NDJSON over the API for the last 88 days, up to 7 days per request on Free and 90 on pay-as-you-go.'],
-            ['Raw archive', 'Every event is also kept in daily archive files, deleted with the rest of your data when retention ends.'],
+            ['Export', 'CSV or NDJSON; older data comes from the raw archive.'],
+            ['Raw archive', 'Your events, kept as files you can export.'],
             ['Retention', 'Free: 180 days. Pay-as-you-go: 395 days by default, adjustable up to five years.'],
             ['Generic query', 'One counters endpoint (count, sum, unique sessions/visitors, percentiles) grouped by up to two dimensions or by time.'],
           ]}
@@ -295,14 +294,9 @@ export default function ProductPage() {
             ['Filters', 'All events, a family (event.*) or named events.'],
             ['Never sent', 'Internal traffic.'],
             ['Meta CAPI / GA4 MP', 'Server-side forwarding to your Meta pixel and GA4 property. Sent only with explicit marketing consent and no GPC; everything else is logged as suppressed. Pay-as-you-go.'],
-            [
-              'Warehouse exports',
-              <span key="w" className="flex flex-wrap items-center gap-3">
-                Hourly files to S3, Google Cloud Storage or R2, or loads into BigQuery. Built, not yet switched on in production. <ComingSoon />
-              </span>,
-            ],
+            ['Warehouse exports', 'Hourly files to S3, Google Cloud Storage or R2 (NDJSON or Parquet), or BigQuery. Snowflake reads the S3 export through an external stage. Pay-as-you-go, up to 5 per project.'],
             ['Looker Studio', 'A community connector that reads your reports with a read-scoped key. Early access: you deploy it from our repository.'],
-            ['Moving from GA4', 'A gtag shim in the SDK so existing gtag() calls keep working, and an import API, with a script you run, that loads daily totals from your GA4 BigQuery export for the days before YOM.'],
+            ['Moving from GA4', 'A gtag shim in the SDK so existing gtag() calls keep working, and an import of daily totals from your GA4 BigQuery export for the days before YOM.'],
             [
               'Google Ads Enhanced Conversions',
               <span key="g" className="flex flex-wrap items-center gap-3">
@@ -323,19 +317,16 @@ export default function ProductPage() {
               Built for organisations that serve other organisations.
             </h2>
             <p className="mt-5 text-on-ink-muted">
-              Sub-tenants partition data inside one project. Turn them on in project settings as{' '}
-              <span className="font-mono">open</span> (a new id becomes a partition on its first event) or{' '}
-              <span className="font-mono">registered</span> (only ids you register are accepted). Keys and embed
+              Sub-tenants partition data inside one project. They can be <span className="font-mono">open</span>{' '}
+              (created on first event, zero setup) or <span className="font-mono">registered</span>. Keys and embed
               tokens can be bound to one sub-tenant, and a bound principal is forced to it.
             </p>
             <ul className="mt-7 space-y-3 text-[0.95rem]">
               <li className="flex flex-wrap items-center gap-3"><Live label="Live" /> Scoped keys and embed tokens per sub-tenant</li>
               <li className="flex flex-wrap items-center gap-3"><Live label="Live" /> Usage by sub-tenant, for re-billing</li>
               <li className="flex flex-wrap items-center gap-3"><Live label="Live" /> White-label webhook headers</li>
-              <li className="flex flex-wrap items-center gap-3"><Live label="Live" /> White-label client portals with read-only client logins</li>
-              <li className="flex flex-wrap items-center gap-3"><ComingSoon /> Client portals on your own domain</li>
-              <li className="flex flex-wrap items-center gap-3"><ComingSoon /> Scheduled email reports</li>
-              <li className="flex flex-wrap items-center gap-3"><ComingSoon /> The <span className="font-mono">&lt;yom-report&gt;</span> embed element</li>
+              <li className="flex flex-wrap items-center gap-3"><Live label="Live" /> White-label client portals with read-only client logins (own domain on pay-as-you-go)</li>
+              <li className="flex flex-wrap items-center gap-3"><Live label="Live" /> <span className="font-mono">&lt;yom-report&gt;</span> embed and scheduled email reports</li>
               <li className="flex flex-wrap items-center gap-3"><Live label="Live" /> Partner API: create projects and mint keys</li>
             </ul>
           </div>

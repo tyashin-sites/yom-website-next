@@ -136,14 +136,14 @@ export default function ComparePage() {
               {
                 topic: 'Retention',
                 them: <>Event-level data: 2 or 14 months on standard properties, 50 months on 360.<fn.Ref id="ga4Retention" /></>,
-                yom: '180 days on Free; 395 days by default on pay-as-you-go, adjustable up to five years.',
+                yom: '180 days on Free, 395 days by default on pay-as-you-go, plus export from the raw archive.',
               },
               {
                 topic: 'Raw export',
                 them: <>Free daily BigQuery export capped at 1 million events a day.<fn.Ref id="ga4Export" /></>,
                 yom: (
                   <span className="flex flex-wrap items-center gap-2">
-                    CSV / NDJSON export over the API for the last 88 days. Hourly warehouse exports are coming soon.
+                    CSV / NDJSON export, plus hourly warehouse exports to S3, GCS, R2 or BigQuery on pay-as-you-go.
                   </span>
                 ),
               },
