@@ -27,7 +27,7 @@ const TOC = [
   { id: 'indemnity', label: 'Indemnity' },
   { id: 'termination', label: 'Term, termination and your data' },
   { id: 'service-levels', label: 'No service-level commitment' },
-  { id: 'changes', label: 'Changes to the Service and these terms' },
+  { id: 'changes', label: 'Changes to the Service and these Terms' },
   { id: 'law', label: 'Governing law and disputes' },
   { id: 'consumers', label: 'Consumers and non-waivable rights' },
   { id: 'general', label: 'General' },

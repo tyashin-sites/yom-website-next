@@ -16,8 +16,8 @@ export default function ContactPage() {
       <JsonLd page={{ path: '/contact', title: TITLE, description: DESCRIPTION, type: 'ContactPage' }} />
       <PageHero
         eyebrow="Contact"
-        title="Ask us anything. Including the awkward questions."
-        lead="Demos, pricing at your volume, agency or platform setups, privacy reviews. Or skip the conversation and start free."
+        title="Ask us anything, including the awkward questions."
+        lead="Ask about a demo, pricing at your volume, an agency or platform setup, or a privacy review. Or skip the conversation and start free."
         trail={[{ name: TITLE, path: '/contact' }]}
       />
       <section className="container-y grid gap-12 pb-24 lg:grid-cols-[1.4fr_0.6fr]">

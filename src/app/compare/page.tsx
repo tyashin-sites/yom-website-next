@@ -9,7 +9,7 @@ import { calculateEventCost, formatMoney } from '@/lib/pricing';
 
 const TITLE = 'Compare';
 const DESCRIPTION =
-  'YOM compared with GA4, Mixpanel and Amplitude, and Segment and RudderStack, using only cited, published facts. Includes where each tool is the better fit.';
+  'YOM compared with GA4, Mixpanel and Amplitude, and Segment and RudderStack, using only cited, published facts, including where each tool is the better fit.';
 
 export const metadata = pageMetadata({
   title: 'YOM vs GA4, Mixpanel, Amplitude, Segment and RudderStack',
@@ -81,7 +81,7 @@ export default function ComparePage() {
       <JsonLd page={{ path: '/compare', title: TITLE, description: DESCRIPTION }} />
       <PageHero
         eyebrow="Compare"
-        title="Only what we can cite. Including where they win."
+        title="A cited comparison, including where they win."
         lead="Competitor facts come from the vendors' own pages or named third parties, with a footnote on every one. If we couldn't verify a capability, it isn't in the table."
         trail={[{ name: TITLE, path: '/compare' }]}
       >
@@ -112,7 +112,7 @@ export default function ComparePage() {
           <p className="eyebrow">01</p>
           <h2 id="ga4-h" className="tt-h2 mt-3">YOM vs GA4</h2>
           <p className="tt-lead mt-4 max-w-3xl">
-            GA4 is free and deeply tied to Google Ads. YOM is the layer you reconcile against.
+            GA4 is free and closely tied to Google Ads. YOM is the layer you reconcile it against.
           </p>
           <Table
             id="ga4"
@@ -131,7 +131,7 @@ export default function ComparePage() {
                     of 28 days; eligibility still isn&rsquo;t guaranteed.<fn.Ref id="ga4Modeling" />
                   </>
                 ),
-                yom: 'No modeling. Without consent, events are collected cookieless and conversions still count.',
+                yom: 'YOM doesn’t model. Without consent, events are collected cookieless and conversions still count.',
               },
               {
                 topic: 'Retention',
@@ -210,7 +210,7 @@ export default function ComparePage() {
             rows={[
               {
                 topic: 'Entry price',
-                them: <>Segment Team: $120 / mo for 10K MTUs; overages about $10–12 per 1K MTUs (third-party).<fn.Ref id="segmentPricing" /></>,
+                them: <>Segment Team: $120 / mo for 10K MTUs; overages about $10 to $12 per 1K MTUs (third-party).<fn.Ref id="segmentPricing" /></>,
                 yom: 'Free for the first 100,000 events every month.',
               },
               {

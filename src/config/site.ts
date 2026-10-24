@@ -11,7 +11,7 @@ export const siteConfig = {
   /** One line, used for <meta description> defaults and llms.txt. */
   tagline: 'The measurement layer you can prove.',
   description:
-    'YOM (Your Own Metrics) is first-party, consent-aware analytics. Conversion counts are exact and reconcile with your order system; collection stays cookieless after an opt-out; one org serves many clients.',
+    'YOM (Your Own Metrics) is first-party, consent-aware analytics. Conversion counts are exact and reconcile with your order system, collection stays cookieless after an opt-out, and one org can serve many clients.',
 
   /** Canonical origin — build-time env (SITE_URL). Production domain decided 2026-10-23. */
   url: (process.env.NEXT_PUBLIC_SITE_URL || 'https://yom.aapastech.com').replace(/\/+$/, ''),
@@ -49,7 +49,7 @@ export const siteConfig = {
   },
 
   cta: {
-    primary: 'Start free — no credit card',
+    primary: 'Start free, no credit card',
   },
 
   /** Social profiles — none supplied (ASSET-DEBT #7). Empty array = omit sameAs. */

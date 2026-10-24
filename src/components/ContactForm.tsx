@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { siteConfig } from '@/config/site';
 
 const TOPICS = ['Demo', 'Pricing', 'Agency / multi-client', 'Platform / embedding', 'Privacy & security', 'Other'];
-const VOLUMES = ['Under 100K', '100K – 1M', '1M – 10M', '10M – 100M', '100M +', 'Not sure'];
+const VOLUMES = ['Under 100K', '100K to 1M', '1M to 10M', '10M to 100M', 'Over 100M', 'Not sure'];
 
 const field =
   'mt-2 w-full rounded-md border border-border bg-paper px-3.5 py-3 text-[0.98rem] text-foreground placeholder:text-muted focus:border-foreground focus:outline-none';

@@ -74,7 +74,7 @@ Custom type classes use the `tt-` namespace so they never shadow Tailwind utilit
 - Hero headline ≤ 9 words. Hero sub ≤ 32 words.
 - Section heading ≤ 10 words; section lead ≤ 40 words.
 - Card title ≤ 6 words; card body ≤ 30 words.
-- One primary CTA per viewport: **"Start free — no credit card"** (→ `/signup`, same host; the router sends it to the dashboard).
+- One primary CTA per viewport: **"Start free, no credit card"** (→ `/signup`, same host; the router sends it to the dashboard).
   The secondary is always a ghost link (Talk to us / See pricing / Read the docs).
 
 ## 5. Space, grid, surfaces
@@ -152,7 +152,7 @@ OG image is an SVG-built PNG generated at build time from the wordmark (no photo
 
 ## 10. UX laws
 
-- One primary CTA per viewport; it always reads "Start free — no credit card".
+- One primary CTA per viewport; it always reads "Start free, no credit card".
 - 5-second test: the home hero must answer "what is it, who is it for, why trust it".
 - "Coming soon" items always carry a visible `Coming soon` chip; never mixed into shipped lists.
 - Estimates are labelled: funnels, attribution and unique counts are statistical estimates;

@@ -8,7 +8,7 @@ import { calculateEventCost, formatMoney } from '@/lib/pricing';
 
 const TITLE = 'Why YOM';
 const DESCRIPTION =
-  'The cited case for provable measurement: thresholded analytics, GPC and opt-out fines, ad blockers and Safari, per-event and per-client pricing.';
+  'The case for YOM with a source on every figure: thresholded analytics, GPC and opt-out fines, ad blockers and Safari, and per-event and per-client pricing.';
 
 export const metadata = pageMetadata({ title: 'Why YOM: the case, with sources', description: DESCRIPTION, path: '/why-yom' });
 
@@ -75,7 +75,7 @@ export default function WhyYomPage() {
       <JsonLd page={{ path: '/why-yom', title: TITLE, description: DESCRIPTION }} />
       <PageHero
         eyebrow="Why YOM"
-        title="Measurement broke in four places. Here’s the evidence."
+        title="Four places where measurement broke, with sources."
         lead="Every figure on this page links to its source. Where a number comes from a third-party estimate rather than the vendor itself, we say so."
         trail={[{ name: TITLE, path: '/why-yom' }]}
       >
@@ -152,7 +152,7 @@ export default function WhyYomPage() {
       <Problem
         n="03"
         id="signal"
-        title="A third of your visitors block the script. Safari limits the rest."
+        title="A third of US users block ads, and Safari expires storage."
         answer={
           <>
             <p>Browser batches go out with sendBeacon as text/plain: no CORS preflight, and page-close events aren&rsquo;t lost.</p>
@@ -167,8 +167,8 @@ export default function WhyYomPage() {
           tagging subdomains by name, so &ldquo;first-party&rdquo; alone keeps eroding.<fn.Ref id="sgtmBlocked" />
         </p>
         <p>
-          This isn&rsquo;t about cookies going away: Chrome kept third-party cookies in 2025.
-          <fn.Ref id="chromeCookies" /> It&rsquo;s about blockers, browsers and consent law, which are all already here.
+          Cookies going away isn&rsquo;t the cause: Chrome kept third-party cookies in 2025.
+          <fn.Ref id="chromeCookies" /> The cause is blockers, browsers and consent law, and all three are already here.
         </p>
       </Problem>
 
@@ -183,7 +183,7 @@ export default function WhyYomPage() {
               YOM&rsquo;s list price is <span className="tt-num font-semibold">{yom20m}</span>.{' '}
               <a href="/pricing" className="underline">Check the calculator</a>.
             </p>
-            <p>Unlimited projects and team members on pay-as-you-go. Clients are sub-tenants, not extra seats.</p>
+            <p>Unlimited projects and team members on pay-as-you-go. Clients are sub-tenants, so they don&rsquo;t cost extra seats.</p>
           </>
         }
       >
@@ -206,7 +206,7 @@ export default function WhyYomPage() {
               <span className="tt-num text-on-ink-signal">05</span> AI search and agents
             </p>
             <h2 id="ai-h" className="tt-h2 mt-4 text-balance">
-              AI assistants send traffic. Agents want to ask questions.
+              AI assistants send traffic, and agents want to ask questions.
             </h2>
             <div className="mt-6 space-y-4 text-on-ink-muted">
               <p>

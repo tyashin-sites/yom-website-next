@@ -52,7 +52,7 @@ export default function PricingPage() {
       <JsonLd page={{ path: '/pricing', title: TITLE, description: DESCRIPTION, faq: FAQ }} />
       <PageHero
         eyebrow="Pricing"
-        title="The first 100,000 events are free. Every month."
+        title="The first 100,000 events are free every month."
         lead="Two plans, one public rate card, no sales call at any volume. Pay only for the events you send."
         trail={[{ name: TITLE, path: '/pricing' }]}
       />
@@ -160,7 +160,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <CtaBand title="Start on the free tier. Grow into the rate card." secondary={{ href: '/compare', label: 'Compare costs' }} />
+      <CtaBand title="Start on the free tier and grow into the rate card." secondary={{ href: '/compare', label: 'Compare costs' }} />
     </>
   );
 }

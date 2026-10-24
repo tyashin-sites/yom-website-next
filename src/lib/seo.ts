@@ -28,7 +28,7 @@ export function pageMetadata(opts: {
 }): Metadata {
   const url = siteUrl(opts.path);
   const image = opts.image || SITE.defaultOgImage;
-  const ogTitle = opts.title ? `${opts.title} · ${SITE.name}` : `${SITE.name} — ${siteConfig.tagline}`;
+  const ogTitle = opts.title ? `${opts.title} · ${SITE.name}` : `${SITE.name}: ${siteConfig.tagline}`;
   return {
     ...(opts.title ? { title: opts.title } : {}),
     description: opts.description,

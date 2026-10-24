@@ -13,9 +13,9 @@ const DESCRIPTION =
 export const metadata = pageMetadata({ title: 'About YOM', description: DESCRIPTION, path: '/about' });
 
 const PRINCIPLES = [
-  { t: 'Exact where it matters', b: 'Money and lead events are counted, not modelled. Everything estimated is labelled.' },
+  { t: 'Exact where it matters', b: 'Money and lead events are counted exactly. Anything estimated is labelled as an estimate.' },
   { t: 'An opt-out is final', b: 'Consent is enforced where the data lands, not only where the banner sits.' },
-  { t: 'Your data, portable', b: 'Raw archive, CSV and NDJSON export, signed webhooks. Leaving should be easy.' },
+  { t: 'Your data, portable', b: 'Raw archive, CSV and NDJSON export, and signed webhooks, because leaving should be easy.' },
   { t: 'Say what isn’t shipped', b: 'Roadmap items carry a “Coming soon” label until they are real.' },
 ];
 
@@ -42,7 +42,7 @@ export default function AboutPage() {
             <h2 id="mark-h" className="tt-h2 mt-4">A gauge at its null point.</h2>
             <p className="mt-5 text-on-ink-muted">
               When your analytics and your order system agree, the difference is zero and the needle rests at
-              the centre. That&rsquo;s the whole idea of YOM, drawn as one glyph.
+              the centre. That&rsquo;s the idea behind YOM, drawn as one glyph.
             </p>
           </div>
         </div>

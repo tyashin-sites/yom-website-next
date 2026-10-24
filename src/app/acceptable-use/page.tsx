@@ -5,7 +5,7 @@ import { legalEntity } from '@/config/legal';
 
 const TITLE = 'Acceptable Use Policy';
 const DESCRIPTION =
-  'What you may and may not do with YOM: no sensitive or health data without a written agreement, no tracking without a lawful basis, no illegal content, no abuse of the service.';
+  'What you may and may not do with YOM. Sensitive or health data needs an agreement signed by both parties, tracking needs a lawful basis, and illegal content and abuse of the service are prohibited.';
 export const metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/acceptable-use' });
 
 const TOC = [

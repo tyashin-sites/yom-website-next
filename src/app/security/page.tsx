@@ -8,7 +8,7 @@ import { CtaBand } from '@/components/ui/CtaBand';
 
 const TITLE = 'Security';
 const DESCRIPTION =
-  "YOM security, stated honestly: what exists today (MFA, scoped and signed keys, encrypted webhook secrets, consent enforcement) and what doesn't yet.";
+  "YOM security: what exists today (MFA, scoped and signed keys, encrypted webhook secrets, consent enforcement) and what doesn't yet.";
 
 export const metadata = pageMetadata({ title: 'Security: what exists today, and what doesn’t', description: DESCRIPTION, path: '/security' });
 
@@ -64,7 +64,7 @@ export default function SecurityPage() {
       <JsonLd page={{ path: '/security', title: TITLE, description: DESCRIPTION }} />
       <PageHero
         eyebrow="Security"
-        title="What exists today. What doesn’t. No grey area."
+        title="What exists today, and what doesn’t yet."
         lead="Security pages tend to blur shipped controls with intentions. This one separates them, so your review can start from facts."
         trail={[{ name: TITLE, path: '/security' }]}
       >

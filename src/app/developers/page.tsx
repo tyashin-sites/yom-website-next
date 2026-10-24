@@ -9,7 +9,7 @@ import { CtaBand } from '@/components/ui/CtaBand';
 
 const TITLE = 'Developers';
 const DESCRIPTION =
-  'Install the YOM SDK, set consent, send exact conversions from browser or server (secret key or HMAC) and verify signed webhooks. Real code.';
+  'Install the YOM SDK, set consent, send exact conversions from browser or server (secret key or HMAC) and verify signed webhooks, with working code.';
 
 export const metadata = pageMetadata({ title: 'Developers: install, server events, webhooks', description: DESCRIPTION, path: '/developers' });
 
@@ -157,7 +157,7 @@ export default function DevelopersPage() {
       <JsonLd page={{ path: '/developers', title: TITLE, description: DESCRIPTION }} />
       <PageHero
         eyebrow="Developers"
-        title="A few lines to collect. One header to prove it came from you."
+        title="Collect in a few lines and sign server events."
         lead={
           <>
             One npm package for browser, React and Node: <code className="font-mono text-[0.9em]">{siteConfig.sdk.package}</code>{' '}
@@ -207,7 +207,7 @@ export default function DevelopersPage() {
       <Step n="05" id="http" title="Or call the HTTP API directly">
         <CodeBlock code={S.curl} label="bearer auth" lang="curl" />
         <CodeBlock code={S.hmac} label="HMAC auth" lang="shell" />
-        <p className="text-muted">≤ 50 events or 64 KB per request. 429 and 5xx are safe to retry with the same ids.</p>
+        <p className="text-muted">Up to 50 events or 64 KB per request. 429 and 5xx responses are safe to retry with the same ids.</p>
       </Step>
 
       <Step n="06" id="webhooks" title="Verify signed webhooks">
@@ -259,7 +259,7 @@ export default function DevelopersPage() {
         </div>
       </section>
 
-      <CtaBand title="Get a key. Send your first event." lead="Sign up free, create a project, copy the publishable key. No credit card." secondary={{ href: '/product', label: 'Product overview' }} />
+      <CtaBand title="Get a key and send your first event." lead="Sign up free, create a project and copy the publishable key. You won’t need a credit card." secondary={{ href: '/product', label: 'Product overview' }} />
     </>
   );
 }

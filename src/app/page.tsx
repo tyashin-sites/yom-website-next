@@ -11,7 +11,7 @@ import { ConsentStream } from '@/components/signature/ConsentStream';
 import { FanOut } from '@/components/signature/FanOut';
 
 const DESCRIPTION =
-  'First-party, consent-aware analytics. Exact conversion counts that reconcile with your order system, cookieless after an opt-out, one org for every client.';
+  'First-party, consent-aware analytics. Exact conversion counts that reconcile with your order system, cookieless collection after an opt-out, and one org for every client.';
 
 export const metadata = pageMetadata({ description: DESCRIPTION, path: '/' });
 
@@ -85,8 +85,8 @@ export default function HomePage() {
           <SectionHead
             id="pillars-title"
             eyebrow="Four things you can check"
-            title="Not another dashboard. A layer you can audit."
-            lead="Every claim below maps to a behaviour you can test in your own account, with your own data."
+            title="A measurement layer you can audit yourself."
+            lead="Each claim below is a behaviour you can test in your own account, on your own data."
           />
           <ol className="mt-14 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2">
             {PILLARS.map((p) => (
@@ -111,12 +111,12 @@ export default function HomePage() {
           <div data-fx="rise">
             <p className="eyebrow">Consent at the edge</p>
             <h2 id="consent-title" className="tt-h2 mt-4 text-balance">
-              An opt-out changes what we store. Not what you count.
+              An opt-out changes what we store. Your counts stay the same.
             </h2>
             <p className="tt-lead mt-5">
               When a visitor sends Global Privacy Control, denies consent or hasn&rsquo;t decided, YOM drops the
-              visitor id server-side and keeps the session in memory only. The purchase still counts. The identity
-              never existed.
+              visitor id on the server and keeps the session in memory only. The purchase still counts, and no visitor
+              id is ever written.
             </p>
             <ul className="mt-7 space-y-3 text-[0.95rem]">
               {[
@@ -148,7 +148,7 @@ export default function HomePage() {
             id="whynow-title"
             eyebrow="Why now"
             title="Regulators are fining the gap between the banner and the data."
-            lead="The 2025 enforcement actions weren't about missing cookie banners. They were about data that kept flowing after people opted out."
+            lead="The 2025 enforcement actions went after data that kept flowing after people opted out."
           />
           <dl className="mt-14 grid gap-10 border-t border-border pt-10 md:grid-cols-3">
             <div data-fx="rise" className="flex flex-col-reverse gap-3">
@@ -169,8 +169,7 @@ export default function HomePage() {
           </dl>
           <p className="mt-10 max-w-2xl text-muted">
             California, Colorado and Connecticut announced a joint sweep focused on Global Privacy Control in
-            September 2025.<fn.Ref id="gpcSweep" /> YOM is built so an opt-out is enforced where the data lands, not
-            only where the banner sits.{' '}
+            September 2025.<fn.Ref id="gpcSweep" /> YOM enforces an opt-out on the server, where the data lands.{' '}
             <a href="/why-yom" className="link-arrow text-foreground">
               Read the full case
             </a>
@@ -185,7 +184,7 @@ export default function HomePage() {
           <div>
             <p className="eyebrow">Agencies &amp; platforms</p>
             <h2 id="fan-title-h" className="tt-h2 mt-4 text-balance">
-              One org. Every client, scoped.
+              One org, with each client fenced off.
             </h2>
             <p className="mt-5 text-on-ink-muted">
               Add each client or customer as a sub-tenant. Bind keys and embed tokens to it, and that principal can only
@@ -229,7 +228,7 @@ export default function HomePage() {
           <div>
             <p className="eyebrow">What we won&rsquo;t pretend</p>
             <h2 id="limits-title" className="tt-h2 mt-4 text-balance">
-              Exact where it matters. Labelled where it&rsquo;s estimated.
+              Exact counts, and clear labels on every estimate.
             </h2>
             <p className="tt-lead mt-5">
               Conversion counts are exact. Funnels, attribution and unique-visitor counts are statistical estimates,
@@ -265,7 +264,7 @@ export default function HomePage() {
           <div>
             <p className="eyebrow">Pricing</p>
             <h2 id="price-title" className="tt-h2 mt-4 text-balance">
-              The first 100,000 events are free. Every month.
+              Your first 100,000 events each month are free.
             </h2>
             <p className="tt-lead mt-5">
               Then pay as you go, graduated like tax brackets: $0.10 per 1,000 events up to 1M, falling to $0.015 per

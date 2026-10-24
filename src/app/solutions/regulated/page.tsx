@@ -8,7 +8,7 @@ const c: SolutionContent = {
   description:
     'Privacy-first analytics by design for regulated teams: no third-party pixels, cookieless by default, GPC honoured, PII scrubbed. For counsel review.',
   eyebrow: 'For privacy-sensitive teams',
-  title: 'Privacy-first by design. Reviewed by your counsel.',
+  title: 'Privacy-first by design, ready for your counsel to review.',
   lead: 'YOM avoids the patterns behind recent enforcement: third-party pixels, identifiers that survive an opt-out, full URLs with personal data in them. Whether it meets your obligations is for your legal team to decide. This page gives them the facts.',
   secondary: { href: '/contact', label: 'Talk to us' },
   painsTitle: 'The exposure your counsel is weighing',

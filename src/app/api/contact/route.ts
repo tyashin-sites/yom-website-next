@@ -66,7 +66,7 @@ export async function POST(request: Request) {
           email,
           company: company || undefined,
           category: topic,
-          subject: `YOM website — ${topic}`,
+          subject: `YOM website: ${topic}`,
           message: [message, volume ? `Monthly events: ${volume}` : ''].filter(Boolean).join('\n\n') || undefined,
           source: 'yom-website-contact',
           renderedAt: Number.isFinite(renderedAt) && renderedAt > 0 ? renderedAt : undefined,

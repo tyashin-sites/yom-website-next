@@ -17,9 +17,9 @@ const c: SolutionContent = {
     { stat: '3.6 / 5', text: 'is how users rate those dashboards in the same survey', source: 'embeddedDashboards' },
     { stat: '$120', text: 'a month for 10K MTUs is where a CDP like Segment starts (third-party)', source: 'segmentPricing' },
   ],
-  showcaseTitle: 'One project. A sub-tenant per customer, created on first event.',
+  showcaseTitle: 'One project, with each customer’s sub-tenant created on first event.',
   showcaseLead:
-    'Set subTenant in the SDK or on server events. In open mode the sub-tenant appears the first time it sends data: no provisioning call, no per-customer setup.',
+    'Set subTenant in the SDK or on server events. In open mode the sub-tenant appears the first time it sends data, so you don’t need a provisioning call or any per-customer setup.',
   showcase: <FanOut orgLabel="Your platform" />,
   today: [
     { title: 'Zero-touch sub-tenants', body: 'Open mode creates a customer partition on its first event.' },

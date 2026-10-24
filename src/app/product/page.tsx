@@ -102,7 +102,7 @@ export default function ProductPage() {
         id="conversions"
         n="01"
         eyebrow="Exact conversions"
-        title="The numbers that pay the bills are counted, not estimated."
+        title="The numbers that pay the bills are counted exactly."
         lead={
           <p>
             Five conversion events take an exact, deduplicated path: <code className="font-mono">purchase</code>,{' '}
@@ -163,7 +163,7 @@ export default function ProductPage() {
         id="privacy"
         n="02"
         eyebrow="Consent & privacy"
-        title="Cookieless until someone says yes. Enforced on the server, too."
+        title="Cookieless until a visitor says yes, and enforced on the server."
         lead={
           <p>
             Without analytics consent, the browser SDK keeps no persistent id and writes nothing to storage, and the
@@ -195,7 +195,7 @@ export default function ProductPage() {
         id="collection"
         n="03"
         eyebrow="First-party collection"
-        title="Built for the network you actually have: ad blockers, Safari, page-close."
+        title="Collection that copes with ad blockers, Safari and closing tabs."
         lead={
           <p>
             Browser batches go to YOM&rsquo;s edge ingest as <code className="font-mono">text/plain</code>, which is
@@ -269,11 +269,12 @@ export default function ProductPage() {
         id="destinations"
         n="05"
         eyebrow="Destinations"
-        title="Your data leaves when you say so: signed, retried, logged."
+        title="Your data leaves only when you say so."
         lead={
           <p>
             Webhook destinations receive events in realtime or in batches. Every request is signed with an HMAC
-            signature and carries a stable event id, so your receiver can verify it and drop duplicates.
+            signature and carries a stable event id, so your receiver can verify it and drop duplicates. Failed
+            deliveries are retried and logged.
           </p>
         }
         aside={

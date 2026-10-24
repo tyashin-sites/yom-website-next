@@ -8,7 +8,7 @@ function Arrow() {
   );
 }
 
-/** The one primary CTA (DESIGN-SPEC §10): always "Start free — no credit card". */
+/** The one primary CTA (DESIGN-SPEC §10): always "Start free, no credit card". */
 export function PrimaryCta({ className = '', id }: { className?: string; id?: string }) {
   return (
     <a href={siteConfig.app.signUp} className={`btn btn-primary ${className}`} data-cta={id ?? 'start-free'}>

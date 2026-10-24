@@ -19,7 +19,7 @@ const GROUPS: { id: string; title: string; items: Faq[] }[] = [
       { q: 'Who is it for?', a: 'E-commerce and DTC brands that need revenue to match the order system, agencies running many clients, SaaS platforms that want analytics inside their product, and privacy-sensitive teams that want collection to stop at an opt-out.' },
       { q: 'Is the data sampled?', a: 'Conversion counts (purchase, refund, generate_lead, form_submit and sign_up) are exact and deduplicated on the event id. Funnels, attribution and unique-visitor counts are statistical estimates, and YOM labels them that way.' },
       { q: 'Does YOM replace GA4?', a: 'It can sit alongside it. Many teams keep GA4 for its Google Ads integrations and use YOM as the source of truth for revenue and leads. Event names follow the GA4 taxonomy, so existing events map across by name.' },
-      { q: 'Does YOM do session replay, feature flags or experiments?', a: 'No. Those are product-analytics features outside YOM’s lane. Pair YOM with a product-analytics tool if you need them.' },
+      { q: 'Does YOM do session replay, feature flags or experiments?', a: 'No. Those belong to product-analytics tools, and YOM doesn’t cover them. Pair YOM with one if you need them.' },
     ],
   },
   {
@@ -36,7 +36,7 @@ const GROUPS: { id: string; title: string; items: Faq[] }[] = [
     id: 'collection',
     title: 'Collection',
     items: [
-      { q: 'Will ad blockers stop YOM?', a: 'Some may block browser collection. The durable path is sending conversions from your backend to /v2/events with a secret key or HMAC signature, which no browser filter list can see.' },
+      { q: 'Will ad blockers stop YOM?', a: 'Some may block browser collection. To make conversions reliable, send them from your backend to /v2/events with a secret key or HMAC signature, which no browser filter list can see.' },
       { q: 'How do I install it?', a: 'npm install @yourownmetric/sdk, then call YOM.init with your publishable key. The same package includes React components and a Node server client. See the developers page for code.' },
       { q: 'What stops a retry from double-counting a purchase?', a: 'Every event carries an id. Use your order id as the event id and YOM counts it once, however many times it is sent.' },
     ],

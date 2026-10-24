@@ -16,7 +16,7 @@ export default function SolutionsPage() {
       <JsonLd page={{ path: '/solutions', title: TITLE, description: DESCRIPTION, type: 'CollectionPage' }} />
       <PageHero
         eyebrow="Solutions"
-        title="Same measurement layer. Four very different jobs."
+        title="One measurement layer for four different jobs."
         lead="Pick the situation closest to yours. Each page lists what ships today and what's still on the roadmap."
         trail={[{ name: TITLE, path: '/solutions' }]}
       />

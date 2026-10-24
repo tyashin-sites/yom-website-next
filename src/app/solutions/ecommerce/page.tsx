@@ -17,7 +17,7 @@ const c: SolutionContent = {
     { stat: '7 days', text: 'Safari’s cap on script-writable storage without user interaction', source: 'safariItp' },
     { stat: 'Hidden', text: 'GA4 withholds report rows under thresholds you can’t adjust', source: 'ga4Thresholds' },
   ],
-  showcaseTitle: 'Every purchase counted once. Every refund too.',
+  showcaseTitle: 'Every purchase and every refund, counted once.',
   showcaseLead:
     'Use the order id as the event id. A checkout page that fires twice, or a webhook your backend retries, still counts once, so the total lines up with your order list.',
   showcase: <HeroLedger />,

@@ -24,10 +24,10 @@ export const FREE_EVENTS = 100_000;
 
 export const EVENT_TIERS: readonly EventTier[] = [
   { upTo: 100_000, perK: { USD: 0, CAD: 0 }, label: 'First 100K' },
-  { upTo: 1_000_000, perK: { USD: 10, CAD: 14 }, label: '100K – 1M' },
-  { upTo: 10_000_000, perK: { USD: 6, CAD: 8 }, label: '1M – 10M' },
-  { upTo: 100_000_000, perK: { USD: 3, CAD: 4 }, label: '10M – 100M' },
-  { upTo: Infinity, perK: { USD: 1.5, CAD: 2 }, label: '100M +' },
+  { upTo: 1_000_000, perK: { USD: 10, CAD: 14 }, label: '100K to 1M' },
+  { upTo: 10_000_000, perK: { USD: 6, CAD: 8 }, label: '1M to 10M' },
+  { upTo: 100_000_000, perK: { USD: 3, CAD: 4 }, label: '10M to 100M' },
+  { upTo: Infinity, perK: { USD: 1.5, CAD: 2 }, label: 'Over 100M' },
 ];
 
 export interface TierLine {

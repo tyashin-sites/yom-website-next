@@ -79,7 +79,7 @@ export default function PrivacyPage() {
             and notifies our team by email.
           </li>
           <li>
-            <strong>Technical information.</strong> Like any website, our hosting provider processes your IP address,
+            <strong>Technical information.</strong> As with any website, our hosting provider processes your IP address,
             browser user agent and request details to deliver pages, protect against abuse and keep short-lived logs.
           </li>
           <li>

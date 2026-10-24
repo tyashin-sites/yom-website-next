@@ -4,6 +4,8 @@
 //  2. crawl from "/" following internal <a href>; every link resolves 200
 //  3. every listed route is reached by the crawl (no orphans), and has ≥1 inbound link from another page
 //  4. every in-page #anchor exists on its target page
+//  6. copy guard: no em/en dash in rendered visitor-facing text or meta/alt/aria
+//     strings (a table cell that is exactly "—" means "no value" and is allowed)
 //  5. router collisions: no app route, listed route or crawled internal link
 //     at/under a dashboard path (src/config/router-paths.json), except the
 //     allowed sign-up / log-in CTAs, which are not crawled (the router owns them)
@@ -48,6 +50,16 @@ while (queue.length) {
   const html = await res.text();
   seen.set(p, html);
   if (res.status !== 200) { console.log('STATUS', res.status, p); fail++; continue; }
+  const visible = html
+    .replace(/<script[\s\S]*?<\/script>/g, '')
+    .replace(/<style[\s\S]*?<\/style>/g, '')
+    .replace(/<(td|dd)[^>]*>\s*—\s*<\/\1>/g, '');
+  const attrText = [...visible.matchAll(/(?:content|alt|aria-label|title|placeholder)="([^"]*)"/g)].map((m) => m[1]).join(' ');
+  const bodyText = visible.replace(/<[^>]+>/g, ' ');
+  for (const m of `${bodyText} ${attrText}`.matchAll(/.{0,40}[—–].{0,40}/g)) {
+    console.log(`DASH IN COPY on ${p}: …${m[0].replace(/\s+/g, ' ').trim()}…`);
+    fail++;
+  }
   for (const m of html.matchAll(/<a[^>]+href="([^"]+)"/g)) {
     const href = m[1].replace(/&amp;/g, '&');
     if (/^(https?:|mailto:|tel:)/.test(href)) continue;
