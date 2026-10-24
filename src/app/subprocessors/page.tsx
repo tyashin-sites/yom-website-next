@@ -5,7 +5,7 @@ import { legalEntity } from '@/config/legal';
 
 const TITLE = 'Sub-processors';
 const DESCRIPTION =
-  'The third parties that process personal data for YOM: Cloudflare for hosting, storage and compute, Resend for email, and the providers we use for payments, sign-in and our website, with 30 days’ notice of changes.';
+  'The third parties that process personal data for YOM: Cloudflare for hosting, storage and compute, Resend for email, Slack for internal alerts to our team, and the providers we use for payments, sign-in and our website, with 30 days’ notice of changes.';
 export const metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/subprocessors' });
 
 type Row = [name: string, purpose: string, data: string, location: string];
