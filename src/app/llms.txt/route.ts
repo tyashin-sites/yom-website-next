@@ -1,6 +1,7 @@
 import { siteConfig, solutions } from '@/config/site';
 import { siteUrl } from '@/lib/seo';
 import { EVENT_TIERS, formatRate } from '@/lib/pricing';
+import { getBlogStatusAtBuild } from '@/lib/blog';
 
 /**
  * /llms.txt — clean, machine-first summary for LLMs and AI search. Same facts
@@ -9,8 +10,9 @@ import { EVENT_TIERS, formatRate } from '@/lib/pricing';
  */
 export const dynamic = 'force-static';
 
-export function GET() {
+export async function GET() {
   const { company, contact, app, sdk } = siteConfig;
+  const { hasPosts } = await getBlogStatusAtBuild();
   const rates = EVENT_TIERS.filter((t) => t.perK.USD > 0)
     .map((t) => `- ${t.label} events: ${formatRate(t.perK.USD, 'USD')} per 1,000 (${formatRate(t.perK.CAD, 'CAD')})`)
     .join('\n');
@@ -76,7 +78,7 @@ ${rates}
 ${solutions.map((s) => `- ${s.label}: ${siteUrl(s.href)}`).join('\n')}
 - Security: ${siteUrl('/security')}
 - FAQ: ${siteUrl('/faq')}
-- About: ${siteUrl('/about')}
+${hasPosts ? `- Blog: ${siteUrl('/blog')}\n` : ''}- About: ${siteUrl('/about')}
 - Contact: ${siteUrl('/contact')}
 
 ## Legal

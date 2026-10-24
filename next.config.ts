@@ -1,12 +1,13 @@
 import type { NextConfig } from 'next';
 import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
+import { siteConfig } from './src/config/site';
 
 initOpenNextCloudflareForDev();
 
 // The project's Tyashin slug host — where the platform serves its own paths.
 // In production through Tyashin dispatch these rewrites are no-ops (dispatch
 // intercepts first); they only matter for direct *.workers.dev access.
-const SLUG_HOST = 'https://yom-website.sites.tyashin.com';
+const SLUG_HOST = siteConfig.tyashinHost;
 
 const nextConfig: NextConfig = {
   typescript: { ignoreBuildErrors: false },

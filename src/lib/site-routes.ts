@@ -29,6 +29,7 @@ export function getSiteRoutes(): SiteRoute[] {
     })),
     { path: '/security', title: 'Security', priority: 0.6, changeFrequency: 'monthly' },
     { path: '/faq', title: 'FAQ', priority: 0.6, changeFrequency: 'monthly' },
+    { path: '/blog', title: 'Blog', priority: 0.7, changeFrequency: 'weekly' },
     { path: '/about', title: 'About', priority: 0.5, changeFrequency: 'yearly' },
     { path: '/contact', title: 'Contact', priority: 0.6, changeFrequency: 'yearly' },
     { path: '/security/disclosure', title: 'Vulnerability disclosure policy', priority: 0.3, changeFrequency: 'yearly' },

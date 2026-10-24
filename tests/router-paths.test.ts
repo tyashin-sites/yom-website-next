@@ -36,6 +36,8 @@ describe('router path reservations', () => {
     expect(isReserved('/developers')).toBe(false);
     expect(isReserved('/applications')).toBe(false);
     expect(isReserved('/security/disclosure')).toBe(false);
+    expect(isReserved('/blog')).toBe(false);
+    expect(isReserved('/blog/ga4-thresholding')).toBe(false);
   });
 
   it('no app route sits at or under a dashboard path', () => {

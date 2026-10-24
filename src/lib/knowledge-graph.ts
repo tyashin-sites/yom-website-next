@@ -97,6 +97,19 @@ export interface GraphPage {
   crumbs?: { name: string; path: string }[];
   faq?: { q: string; a: string }[];
   type?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'FAQPage' | 'CollectionPage';
+  /** A blog post: adds a BlogPosting node (the page's main entity). */
+  article?: {
+    headline: string;
+    description: string;
+    image?: string;
+    datePublished?: string;
+    dateModified?: string;
+    authorName?: string;
+    keywords?: string[];
+    section?: string;
+  };
+  /** A listing: adds an ItemList of these URLs (e.g. the blog index). */
+  items?: { name: string; path: string }[];
 }
 
 export function buildGraph(page?: GraphPage): { '@context': string; '@graph': Node[] } {
@@ -129,6 +142,38 @@ export function buildGraph(page?: GraphPage): { '@context': string; '@graph': No
       });
     } else {
       nodes.push(webPage);
+    }
+    if (page.article) {
+      const a = page.article;
+      const iso = (d?: string) => (d && !Number.isNaN(Date.parse(d)) ? new Date(d).toISOString() : undefined);
+      const article: Node = {
+        '@type': 'BlogPosting',
+        '@id': `${url}#article`,
+        headline: a.headline.slice(0, 110),
+        description: a.description,
+        url,
+        mainEntityOfPage: { '@id': `${url}#webpage` },
+        isPartOf: { '@id': `${url}#webpage` },
+        publisher: { '@id': ORG_ID },
+        author: a.authorName ? { '@type': 'Person', name: a.authorName } : { '@id': ORG_ID },
+        inLanguage: 'en',
+        ...(a.image ? { image: [a.image] } : {}),
+        ...(iso(a.datePublished) ? { datePublished: iso(a.datePublished) } : {}),
+        ...(iso(a.dateModified ?? a.datePublished) ? { dateModified: iso(a.dateModified ?? a.datePublished) } : {}),
+        ...(a.keywords?.length ? { keywords: a.keywords.join(', ') } : {}),
+        ...(a.section ? { articleSection: a.section } : {}),
+      };
+      webPage['mainEntity'] = { '@id': `${url}#article` };
+      nodes.push(article);
+    }
+    if (page.items?.length) {
+      const list: Node = {
+        '@type': 'ItemList',
+        '@id': `${url}#itemlist`,
+        itemListElement: page.items.map((it, i) => ({ '@type': 'ListItem', position: i + 1, name: it.name, url: siteUrl(it.path) })),
+      };
+      webPage['mainEntity'] = { '@id': `${url}#itemlist` };
+      nodes.push(list);
     }
     if (page.faq?.length) {
       webPage['mainEntity'] = page.faq.map((f) => ({

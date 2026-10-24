@@ -37,7 +37,9 @@ const isReserved = (p) => {
 let fail = 0;
 for (const r of [...fsRoutes, ...routeList]) if (isReserved(r)) { console.log('ROUTER COLLISION (route):', r); fail++; }
 let ctaLinks = 0;
-for (const r of fsRoutes) if (!routeList.has(r)) { console.log('NOT IN getSiteRoutes():', r); fail++; }
+// Dynamic [param] routes are data-driven (blog posts live in the platform's
+// sitemap-content.xml, addendum §3g), so they are not listed.
+for (const r of fsRoutes) if (!r.includes('[') && !routeList.has(r)) { console.log('NOT IN getSiteRoutes():', r); fail++; }
 
 const seen = new Map(); // path -> html
 const inbound = new Map();
@@ -81,6 +83,19 @@ while (queue.length) {
 for (const [target, hash, from] of anchors) {
   const html = seen.get(target) || '';
   if (!html.includes(`id="${hash}"`)) { console.log(`MISSING ANCHOR #${hash} on ${target} (linked from ${from})`); fail++; }
+}
+// Routes that are legitimately unlinked while they have no content: /blog is
+// noindex and left out of nav/footer/sitemap until a build sees a published post.
+const DORMANT = ['/blog'];
+for (const r of DORMANT) {
+  if (seen.has(r) || !routeList.has(r)) continue;
+  const res = await fetch(BASE + r, { redirect: 'manual' });
+  const html = await res.text();
+  if (res.status === 200 && /<meta name="robots" content="noindex/.test(html)) {
+    console.log(`DORMANT (200, noindex, unlinked until posts exist): ${r}`);
+    seen.set(r, html);
+    inbound.set(r, new Set(['(dormant)']));
+  }
 }
 for (const r of routeList) {
   if (!seen.has(r)) { console.log('ORPHAN (not reached by crawl):', r); fail++; }

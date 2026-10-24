@@ -11,7 +11,7 @@ const BASE = process.env.BASE || 'http://localhost:3300';
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const out = path.join(root, 'docs/audits/lighthouse');
 mkdirSync(out, { recursive: true });
-const PAGES = (process.env.PAGES || '/,/why-yom,/product,/solutions,/solutions/ecommerce,/solutions/agencies,/solutions/platforms,/solutions/regulated,/compare,/pricing,/developers,/security,/about,/contact,/faq,/terms,/privacy,/dpa,/acceptable-use,/cookies,/subprocessors,/security/disclosure').split(',');
+const PAGES = (process.env.PAGES || '/,/why-yom,/product,/solutions,/solutions/ecommerce,/solutions/agencies,/solutions/platforms,/solutions/regulated,/compare,/pricing,/developers,/security,/about,/contact,/faq,/terms,/privacy,/dpa,/acceptable-use,/cookies,/subprocessors,/security/disclosure,/blog').split(',');
 process.env.CHROME_PATH ||= '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
 const rows = [];

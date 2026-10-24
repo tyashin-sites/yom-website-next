@@ -18,6 +18,12 @@ export const siteConfig = {
   /** Tyashin project id — build-time env (PROJECT_ID). Placeholder: ASSET-DEBT #1. */
   projectId: process.env.NEXT_PUBLIC_PROJECT_ID || '',
   projectSlug: 'yom-website',
+  /**
+   * The project's Tyashin slug host. The platform serves its own paths here
+   * (robots, sitemap, RSS, brand kit) and the same-origin blog data API
+   * (/_tyashin/blog/*), resolving the project from this hostname.
+   */
+  tyashinHost: 'https://yom-website-mvlhzjda.sites.tyashin.com',
 
   company: {
     builder: 'Aapastech',
@@ -93,6 +99,13 @@ export const solutions = [
     blurb: 'Cookieless by default, GPC honoured, PII scrubbed, path-only URLs.',
   },
 ] as const;
+
+/** Shown in the header and footer only once a build has seen a published post. */
+export const blogNavItem: NavItem = { label: 'Blog', href: '/blog' };
+
+export function withBlog(items: NavItem[], hasPosts: boolean): NavItem[] {
+  return hasPosts ? [...items, blogNavItem] : items;
+}
 
 export const footerNav: { heading: string; links: NavItem[] }[] = [
   {

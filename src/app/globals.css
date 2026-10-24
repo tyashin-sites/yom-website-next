@@ -417,6 +417,84 @@ html:root {
     color: var(--on-ink-match);
   }
 
+  /* Blog post body: .prose-y plus what CMS posts carry (images, quotes, code, tables) */
+  .post-body {
+    font-size: 1.06rem;
+    line-height: 1.75;
+  }
+  .post-body > :first-child {
+    margin-top: 0;
+  }
+  .post-body h4 {
+    font-weight: 600;
+    margin: 1.5rem 0 0.4rem;
+  }
+  .post-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--brand-radius-md);
+    margin: 1.75rem 0;
+  }
+  .post-body figure {
+    margin: 1.75rem 0;
+  }
+  .post-body figcaption {
+    font-family: var(--brand-mono-font, ui-monospace, monospace);
+    font-size: 0.75rem;
+    color: var(--brand-text-muted);
+  }
+  .post-body blockquote {
+    margin: 1.75rem 0;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--brand-primary);
+    font-family: var(--brand-heading-font);
+    font-size: 1.35rem;
+    line-height: 1.35;
+  }
+  .post-body blockquote p {
+    max-width: 60ch;
+  }
+  .post-body code {
+    font-family: var(--brand-mono-font, ui-monospace, monospace);
+    font-size: 0.88em;
+    background: var(--brand-surface);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+  }
+  .post-body pre {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    border-radius: var(--brand-radius-md);
+    background: var(--brand-ink);
+    color: #ece8df;
+    font-size: 0.85rem;
+  }
+  .post-body pre code {
+    background: none;
+    padding: 0;
+    color: inherit;
+  }
+  .post-body table {
+    display: block;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  .post-body th,
+  .post-body td {
+    border-bottom: 1px solid var(--brand-border);
+    padding: 0.55rem 0.9rem 0.55rem 0;
+    text-align: left;
+    vertical-align: top;
+  }
+  .post-body hr {
+    border: 0;
+    border-top: 1px solid var(--brand-border);
+    margin: 2.5rem 0;
+  }
+
   /* Legal / long-form prose */
   .prose-y h2 {
     font-family: var(--brand-heading-font);

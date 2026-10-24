@@ -1,8 +1,11 @@
-import { footerNav, siteConfig } from '@/config/site';
+import { footerNav, siteConfig, withBlog } from '@/config/site';
+import { getBlogStatusAtBuild } from '@/lib/blog';
 import { Wordmark } from './brand/Mark';
 
-export function Footer() {
+export async function Footer() {
   const year = new Date().getFullYear();
+  const { hasPosts } = await getBlogStatusAtBuild();
+  const columns = footerNav.map((col) => (col.heading === 'Company' ? { ...col, links: withBlog(col.links, hasPosts) } : col));
   return (
     <footer className="site-footer rule-top bg-surface">
       <div className="container-y grid gap-12 py-16 lg:grid-cols-[1.3fr_2fr]">
@@ -29,7 +32,7 @@ export function Footer() {
           </ul>
         </div>
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 xl:grid-cols-5">
-          {footerNav.map((col) => (
+          {columns.map((col) => (
             <nav key={col.heading} aria-label={col.heading}>
               <h2 className="eyebrow">{col.heading}</h2>
               <ul className="mt-4 space-y-2.5 text-sm">

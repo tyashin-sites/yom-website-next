@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { primaryNav, siteConfig } from '@/config/site';
+import { siteConfig, type NavItem } from '@/config/site';
 
-export function MobileNav() {
+export function MobileNav({ nav }: { nav: NavItem[] }) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export function MobileNav() {
         <div id="mobile-menu" className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-background">
           <nav aria-label="Mobile" className="container-y py-8">
             <ul className="space-y-1">
-              {primaryNav.map((n) => (
+              {nav.map((n) => (
                 <li key={n.href}>
                   <a href={n.href} className="block border-b border-border py-4 font-heading text-3xl">
                     {n.label}
