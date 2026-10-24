@@ -42,7 +42,7 @@ YOM.ecommerce.purchase({
   currency: 'USD',
 })
 
-// Lead / form conversion — never put contact details in the browser event
+// Lead / form conversion: never put contact details in the browser event
 YOM.lead('contact-form')
 
 // Any custom event (snake_case, up to 64 chars)
