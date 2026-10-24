@@ -94,7 +94,7 @@ export default function PrivacyPage() {
         <ul>
           <li>
             <strong>Identity and sign-in:</strong> name, email address, a password stored only as a salted hash, whether
-            your email is verified, multi-factor authentication settings and recovery codes (stored hashed), and your
+            your email is verified, multi-factor authentication settings and recovery codes (recovery codes are stored hashed), and your
             Google account identifier if you sign in with Google.
           </li>
           <li>
@@ -145,8 +145,8 @@ export default function PrivacyPage() {
             our legacy v1 endpoints, to compute a daily-rotating hashed identifier.
           </li>
           <li>
-            <strong>Scrubbing:</strong> parameters that look like emails, phone numbers, names, addresses or card numbers
-            are removed from browser events. Events a customer sends from its own servers are not scrubbed; the customer
+            <strong>Scrubbing:</strong> parameters named like personal data (such as email, phone, name, address or card
+            number) are removed from browser events, as are values that look like an email address or a card number. Events a customer sends from its own servers are not scrubbed; the customer
             controls their content.
           </li>
           <li>

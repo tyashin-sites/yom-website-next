@@ -55,12 +55,13 @@ const DASHBOARD: Row[] = [
   ['yom_user', 'Local storage', 'You sign in', 'Your name and email for the interface', 'Until you sign out'],
   ['yom_tenant', 'Local storage', 'You sign in', 'Which organisation you are working in', 'Until you sign out'],
   ['yom_selected_project', 'Local storage', 'You pick a project', 'Remembers the selected project', 'Until cleared'],
+  ['yom_portal_session', 'Local storage', 'A client signs in to a client portal', 'Keeps the client signed in to the portal (session token)', 'The token expires after 12 hours'],
 ];
 
 const SDK: Row[] = [
-  ['yom_visitor', 'Local storage', 'Only after the visitor grants analytics consent', 'Random visitor id, so returning visits are recognised', 'Until consent is withdrawn or storage is cleared'],
-  ['yom_session', 'Local storage', 'Only after analytics consent', 'Session id, last activity time and the landing referrer and campaign', '30 minutes of inactivity; removed when consent is withdrawn'],
-  ['yom_consent', 'Local storage', 'Only when the visitor grants consent (and the site allows remembering it)', 'Remembers the consent choice', 'Until consent is withdrawn or storage is cleared'],
+  ['yom_visitor_<id>', 'Local storage', 'Only after the visitor grants analytics consent', 'Random visitor id, so returning visits are recognised', 'Until consent is withdrawn or storage is cleared'],
+  ['yom_session_<id>', 'Local storage', 'Only after analytics consent', 'Session id, last activity time and the landing referrer and campaign', 'Ignored after 30 minutes of inactivity; removed when consent is withdrawn'],
+  ['yom_consent_<id>', 'Local storage', 'Only when the visitor grants consent (and the site allows remembering it)', 'Remembers the consent choice', 'Until consent is withdrawn or storage is cleared'],
   ['yom_fp', 'Local storage', 'Only after analytics consent, and only if the site owner turns on cross-site identity (off by default)', 'Hash of browser characteristics to recognise the same browser across that owner’s sites', 'Until storage is cleared'],
 ];
 
@@ -124,8 +125,10 @@ export default function CookiesPage() {
         </p>
         <StorageTable rows={SDK} caption="Browser storage used by the YOM SDK after consent" />
         <p>
-          When a visitor withdraws consent, the SDK removes <code className="font-mono">yom_visitor</code>,{' '}
-          <code className="font-mono">yom_session</code> and <code className="font-mono">yom_consent</code>.
+          The <code className="font-mono">&lt;id&gt;</code> suffix is a short hash of the site&rsquo;s key, so two
+          sites on the same domain keep separate entries. When a visitor withdraws consent, the SDK removes{' '}
+          <code className="font-mono">yom_visitor_&lt;id&gt;</code>, <code className="font-mono">yom_session_&lt;id&gt;</code>{' '}
+          and <code className="font-mono">yom_consent_&lt;id&gt;</code>.
         </p>
         <p>
           If the site owner forwards conversions to Meta and the visitor has given marketing consent, the SDK may{' '}
