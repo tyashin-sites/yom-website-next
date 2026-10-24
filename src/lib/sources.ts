@@ -141,6 +141,12 @@ export const SOURCES: Record<string, Source> = {
     title: 'Ad blockers are now targeting server-side GTM subdomains by name',
     url: 'https://ppc.land/ad-blockers-are-now-targeting-server-side-gtm-subdomains-by-name/',
   },
+  aiAdobe: {
+    id: 'aiAdobe',
+    publisher: 'eCommerceNews (Adobe data)',
+    title: 'Adobe sees surge in AI-driven traffic and conversions',
+    url: 'https://ecommercenews.com.au/story/adobe-sees-surge-in-ai-driven-traffic-conversions',
+  },
   aiReferrals: {
     id: 'aiReferrals',
     publisher: 'Practical Ecommerce',

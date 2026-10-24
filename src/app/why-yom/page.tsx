@@ -32,6 +32,7 @@ export default function WhyYomPage() {
     'agencyAnalytics',
     'lookerQuota',
     'embeddedDashboards',
+    'aiAdobe',
     'aiReferrals',
     'aiDirect',
     'gaMcp',
@@ -211,8 +212,10 @@ export default function WhyYomPage() {
             <div className="mt-6 space-y-4 text-on-ink-muted">
               <p>
                 Adobe measured AI-referred US retail traffic up 693% year over year in the 2025 holiday season,
-                while independent data says the channel is still small.<fn.Ref id="aiReferrals" /> By default GA4 puts
-                much of it in Direct or Referral.<fn.Ref id="aiDirect" />
+                <fn.Ref id="aiAdobe" /> while an independent study found ChatGPT sent under 0.2% of ecommerce
+                traffic.<fn.Ref id="aiReferrals" /> GA4 added an AI Assistant channel in May 2026, but visits that arrive
+                without a referrer, or with a source tag and no medium, can still land in Direct or Unassigned.
+                <fn.Ref id="aiDirect" />
               </p>
               <p>
                 Google shipped an experimental, read-only MCP server for Google Analytics in July 2025.
