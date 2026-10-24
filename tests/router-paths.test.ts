@@ -33,6 +33,8 @@ describe('router path reservations', () => {
     expect(isReserved('/docs')).toBe(true);
     expect(isReserved('/docs/sdk')).toBe(true);
     expect(isReserved('/portal/acme')).toBe(true);
+    expect(isReserved('/accept-invite')).toBe(true);
+    expect(isReserved('/accept-invite/')).toBe(true);
     expect(isReserved('/developers')).toBe(false);
     expect(isReserved('/applications')).toBe(false);
     expect(isReserved('/security/disclosure')).toBe(false);

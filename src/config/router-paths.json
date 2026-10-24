@@ -1,6 +1,6 @@
 {
-  "$comment": "Paths the yom.aapastech.com path router sends to the YOM dashboard (decided 2026-10-23). The marketing site must never own a route at or under any of these. Only `allowedLinks` may be linked to (sign-up / log-in CTAs). Enforced by tests/router-paths.test.ts (static) and scripts/check-routes.mjs (crawl).",
-  "exact": ["/app", "/login", "/signup", "/register", "/forgot-password", "/verify-email", "/reset-password"],
+  "$comment": "Paths the yom.aapastech.com path router sends to the YOM dashboard (decided 2026-10-23; /accept-invite added 2026-10-24). The marketing site must never own a route at or under any of these. Only `allowedLinks` may be linked to (sign-up / log-in CTAs). Enforced by tests/router-paths.test.ts (static) and scripts/check-routes.mjs (crawl).",
+  "exact": ["/app", "/login", "/signup", "/register", "/forgot-password", "/verify-email", "/reset-password", "/accept-invite"],
   "prefix": [
     "/app", "/portal",
     "/overview", "/realtime", "/sources", "/geo", "/devices", "/events", "/conversions", "/goals",
