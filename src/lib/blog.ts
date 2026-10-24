@@ -102,13 +102,27 @@ async function getJson<T>(
     }
   })();
   let timer: ReturnType<typeof setTimeout> | undefined;
-  const deadline = new Promise<null>((resolve) => {
-    timer = setTimeout(() => resolve(null), deadlineMs);
+  const deadline = new Promise<void>((resolve) => {
+    timer = setTimeout(resolve, deadlineMs);
   });
   try {
-    return await Promise.race([run, deadline]);
+    const out = await Promise.race([run.then((v) => ({ v })), deadline.then(() => null)]);
+    if (out) return out.v;
+    // Deadline hit: keep the fetch alive past the response so it still fills
+    // the data cache. Without waitUntil the Worker cancels it, the cache never
+    // warms, and every request waits the full deadline.
+    keepAlive(run);
+    return null;
   } finally {
     clearTimeout(timer);
+  }
+}
+
+function keepAlive(p: Promise<unknown>): void {
+  try {
+    getCloudflareContext().ctx.waitUntil(p);
+  } catch {
+    /* next build / next start: the Node process keeps the promise alive */
   }
 }
 
