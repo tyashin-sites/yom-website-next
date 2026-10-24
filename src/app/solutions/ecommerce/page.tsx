@@ -14,7 +14,7 @@ const c: SolutionContent = {
   painsTitle: 'Why the numbers drift',
   pains: [
     { stat: '32.5%', text: 'of US internet users ran an ad blocker in Q2 2025', source: 'adBlock' },
-    { stat: '7 days', text: 'Safari’s cap on script-writable storage without user interaction', source: 'safariItp' },
+    { stat: '7 days', text: 'Safari’s expiry cap on cookies set by scripts, such as analytics client ids', source: 'safariItp' },
     { stat: 'Hidden', text: 'GA4 withholds report rows under thresholds you can’t adjust', source: 'ga4Thresholds' },
   ],
   showcaseTitle: 'Every purchase and every refund, counted once.',

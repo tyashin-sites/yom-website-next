@@ -162,8 +162,8 @@ export default function WhyYomPage() {
         }
       >
         <p>
-          32.5% of US internet users used an ad blocker in Q2 2025.<fn.Ref id="adBlock" /> Safari caps script-writable
-          storage at 7 days without user interaction.<fn.Ref id="safariItp" /> Filter lists now target server-side
+          32.5% of US internet users used an ad blocker in Q2 2025.<fn.Ref id="adBlock" /> Safari caps cookies set by
+          scripts at a 7-day expiry.<fn.Ref id="safariItp" /> Filter lists now target server-side
           tagging subdomains by name, so &ldquo;first-party&rdquo; alone keeps eroding.<fn.Ref id="sgtmBlocked" />
         </p>
         <p>
