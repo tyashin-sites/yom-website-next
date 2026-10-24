@@ -83,8 +83,9 @@ export default function PrivacyPage() {
             browser user agent and request details to deliver pages, protect against abuse and keep short-lived logs.
           </li>
           <li>
-            <strong>Cookies.</strong> This website sets no cookies of its own, uses no browser storage and loads no
-            analytics or advertising tags. See the <a href="/cookies">Cookie Policy</a>. If we add analytics later, we
+            <strong>Cookies.</strong> This website sets no cookies of its own and loads no analytics or advertising
+            tags. Our hosts add only strictly necessary items (a Cloudflare security cookie, and session-storage keys
+            used for error reporting). See the <a href="/cookies">Cookie Policy</a>. If we add analytics later, we
             will use YOM in its default cookieless mode and update that policy first.
           </li>
         </ul>
@@ -167,8 +168,8 @@ export default function PrivacyPage() {
         <ul>
           <li>provide, secure and support the website and the service, and authenticate users (performance of a contract; legitimate interests);</li>
           <li>reply to enquiries and follow up on demos you request (your request; legitimate interests in growing our business);</li>
-          <li>bill, collect payment, keep accounting and tax records (contract; legal obligation);</li>
-          <li>send service messages such as verification, password reset, security, billing and policy notices (contract; legitimate interests);</li>
+          <li>bill, collect payment, keep accounting and tax records (performance of a contract; legal obligation);</li>
+          <li>send service messages such as verification, password reset, security, billing and policy notices (performance of a contract; legitimate interests);</li>
           <li>detect and prevent fraud, abuse and security incidents, and enforce our terms (legitimate interests; legal obligation);</li>
           <li>improve the service using aggregated or de-identified information (legitimate interests);</li>
           <li>comply with law and respond to lawful requests (legal obligation).</li>

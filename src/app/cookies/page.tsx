@@ -5,7 +5,7 @@ import { legalEntity } from '@/config/legal';
 
 const TITLE = 'Cookie Policy';
 const DESCRIPTION =
-  'What this website, the YOM dashboard and the YOM SDK store in your browser. The site sets no cookies; the SDK is cookieless by default and uses local storage only after analytics consent.';
+  'What this website, the YOM dashboard and the YOM SDK store in your browser. The site sets no tracking cookies (only our host’s strictly necessary security cookie), and the SDK is cookieless by default and uses local storage only after analytics consent.';
 export const metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/cookies' });
 
 const TOC = [
@@ -82,11 +82,25 @@ export default function CookiesPage() {
       >
         <h2 id="website">1. This website</h2>
         <p>
-          This marketing website sets <strong>no cookies</strong>, uses <strong>no browser storage</strong>, and loads no
-          analytics, advertising or social-media tags. Our hosting provider, Cloudflare, may set a strictly necessary
-          security cookie (such as <code className="font-mono">__cf_bm</code>) when it needs to tell people from bots;
-          it does not track you across sites. If we add analytics to this site, we will use YOM in its default cookieless
-          mode and update this page first.
+          This marketing website&rsquo;s own code sets <strong>no cookies</strong>, stores nothing in your browser, and
+          loads no analytics, advertising or social-media tags. Our hosting providers add only what is strictly
+          necessary to run the site:
+        </p>
+        <ul>
+          <li>
+            Cloudflare may set a security cookie (such as <code className="font-mono">__cf_bm</code>) when it needs to
+            tell people from bots. It does not track you across sites.
+          </li>
+          <li>
+            Our website platform&rsquo;s error reporter may keep a random per-tab id (
+            <code className="font-mono">__tyTelSid</code>) in session storage when a page error is reported, and a
+            one-time flag (<code className="font-mono">__tyTelReload</code>) if it reloads a page that failed to load.
+            Session storage is cleared when you close the tab. It also writes and immediately removes a test key (
+            <code className="font-mono">__ty_test</code>) to check that storage works.
+          </li>
+        </ul>
+        <p>
+          If we add analytics to this site, we will use YOM in its default cookieless mode and update this page first.
         </p>
 
         <h2 id="dashboard">2. The YOM dashboard</h2>
