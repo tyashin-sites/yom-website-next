@@ -187,7 +187,7 @@ export default function ComparePage() {
               },
               {
                 topic: 'Free tier',
-                them: <>Mixpanel: 1M events free.<fn.Ref id="mixpanelPricing" /></>,
+                them: <>Mixpanel: 1M events free per month.<fn.Ref id="mixpanelPricing" /></>,
                 yom: '100,000 events free every month on both plans.',
               },
             ]}
