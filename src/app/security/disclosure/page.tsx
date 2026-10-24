@@ -3,10 +3,10 @@ import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
 import { legalEntity } from '@/config/legal';
 
-const TITLE = 'Security disclosure';
+const TITLE = 'Vulnerability disclosure policy';
 const DESCRIPTION =
   'How to report a security vulnerability in YOM to contact@aapastech.com, what is in scope, and our safe-harbour commitment for good-faith research.';
-export const metadata = pageMetadata({ title: 'Vulnerability disclosure policy', description: DESCRIPTION, path: '/security/disclosure' });
+export const metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/security/disclosure' });
 
 const TOC = [
   { id: 'report', label: 'How to report' },
@@ -23,7 +23,7 @@ export default function DisclosurePage() {
     <>
       <JsonLd page={{ path: '/security/disclosure', title: TITLE, description: DESCRIPTION }} />
       <LegalPage
-        title="Vulnerability disclosure policy"
+        title={TITLE}
         path="/security/disclosure"
         trail={[
           { name: 'Security', path: '/security' },

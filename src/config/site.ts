@@ -154,7 +154,7 @@ export const footerNav: { heading: string; links: NavItem[] }[] = [
       { label: 'Acceptable use', href: '/acceptable-use' },
       { label: 'Cookies', href: '/cookies' },
       { label: 'Sub-processors', href: '/subprocessors' },
-      { label: 'Security disclosure', href: '/security/disclosure' },
+      { label: 'Vulnerability disclosure policy', href: '/security/disclosure' },
     ],
   },
 ];

@@ -88,7 +88,7 @@ ${hasPosts ? `- Blog: ${siteUrl('/blog')}\n` : ''}- About: ${siteUrl('/about')}
 - Acceptable Use Policy: ${siteUrl('/acceptable-use')}
 - Cookie Policy: ${siteUrl('/cookies')}
 - Sub-processors: ${siteUrl('/subprocessors')}
-- Security disclosure: ${siteUrl('/security/disclosure')}
+- Vulnerability disclosure policy: ${siteUrl('/security/disclosure')}
 
 ## Contact
 - Email: ${contact.email}

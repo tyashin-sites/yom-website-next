@@ -14,7 +14,7 @@ export const legalDocs = [
   { href: '/acceptable-use', label: 'Acceptable Use Policy' },
   { href: '/cookies', label: 'Cookie Policy' },
   { href: '/subprocessors', label: 'Sub-processors' },
-  { href: '/security/disclosure', label: 'Security disclosure' },
+  { href: '/security/disclosure', label: 'Vulnerability disclosure policy' },
 ] as const;
 
 /** The contracting entity, as named in every legal document. */
