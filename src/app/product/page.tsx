@@ -238,7 +238,7 @@ export default function ProductPage() {
             ['Enrichment', 'Channel from UTM + referrer, device / browser / OS, country and region from the edge.'],
             ['Bot filtering', 'User-agent rules and missing-UA checks at the edge; webdriver detection in the SDK.'],
             ['SDK', 'Browser, React and Node, from one npm package, around 12 KB gzipped with every plugin.'],
-            ['Commerce connectors', 'Shopify app and WooCommerce plugin, in early access: not yet listed in the Shopify App Store or on wordpress.org, so we set them up with you.'],
+            ['Commerce connectors', 'WooCommerce plugin in early access: not yet on wordpress.org, so we install it with you. The Shopify app is built and coming soon.'],
           ]}
         />
       </Block>

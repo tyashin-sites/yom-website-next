@@ -44,7 +44,7 @@ ${siteConfig.name} is built by ${company.builder}. North American legal entity: 
 - Partner API: management keys create and suspend projects and mint keys; they cannot call the report API themselves.
 
 ## Early access
-- Shopify app and WooCommerce plugin (not yet listed in the Shopify App Store or on wordpress.org).
+- WooCommerce plugin (not yet on wordpress.org; we install it with you).
 - Looker Studio community connector (self-deployed; not in the public gallery).
 
 ## Exact vs estimated
@@ -52,6 +52,7 @@ Only conversion counts are exact. Funnels, attribution and unique-visitor counts
 
 ## Coming soon (not shipped)
 - Google Ads Enhanced Conversions
+- Shopify app (built; not yet installable)
 - Warehouse exports (S3, GCS, R2, BigQuery)
 - Scheduled email reports
 - Client portals on your own domain

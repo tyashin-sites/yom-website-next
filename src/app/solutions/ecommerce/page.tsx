@@ -29,9 +29,9 @@ const c: SolutionContent = {
     { title: 'Channel attribution', body: 'First-, last- or any-touch by channel from UTM and referrer. A statistical estimate, labelled as one.' },
     { title: 'Consent-gated forwarding', body: 'Browser forwarding to your own GA4 or Meta Pixel, or server-side Meta CAPI and GA4 Measurement Protocol, only with explicit marketing consent and no GPC.' },
     { title: 'Revenue reconciliation', body: 'Send your orders by API or CSV; YOM matches each order id to its purchase event and lists what’s missing or extra.' },
-    { title: 'Shopify & WooCommerce', body: 'A Shopify app and a WooCommerce plugin, in early access: not yet in the app stores, so we install them with you.' },
+    { title: 'WooCommerce', body: 'A WooCommerce plugin in early access: not yet on wordpress.org, so we install it with you.' },
   ],
-  soon: ['Shopify App Store and wordpress.org listings', 'Google Ads Enhanced Conversions'],
+  soon: ['The Shopify app', 'WooCommerce plugin on wordpress.org', 'Google Ads Enhanced Conversions'],
 };
 
 export const metadata = pageMetadata({ title: 'Analytics for e-commerce & DTC brands', description: c.description, path: '/solutions/ecommerce' });
