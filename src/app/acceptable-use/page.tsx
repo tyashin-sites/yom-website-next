@@ -44,21 +44,24 @@ export default function AcceptableUsePage() {
         </p>
 
         <h2 id="lawful-tracking">2. Lawful tracking only</h2>
-        <p>You must not use YOM to collect or process information about anyone unless you:</p>
+        <p>You may use YOM to collect or process information about a person only if you:</p>
         <ul>
           <li>have a lawful basis or valid consent for that collection under the laws that apply to you and to them;</li>
           <li>
             give the notices those laws require, including a privacy notice that discloses your use of analytics and of
-            any destination you forward data to;
+            any destination you forward data to; and
+          </li>
+          <li>honour opt-outs and consent choices.</li>
+        </ul>
+        <p>You must not:</p>
+        <ul>
+          <li>
+            configure YOM, or alter its SDK or requests, to defeat a visitor&rsquo;s consent choice, Global Privacy
+            Control signal or Do Not Track setting where the law requires you to honour it; or
           </li>
           <li>
-            honour opt-outs and consent choices. You must not configure YOM, or alter its SDK or requests, to defeat a
-            visitor&rsquo;s consent choice, Global Privacy Control signal or Do Not Track setting where the law requires
-            you to honour it;
-          </li>
-          <li>
-            do not use YOM to identify, re-identify or fingerprint individuals who have not consented, or to combine YOM
-            data with other data to do so.
+            use YOM to identify, re-identify or fingerprint individuals who have not consented, or combine YOM data with
+            other data to do so.
           </li>
         </ul>
 
@@ -107,7 +110,7 @@ export default function AcceptableUsePage() {
           <li>interfere with or disrupt the Service, including denial-of-service attacks, flooding ingest endpoints, or sending deliberately malformed or excessive events;</li>
           <li>use the Service to send traffic to, or attack, a third party, including through webhook or warehouse destinations;</li>
           <li>reverse engineer the Service, except to the extent the law allows despite this restriction;</li>
-          <li>share, publish or embed secret keys or management keys in client-side code, or resell access to the Service except as part of your own product or client service under these terms;</li>
+          <li>share, publish or embed secret keys or management keys in client-side code, or resell access to the Service except as part of your own product or client service under the Terms;</li>
           <li>create accounts by automated means or to evade a suspension or plan limit.</li>
         </ul>
 
