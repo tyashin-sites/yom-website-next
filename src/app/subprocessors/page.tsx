@@ -1,11 +1,11 @@
 import { pageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { legalEntity } from '@/config/legal';
+import { legalContact, legalEntities } from '@/config/legal';
 
 const TITLE = 'Sub-processors';
 const DESCRIPTION =
-  'The third parties that process personal data for YOM: Cloudflare for hosting, storage and compute, Resend for email, Slack for internal alerts to our team, and the providers we use for payments, sign-in and our website, with 30 days’ notice of changes.';
+  'Who processes personal data for YOM: our two group companies in India and Canada, Cloudflare for hosting, storage and compute, Resend for email, Slack for internal alerts, and the providers we use for payments, sign-in and our website, with 30 days’ notice of changes.';
 export const metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/subprocessors' });
 
 type Row = [name: string, purpose: string, data: string, location: string];
@@ -38,10 +38,27 @@ function Table({ rows, caption }: { rows: Row[]; caption: string }) {
   );
 }
 
+const { india: IN, canada: CA } = legalEntities;
+
+const GROUP: Row[] = [
+  [
+    IN.name,
+    `Group company. Engineering, hosting operations, support and billing for YOM. Sub-processor for customers who contract with ${CA.name}`,
+    'Customer Data and Account Data, as each task needs',
+    'India',
+  ],
+  [
+    CA.name,
+    `Group company. Engineering, hosting operations, support and billing for YOM. Sub-processor for customers who contract with ${IN.name}`,
+    'Customer Data and Account Data, as each task needs',
+    'Canada',
+  ],
+];
+
 const SERVICE: Row[] = [
   [
     'Cloudflare, Inc.',
-    'Hosting and compute (Workers, Pages), databases (D1), object storage (R2), queues, key-value storage, analytics storage, DNS, TLS, custom domains for client portals, and AI inference for optional AI features (Workers AI)',
+    'Hosting and compute (Workers, Pages, Durable Objects), databases (D1), object storage (R2), queues, key-value storage, analytics storage, DNS, TLS, custom domains for client portals, and AI inference for optional AI features (Workers AI)',
     'All Customer Data and Account Data',
     'Global network; United States and other countries',
   ],
@@ -67,7 +84,7 @@ const WEBSITE: Row[] = [
 ];
 
 export default function SubprocessorsPage() {
-  const e = legalEntity;
+  const e = legalContact;
   return (
     <>
       <JsonLd page={{ path: '/subprocessors', title: TITLE, description: DESCRIPTION }} />
@@ -76,12 +93,20 @@ export default function SubprocessorsPage() {
         path="/subprocessors"
         intro={
           <p>
-            These are the third parties that {e.name} (operating as {e.operatingAs}) uses to process personal data for
-            YOM, as described in our <a href="/dpa">Data Processing Addendum</a> and{' '}
-            <a href="/privacy">Privacy Policy</a>. Each is bound by written data-protection terms.
+            These are the companies that process personal data for YOM, as described in our{' '}
+            <a href="/dpa">Data Processing Addendum</a> and <a href="/privacy">Privacy Policy</a>. YOM is run by{' '}
+            {IN.name} for customers in India and by {CA.name} for everyone else. Each is bound by written
+            data-protection terms.
           </p>
         }
       >
+        <h2 id="group">Our group companies</h2>
+        <p>
+          The two companies share engineering, hosting and support, and each processes data for the other under a written
+          intra-group agreement. Whichever one you contract with, the other is its sub-processor.
+        </p>
+        <Table rows={GROUP} caption="Group companies that process data for each other" />
+
         <h2 id="service">Service sub-processors (Customer Data)</h2>
         <Table rows={SERVICE} caption="Sub-processors that process Customer Data" />
 

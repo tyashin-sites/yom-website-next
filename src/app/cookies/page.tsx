@@ -1,7 +1,7 @@
 import { pageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { legalEntity } from '@/config/legal';
+import { legalContact } from '@/config/legal';
 
 const TITLE = 'Cookie Policy';
 const DESCRIPTION =
@@ -66,7 +66,7 @@ const SDK: Row[] = [
 ];
 
 export default function CookiesPage() {
-  const e = legalEntity;
+  const e = legalContact;
   return (
     <>
       <JsonLd page={{ path: '/cookies', title: TITLE, description: DESCRIPTION }} />

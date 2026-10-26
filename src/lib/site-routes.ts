@@ -36,8 +36,11 @@ export function getSiteRoutes(): SiteRoute[] {
     { path: '/terms', title: 'Terms of Service', priority: 0.3, changeFrequency: 'yearly' },
     { path: '/privacy', title: 'Privacy Policy', priority: 0.3, changeFrequency: 'yearly' },
     { path: '/dpa', title: 'Data Processing Addendum', priority: 0.3, changeFrequency: 'yearly' },
+    { path: '/intent-addendum', title: 'YOM Intent Addendum', priority: 0.3, changeFrequency: 'yearly' },
     { path: '/acceptable-use', title: 'Acceptable Use Policy', priority: 0.2, changeFrequency: 'yearly' },
     { path: '/cookies', title: 'Cookie Policy', priority: 0.2, changeFrequency: 'yearly' },
     { path: '/subprocessors', title: 'Sub-processors', priority: 0.3, changeFrequency: 'monthly' },
+    { path: '/grievance', title: 'Grievance Officer', priority: 0.3, changeFrequency: 'yearly' },
+    { path: '/grievance/hi', title: 'शिकायत अधिकारी (Grievance Officer, Hindi)', priority: 0.2, changeFrequency: 'yearly' },
   ];
 }

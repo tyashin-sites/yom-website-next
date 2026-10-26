@@ -1,11 +1,12 @@
 import { pageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { legalEntity } from '@/config/legal';
+import { legalEntities, legalOfficer } from '@/config/legal';
+import { EntityBlock, OfficerBlock } from '@/components/LegalEntities';
 
 const TITLE = 'Privacy Policy';
 const DESCRIPTION =
-  'How 14818032 Canada Inc. (Aapastech) handles personal information as a controller for website visitors and YOM account holders, and as a processor for the analytics data customers send to YOM.';
+  'How Aapastech Private Limited (India) and 14818032 Canada Inc. (everywhere else) handle personal information for YOM: as data fiduciary or controller for visitors and account holders, and as processor for the analytics data customers send.';
 export const metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/privacy' });
 
 const TOC = [
@@ -20,6 +21,7 @@ const TOC = [
   { id: 'retention', label: 'How long we keep it' },
   { id: 'security', label: 'Security' },
   { id: 'rights', label: 'Your rights' },
+  { id: 'india', label: 'India: the Digital Personal Data Protection Act, 2023' },
   { id: 'canada', label: 'Canada: PIPEDA and Quebec Law 25' },
   { id: 'us', label: 'United States: CCPA/CPRA and other state laws' },
   { id: 'eu-uk', label: 'EEA, UK and Switzerland' },
@@ -29,8 +31,8 @@ const TOC = [
 ];
 
 export default function PrivacyPage() {
-  const e = legalEntity;
-  const mail = <a href={`mailto:${e.email}?subject=Privacy`}>{e.email}</a>;
+  const o = legalOfficer;
+  const mail = <a href={`mailto:${o.email}?subject=Privacy`}>{o.email}</a>;
   return (
     <>
       <JsonLd page={{ path: '/privacy', title: TITLE, description: DESCRIPTION }} />
@@ -47,18 +49,15 @@ export default function PrivacyPage() {
         }
       >
         <h2 id="who">1. Who we are</h2>
-        <p>
-          {e.name}, operating as {e.operatingAs} (&ldquo;Aapastech&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;), of{' '}
-          {e.place}, provides YOM. Our {e.privacyOfficer} is responsible for our compliance with this policy and with
-          privacy law, and can be reached at {mail} (subject &ldquo;Privacy&rdquo;) or {e.phone}.
-        </p>
+        <EntityBlock />
+        <OfficerBlock />
 
         <h2 id="roles">2. Our two roles</h2>
         <ul>
           <li>
             <strong>As a controller</strong> (the organisation that decides why and how information is used) for
             information about visitors to this website, people who contact us, and the people who hold or use YOM
-            accounts. Sections 3, 4 and 6 to 17 describe this.
+            accounts. In India we are the data fiduciary for this information. Sections 3, 4 and 6 to 18 describe this.
           </li>
           <li>
             <strong>As a processor or service provider</strong> for the analytics data our customers collect about
@@ -156,10 +155,24 @@ export default function PrivacyPage() {
             read (never set) Meta&rsquo;s own browser cookies and the Meta click id so Meta can match the conversion.
           </li>
         </ul>
+        <p id="intent">
+          If a customer turns on YOM Intent, we also build interest profiles for that customer, from its own sites only,
+          and send scrambled email addresses or phone numbers to the customer&rsquo;s own ad accounts on its
+          instructions. We never combine one customer&rsquo;s profiles with another&rsquo;s. YOM Intent is off unless a
+          customer turns it on, and the <a href="/intent-addendum">YOM Intent Addendum</a> sets its rules: a profile is
+          built only with the End User&rsquo;s consent to personalisation, an audience export includes only people who
+          consented to advertising, and anyone with a Global Privacy Control signal, opt-out or withdrawal on record on
+          any linked device is left out. Profiles are deleted after 180 days without activity by default, and never later
+          than 13 months or the customer&rsquo;s own retention period. Consent receipts (a record of what a person agreed
+          to, with no event data) are kept for 3 years after the profile they belong to is deleted, so the customer can
+          show what consent it had. YOM Intent is not available for End Users in the European Economic Area, the United
+          Kingdom or Quebec.
+        </p>
         <p>
-          We use Customer Data only to provide, secure and support the service for that customer, as the DPA sets out. We
-          do not sell it, use it for our own advertising, or combine it across customers to profile End Users. Optional AI
-          features for customers who enable them run on our hosting provider&rsquo;s AI service using that
+          We use Customer Data only to provide, secure and support the service for that customer, as the DPA sets out,
+          and to make aggregated statistics that identify no one, as section 6 of our <a href="/terms#aggregated-data">Terms</a>{' '}
+          allows. We do not sell it, use it for our own advertising, or combine it across customers to profile End Users.
+          Optional AI features for customers who enable them run on our hosting provider&rsquo;s AI service using that
           customer&rsquo;s aggregated report data; we do not send Customer Data to other AI model providers.
         </p>
 
@@ -208,13 +221,15 @@ export default function PrivacyPage() {
 
         <h2 id="transfers">8. Where data is processed</h2>
         <p>
-          We are based in Canada. Our service runs on Cloudflare&rsquo;s global network, so personal information may be
-          processed and stored in Canada, the United States and other countries where our providers or their data centres
+          Our two companies are based in India and Canada, and each can access personal information to run YOM for the
+          other. Our service runs on Cloudflare&rsquo;s global network, so personal information may be processed and
+          stored in India, Canada, the United States and other countries where our providers or their data centres
           operate. We do not currently offer a choice of data location or promise that data stays in any country. Data
           processed outside your province or country may be accessible to courts and authorities there. Where the law
           requires a transfer mechanism, such as for data from the EEA, UK or Switzerland, we rely on the European
           Commission&rsquo;s adequacy decision for Canada (for commercial organisations subject to PIPEDA), the Standard
           Contractual Clauses and the UK Addendum, or other lawful mechanisms, as the <a href="/dpa">DPA</a> describes.
+          Transfers out of India are covered in <a href="#india">section 12</a>.
         </p>
 
         <h2 id="retention">9. How long we keep it</h2>
@@ -229,7 +244,10 @@ export default function PrivacyPage() {
             after termination as the DPA describes. Copies in backups expire on their own cycle.
           </li>
         </ul>
-        <p>We may keep information longer where the law requires it or to establish or defend legal claims.</p>
+        <p>
+          We may keep information longer where the law requires it or to establish or defend legal claims. If you are in
+          India, <a href="#india">section 12</a> explains the sealed copy Indian law requires us to keep after deletion.
+        </p>
 
         <h2 id="security">10. Security</h2>
         <p>
@@ -255,24 +273,62 @@ export default function PrivacyPage() {
           the request to the customer and help it respond.
         </p>
 
-        <h2 id="canada">12. Canada: PIPEDA and Quebec Law 25</h2>
+        <h2 id="india">12. India: the Digital Personal Data Protection Act, 2023</h2>
+        <p>
+          If you are in India, {legalEntities.india.name} is the data fiduciary for the personal data in sections 3 and 4,
+          and this section applies to you as well as the rest of this policy.
+        </p>
+        <p>
+          <strong>Your rights.</strong> You can ask us for a summary of the personal data we hold about you and what we
+          do with it, ask us to correct, complete, update or delete it, withdraw any consent you gave (as easily as you
+          gave it), and nominate someone to act for you if you die or become unable to act. Email {mail}. We answer
+          within one month, and never later than the law allows. We may ask you to confirm your identity, but only with
+          information we already hold.
+        </p>
+        <p>
+          <strong>How long we keep data.</strong> We keep personal data while your account is active and as long as we
+          need it for the purpose you gave it for, then delete it. Some records stay longer because the law requires it:
+          invoices and tax records for 8 years, and security logs for at least 180 days. Indian law also requires us to
+          keep personal data, related traffic data and processing logs for one year from processing; when we delete your
+          data from our systems we keep a sealed copy for the rest of that year, which nobody uses except to meet that
+          legal duty, and then destroy it.
+        </p>
+        <p>
+          <strong>Where data goes.</strong> We use service providers in other countries, listed on our{' '}
+          <a href="/subprocessors">sub-processors list</a>. Transfers out of India follow section 16 of the Digital
+          Personal Data Protection Act, 2023; we will not transfer data to any country the Government of India restricts.
+        </p>
+        <p>
+          <strong>Security.</strong> We keep a documented information security programme: encryption in transit, access
+          limited to staff who need it, logging, and incident response. If a breach affects your personal data we will
+          tell you and the authorities as the law requires.
+        </p>
+        <p>
+          <strong>Complaints.</strong> Contact our Grievance Officer (see <a href="/grievance">/grievance</a>). If you are
+          not satisfied, you can complain to the Data Protection Board of India once the relevant provisions apply.
+        </p>
+
+        <h2 id="canada">13. Canada: PIPEDA and Quebec Law 25</h2>
         <p>
           We handle personal information in line with the Personal Information Protection and Electronic Documents Act
           and applicable provincial laws, including Quebec&rsquo;s Act respecting the protection of personal information in
-          the private sector as amended by Law 25. Our {e.privacyOfficer} is the person in charge of the protection of
-          personal information. Quebec residents may request access, rectification, de-indexing where applicable, and
+          the private sector as amended by Law 25. {o.name}, our Privacy Officer, is the person in charge of the
+          protection of personal information ({mail}, {o.phoneCanada}). Quebec residents may request access, rectification, de-indexing where applicable, and
           information about the communication of their information outside Quebec, and may withdraw consent. We assess
           the privacy risks of communicating personal information outside Quebec before doing so. You may complain to the
           Office of the Privacy Commissioner of Canada or, in Quebec, the Commission d&rsquo;accès à l&rsquo;information.
         </p>
 
-        <h2 id="us">13. United States: CCPA/CPRA and other state laws</h2>
+        <h2 id="us">14. United States: CCPA/CPRA and other state laws</h2>
         <p>
           For data we process for customers, we act as a &ldquo;service provider&rdquo; or &ldquo;processor&rdquo;: we
           process it only for the business purposes in our contract, and we do not sell or share it (as those terms are
           defined in the California Consumer Privacy Act as amended by the CPRA), retain, use or disclose it outside the
           direct business relationship, or combine it with personal information from other sources except as the law
-          permits.
+          permits. The one exception is a YOM Intent audience export: there the customer makes personal information
+          available to us so we can send it to the customer&rsquo;s own ad accounts, we act as a &ldquo;third
+          party&rdquo;, and the <a href="/intent-addendum">YOM Intent Addendum</a> holds the contract terms the CCPA
+          regulations require.
         </p>
         <p>
           For our own data, in the last 12 months we have collected the categories described in sections 3 and 4:
@@ -285,7 +341,7 @@ export default function PrivacyPage() {
           section 11.
         </p>
 
-        <h2 id="eu-uk">14. EEA, UK and Switzerland</h2>
+        <h2 id="eu-uk">15. EEA, UK and Switzerland</h2>
         <p>
           Where the GDPR, UK GDPR or Swiss law applies to our processing as a controller, our legal bases are those in
           section 6, and you may also lodge a complaint with your local supervisory authority. Where you rely on
@@ -294,7 +350,7 @@ export default function PrivacyPage() {
           contact us at {mail}.
         </p>
 
-        <h2 id="children">15. Children</h2>
+        <h2 id="children">16. Children</h2>
         <p>
           Our website and service are for businesses and are not directed to children. We do not knowingly collect
           personal information from children under 16. Our customers must not use YOM on services directed to children
@@ -302,17 +358,19 @@ export default function PrivacyPage() {
           believe a child has given us personal information, contact us and we will delete it.
         </p>
 
-        <h2 id="changes">16. Changes</h2>
+        <h2 id="changes">17. Changes</h2>
         <p>
           We will post changes here and update the date above. If a change is material, we will tell account owners by
           email or in the product before it takes effect.
         </p>
 
-        <h2 id="contact">17. Contact and complaints</h2>
+        <h2 id="contact">18. Contact and complaints</h2>
         <p>
-          {e.privacyOfficer}, {e.name} (operating as {e.operatingAs}), {e.place}. Email {mail} or call {e.phone}. Please
-          contact us first so we can try to resolve your concern; you keep the right to complain to the regulators named
-          above.
+          {o.name}, Grievance Officer (India) and Privacy Officer (Canada). In India: {legalEntities.india.name},{' '}
+          {legalEntities.india.address}, {legalEntities.india.country}, {o.phoneIndia}. Everywhere else:{' '}
+          {legalEntities.canada.name}, {legalEntities.canada.address}, {o.phoneCanada}. Email {mail}. Please contact us
+          first so we can try to resolve your concern; the <a href="/grievance">Grievance Officer</a> page explains how we
+          handle complaints and how quickly. You keep the right to complain to the regulators named above.
         </p>
       </LegalPage>
     </>

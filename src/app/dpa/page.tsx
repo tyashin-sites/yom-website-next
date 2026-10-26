@@ -1,11 +1,12 @@
 import { pageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { legalEntity } from '@/config/legal';
+import { legalContact, legalEntities } from '@/config/legal';
+import { EntityBlock } from '@/components/LegalEntities';
 
 const TITLE = 'Data Processing Addendum';
 const DESCRIPTION =
-  'The processor terms for YOM: instructions, confidentiality, sub-processors, security measures, breach notice, audits, international transfers (SCCs and UK Addendum) and deletion on termination.';
+  'The processor terms for YOM: instructions, confidentiality, sub-processors and group companies, security measures, 24-hour breach notice, audits, international transfers (India, SCCs and UK Addendum) and deletion on termination.';
 export const metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/dpa' });
 
 const TOC = [
@@ -27,7 +28,8 @@ const TOC = [
 ];
 
 export default function DpaPage() {
-  const e = legalEntity;
+  const e = legalContact;
+  const { india: IN, canada: CA } = legalEntities;
   return (
     <>
       <JsonLd page={{ path: '/dpa', title: TITLE, description: DESCRIPTION }} />
@@ -36,13 +38,17 @@ export default function DpaPage() {
         path="/dpa"
         toc={TOC}
         intro={
-          <p>
-            This Data Processing Addendum (&ldquo;DPA&rdquo;) forms part of the <a href="/terms">Terms of Service</a>{' '}
-            between {e.name}, operating as {e.operatingAs} (&ldquo;Processor&rdquo;, &ldquo;we&rdquo;), and the customer
-            (&ldquo;Customer&rdquo;, &ldquo;you&rdquo;). It applies automatically when you accept the Terms; no separate
-            signature is needed. If you need a countersigned copy, email{' '}
-            <a href={`mailto:${e.email}?subject=DPA`}>{e.email}</a>.
-          </p>
+          <>
+            <EntityBlock />
+            <p>
+              This Data Processing Addendum (&ldquo;DPA&rdquo;) forms part of the <a href="/terms">Terms of Service</a>{' '}
+              between the company named above that you deal with (&ldquo;Processor&rdquo;, &ldquo;we&rdquo;) and the
+              customer (&ldquo;Customer&rdquo;, &ldquo;you&rdquo;). It applies automatically when you accept the Terms; no
+              separate signature is needed. If you need a countersigned copy, email{' '}
+              <a href={`mailto:${e.email}?subject=DPA`}>{e.email}</a>. If you turn on YOM Intent, the{' '}
+              <a href="/intent-addendum">YOM Intent Addendum</a> supplements this DPA.
+            </p>
+          </>
         }
       >
         <h2 id="scope">1. Scope and roles</h2>
@@ -52,14 +58,19 @@ export default function DpaPage() {
           and we are your processor or service provider. Each party will comply with the Data Protection Laws that apply
           to it.
         </p>
+        <p>
+          If you turn on YOM Intent, the <a href="/intent-addendum">YOM Intent Addendum</a> supplements this DPA for that
+          processing. If they conflict on YOM Intent processing, the Intent Addendum prevails.
+        </p>
 
         <h2 id="definitions">2. Definitions</h2>
         <ul>
           <li>
             <strong>Data Protection Laws</strong>: all privacy and data-protection laws that apply to the processing,
-            which may include PIPEDA and Canadian provincial laws (including Quebec&rsquo;s Law 25), the EU GDPR, the UK
-            GDPR and Data Protection Act 2018, the Swiss Federal Act on Data Protection, and US state privacy laws such as
-            the CCPA as amended by the CPRA.
+            which may include India&rsquo;s Digital Personal Data Protection Act, 2023 and the Digital Personal Data
+            Protection Rules, 2025, the Information Technology Act, 2000 and the rules made under it, PIPEDA and Canadian
+            provincial laws (including Quebec&rsquo;s Law 25), the EU GDPR, the UK GDPR and Data Protection Act 2018, the
+            Swiss Federal Act on Data Protection, and US state privacy laws such as the CCPA as amended by the CPRA.
           </li>
           <li>
             <strong>Customer Personal Data</strong>: personal data or personal information within Customer Data (as
@@ -80,7 +91,9 @@ export default function DpaPage() {
         <p>
           We process Customer Personal Data only on your documented instructions. Your instructions are: the Terms and
           this DPA; your configuration and use of the Service (including the settings, destinations, exports, portals and
-          reports you set up); and other reasonable written instructions consistent with the Terms. If we believe an
+          reports you set up); turning on YOM Intent features, as described in the{' '}
+          <a href="/intent-addendum">YOM Intent Addendum</a>; and other reasonable written instructions consistent with
+          the Terms. If we believe an
           instruction infringes Data Protection Laws we will tell you, and we may decline to follow it. If the law
           requires us to process Customer Personal Data otherwise, we will tell you first unless the law forbids it.
           Annex 1 describes the processing.
@@ -119,12 +132,18 @@ export default function DpaPage() {
             Fees for the period after termination.
           </li>
           <li>
+            <strong>Our group companies.</strong> {IN.name} (India) and {CA.name} (Canada) each act as a Sub-processor
+            for the other, for engineering, hosting operations, support and billing, under a written intra-group agreement
+            whose terms are no less protective than this DPA. Both are listed on the sub-processors page.
+          </li>
+          <li>
             We impose data-protection obligations on each Sub-processor that are no less protective in substance than
             this DPA, and we remain responsible for their performance as the law requires.
           </li>
           <li>
             Destinations and connectors you configure (such as webhooks, Meta, Google Analytics, storage buckets, data
-            warehouses, Shopify, WooCommerce or Looker Studio) are recipients you choose, not our Sub-processors.
+            warehouses, Shopify, WooCommerce or Looker Studio, and the Meta, Google Ads and Klaviyo accounts you connect
+            to YOM Intent) are recipients you choose, not our Sub-processors.
           </li>
         </ul>
 
@@ -152,11 +171,14 @@ export default function DpaPage() {
 
         <h2 id="breach">8. Personal data breaches</h2>
         <p>
-          We will notify you without undue delay after becoming aware of a Personal Data Breach. The notice will describe,
-          as far as then known, the nature of the breach, the categories and approximate number of data subjects and
+          We will notify you of a Personal Data Breach without undue delay and in any case within 24 hours of becoming
+          aware of it. That gives you time to report it, where those duties apply to you, to the Data Protection Board of
+          India within 72 hours and to CERT-In (the Indian Computer Emergency Response Team) within 6 hours of it being
+          brought to your notice. The notice will describe, as far as then known, the nature of the breach, the categories and approximate number of data subjects and
           records concerned, the likely consequences, and the measures taken or proposed. We will update you as more
-          information becomes available, take reasonable steps to contain and remedy the breach, and give reasonable help
-          with your own notification obligations. Our notice is not an admission of fault. Unsuccessful attempts that do
+          information becomes available, include the details the Digital Personal Data Protection Rules, 2025 require you
+          to give the Board as far as we know them, take reasonable steps to contain and remedy the breach, and give
+          reasonable help with your own notification obligations. Our notice is not an admission of fault. Unsuccessful attempts that do
           not compromise security (such as pings, port scans or blocked log-in attempts) are not breaches.
         </p>
 
@@ -182,14 +204,19 @@ export default function DpaPage() {
 
         <h2 id="transfers">11. International transfers</h2>
         <p>
-          We are based in Canada and the Service runs on Cloudflare&rsquo;s global network, so Customer Personal Data may
-          be processed in Canada, the United States and other countries. We do not commit to storing data in any
-          particular country. Where Data Protection Laws restrict a transfer:
+          Our two companies are based in India and Canada, each can access Customer Personal Data to run the Service for
+          the other, and the Service runs on Cloudflare&rsquo;s global network, so Customer Personal Data may be processed
+          in India, Canada, the United States and other countries. We do not commit to storing data in any particular
+          country. Where Data Protection Laws restrict a transfer:
         </p>
         <ul>
           <li>
+            Transfers of personal data out of India follow section 16 of the Digital Personal Data Protection Act, 2023.
+            We will not transfer it to any country the Government of India restricts.
+          </li>
+          <li>
             Transfers from the EEA to us in Canada rely on the European Commission&rsquo;s adequacy decision for Canada to
-            the extent it applies. Otherwise, and for onward transfers, the Standard Contractual Clauses adopted by
+            the extent it applies. Otherwise, including access from India and onward transfers, the Standard Contractual Clauses adopted by
             Commission Implementing Decision (EU) 2021/914 are incorporated by reference: Module 2 (controller to
             processor) or Module 3 (processor to processor) as applicable; clause 7 (docking) applies; under clause 9
             option 2 (general authorisation) applies with the notice period in section 6; the optional language in clause
@@ -217,7 +244,9 @@ export default function DpaPage() {
           from others, except as those laws permit. We will comply with the obligations those laws place on service
           providers, give the same level of privacy protection they require, and tell you if we can no longer meet them.
           You may take reasonable steps to stop and remediate unauthorised use. We certify that we understand these
-          restrictions.
+          restrictions. The one exception is YOM Intent audience exports, for which the{' '}
+          <a href="/intent-addendum">YOM Intent Addendum</a> treats us as a third party and sets out the contract terms
+          the CCPA regulations require.
         </p>
 
         <h2 id="deletion">13. Return and deletion</h2>
@@ -225,8 +254,8 @@ export default function DpaPage() {
           During the term you can export Customer Data with the Service&rsquo;s tools. After termination of the Service,
           and at your election made in writing within 30 days, we will provide an export of the Customer Personal Data we
           still hold or delete it. In any case we will delete Customer Personal Data within 180 days after termination,
-          except where the law requires us to keep it, in which case we will keep it confidential and process it only for
-          that purpose. Copies in backups are deleted as the backups expire. On request we will confirm deletion in
+          except where the law requires us to keep it (for example the one-year retention Indian law requires), in which
+          case we will keep it sealed and confidential and process it only for that purpose. Copies in backups are deleted as the backups expire. On request we will confirm deletion in
           writing.
         </p>
 
@@ -234,12 +263,13 @@ export default function DpaPage() {
         <p>
           Each party&rsquo;s liability under this DPA is subject to the limitations and exclusions in the Terms, except
           where Data Protection Laws or the Standard Contractual Clauses do not allow it. If this DPA conflicts with the
-          Terms on the processing of personal data, this DPA prevails.
+          Terms on the processing of personal data, this DPA prevails, and the YOM Intent Addendum prevails over both on
+          YOM Intent processing.
         </p>
 
         <h2 id="annex-1">Annex 1: Details of processing</h2>
         <ul>
-          <li><strong>Parties:</strong> data exporter: the Customer (controller or processor); data importer: {e.name}, {e.place}, {e.email} (processor).</li>
+          <li><strong>Parties:</strong> data exporter: the Customer (controller or processor); data importer (processor): {IN.name}, {IN.address}, {IN.country} (CIN {IN.cin}) for Customers in India, or {CA.name}, {CA.address}, for everyone else; contact {e.email}.</li>
           <li><strong>Subject matter and duration:</strong> provision of the Service under the Terms, for the term of the Terms and until deletion under section 13.</li>
           <li><strong>Nature and purpose:</strong> collecting, receiving, enriching (device, browser, operating system and approximate location), storing, aggregating, analysing, reporting, exporting and forwarding analytics events as configured by the Customer; providing reports, portals, embeds, email reports and API and MCP access; security and support.</li>
           <li><strong>Data subjects:</strong> visitors and users of the Customer&rsquo;s websites, apps and stores (End Users), and the Customer&rsquo;s clients and their users where the Customer serves clients.</li>
@@ -247,7 +277,7 @@ export default function DpaPage() {
           <li><strong>Special categories:</strong> none. The Customer must not send them (see the Acceptable Use Policy).</li>
           <li><strong>Frequency:</strong> continuous.</li>
           <li><strong>Retention:</strong> as set by the Customer&rsquo;s plan and settings during the term; deletion under section 13.</li>
-          <li><strong>Sub-processors:</strong> as listed on the <a href="/subprocessors">sub-processors page</a>.</li>
+          <li><strong>Sub-processors:</strong> as listed on the <a href="/subprocessors">sub-processors page</a>, including our group companies.</li>
           <li><strong>Competent supervisory authority:</strong> as determined under clause 13 of the Standard Contractual Clauses.</li>
         </ul>
       </LegalPage>

@@ -97,6 +97,8 @@ export interface GraphPage {
   crumbs?: { name: string; path: string }[];
   faq?: { q: string; a: string }[];
   type?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'FAQPage' | 'CollectionPage';
+  /** BCP 47 language of the page body when it is not English (e.g. 'hi'). */
+  inLanguage?: string;
   /** A blog post: adds a BlogPosting node (the page's main entity). */
   article?: {
     headline: string;
@@ -125,7 +127,7 @@ export function buildGraph(page?: GraphPage): { '@context': string; '@graph': No
       description: page.description,
       isPartOf: { '@id': SITE_ID },
       about: { '@id': isHome ? APP_ID : ORG_ID },
-      inLanguage: 'en',
+      inLanguage: page.inLanguage ?? 'en',
     };
     if (!isHome) {
       const trail = [{ name: 'Home', path: '/' }, ...(page.crumbs ?? [{ name: page.title, path: page.path }])];

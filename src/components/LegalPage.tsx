@@ -10,6 +10,7 @@ export function LegalPage({
   intro,
   toc,
   trail,
+  lang,
   children,
 }: {
   title: string;
@@ -17,17 +18,21 @@ export function LegalPage({
   intro?: React.ReactNode;
   toc?: TocItem[];
   trail?: { name: string; path: string }[];
+  /** Language of the title and body when it is not English (the shell stays English). */
+  lang?: string;
   children: React.ReactNode;
 }) {
   return (
     <article className="container-y pt-10 pb-24 sm:pt-14">
       <Breadcrumbs trail={trail ?? [{ name: title, path }]} />
-      <h1 className="tt-h1 mt-10">{title}</h1>
+      <h1 className="tt-h1 mt-10" lang={lang}>
+        {title}
+      </h1>
       <p className="mt-4 font-mono text-[0.78rem] text-muted">
         Last updated: <time dateTime={LEGAL_UPDATED_ISO}>{LEGAL_UPDATED}</time>
       </p>
       <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_15rem]">
-        <div className="prose-y min-w-0">
+        <div className="prose-y min-w-0" lang={lang}>
           {intro}
           {toc?.length ? (
             <nav aria-label="Contents" className="legal-toc">

@@ -1,7 +1,7 @@
 import { pageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { legalEntity } from '@/config/legal';
+import { legalContact } from '@/config/legal';
 
 const TITLE = 'Vulnerability disclosure policy';
 const DESCRIPTION =
@@ -17,7 +17,7 @@ const TOC = [
 ];
 
 export default function DisclosurePage() {
-  const e = legalEntity;
+  const e = legalContact;
   const mail = <a href={`mailto:${e.email}?subject=Security%20report`}>{e.email}</a>;
   return (
     <>

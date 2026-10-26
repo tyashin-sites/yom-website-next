@@ -1,7 +1,7 @@
 import { pageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { legalEntity } from '@/config/legal';
+import { legalContact, legalEntities } from '@/config/legal';
 
 const TITLE = 'Acceptable Use Policy';
 const DESCRIPTION =
@@ -29,8 +29,9 @@ export default function AcceptableUsePage() {
         toc={TOC}
         intro={
           <p>
-            This policy is part of the <a href="/terms">Terms of Service</a> between you and {legalEntity.name}, operating
-            as {legalEntity.operatingAs} (&ldquo;we&rdquo;, &ldquo;us&rdquo;). It applies to every account, project,
+            This policy is part of the <a href="/terms">Terms of Service</a> between you and the company that runs YOM for
+            you: {legalEntities.india.name} if you are in India, and {legalEntities.canada.name} everywhere else
+            (&ldquo;we&rdquo;, &ldquo;us&rdquo;). It applies to every account, project,
             key, token, portal and integration of YOM (Your Own Metrics). Capitalised words have the meaning given in the
             Terms.
           </p>
@@ -133,8 +134,9 @@ export default function AcceptableUsePage() {
 
         <h2 id="reporting">8. Reporting misuse</h2>
         <p>
-          Report suspected misuse of YOM to <a href={`mailto:${legalEntity.email}`}>{legalEntity.email}</a>. Report security
-          vulnerabilities as described in our <a href="/security/disclosure">security disclosure policy</a>.
+          Report suspected misuse of YOM to <a href={`mailto:${legalContact.email}`}>{legalContact.email}</a>. Complaints
+          are handled by our <a href="/grievance">Grievance Officer</a>. Report security vulnerabilities as described in
+          our <a href="/security/disclosure">security disclosure policy</a>.
         </p>
       </LegalPage>
     </>

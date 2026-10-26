@@ -155,6 +155,7 @@ export const footerNav: { heading: string; links: NavItem[] }[] = [
       { label: 'Cookies', href: '/cookies' },
       { label: 'Sub-processors', href: '/subprocessors' },
       { label: 'Vulnerability disclosure policy', href: '/security/disclosure' },
+      { label: 'Grievance Officer', href: '/grievance' },
     ],
   },
 ];
