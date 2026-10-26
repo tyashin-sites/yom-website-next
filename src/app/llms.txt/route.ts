@@ -58,7 +58,7 @@ Only conversion counts are exact. Funnels, attribution and unique-visitor counts
 Session replay, feature flags and experiments.
 
 ## Pricing
-- Free: no credit card required; 100,000 events per month (at most 20,000 a day); 1 project; 1 team member; 180-day retention.
+- Free: no credit card required; 100,000 events per month; 1 project; 1 team member; 180-day retention.
 - Pay-as-you-go: first 100,000 events free each month, then graduated (each rate applies only to events in its band):
 ${rates}
 - Pay-as-you-go includes unlimited projects and team members, 395-day retention by default (adjustable up to five years), custom events, API access, funnels, embedded dashboards, webhooks/destinations and audit logs.

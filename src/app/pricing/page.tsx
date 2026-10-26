@@ -18,7 +18,7 @@ export const metadata = pageMetadata({ title: 'Pricing: 100,000 events free ever
 const FAQ: Faq[] = [
   {
     q: 'Do I need a credit card to start?',
-    a: 'No. The Free plan needs no credit card and includes 100,000 events every month (at most 20,000 in one day), one project and one team member, with 180 days of data retention.',
+    a: 'No. The Free plan needs no credit card and includes 100,000 events every month, one project and one team member, with 180 days of data retention.',
   },
   {
     q: 'How does graduated pricing work?',
@@ -67,7 +67,7 @@ export default function PricingPage() {
             </p>
             <ul className="mt-8 space-y-3 text-[0.97rem]">
               {[
-                '100,000 events a month included (at most 20,000 a day)',
+                '100,000 events a month included',
                 '1 project',
                 '1 team member',
                 '180-day data retention',
