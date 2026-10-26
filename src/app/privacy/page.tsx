@@ -221,7 +221,7 @@ export default function PrivacyPage() {
         <ul>
           <li>Enquiries and sales correspondence: up to 24 months after our last exchange, unless you become a customer.</li>
           <li>Account information: while the account is open, then up to 24 months after closure to handle disputes and security matters, unless you ask us to delete it sooner and no exception applies.</li>
-          <li>Billing and tax records: as long as tax and corporate law requires (generally six years in Canada).</li>
+          <li>Billing and tax records (invoices, payments and subscription records): kept for 8 years after the account is closed, to meet Canadian and Indian tax and accounting law, then deleted automatically.</li>
           <li>Audit and security records: as long as needed for security and accountability, normally no more than 24 months.</li>
           <li>Short-lived operational logs kept by our hosting provider: days to weeks.</li>
           <li>

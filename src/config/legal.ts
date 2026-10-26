@@ -4,8 +4,8 @@
  * (recommended, not blocking — docs/ASSET-DEBT.md). Every data-handling
  * statement traces to the YOM codebase; see docs/LEGAL-SOURCES.md.
  */
-export const LEGAL_UPDATED = '23 October 2026';
-export const LEGAL_UPDATED_ISO = '2026-10-23';
+export const LEGAL_UPDATED = '25 October 2026';
+export const LEGAL_UPDATED_ISO = '2026-10-25';
 
 export const legalDocs = [
   { href: '/terms', label: 'Terms of Service' },

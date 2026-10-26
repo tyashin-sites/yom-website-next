@@ -119,6 +119,7 @@ Every capability or factual claim on yom.aapastech.com (pages, metadata, JSON-LD
 | C95 | With the current SDK and v2 collection: until analytics consent is granted the SDK keeps no persistent id and writes nothing to browser storage, and the server drops any visitor id the browser sends; conversions are still counted, without an id | blog (Law 25), product, faq, developers | SDK `core/client.ts:509-551,590`; `shared/src/analytics/normalize.ts:545-552` (browser events: id forced empty unless granted); exact counting C13 is independent of consent | VERIFIED-IN-PROD (split from C17 on 2026-10-24; C17 stays pending only because the legacy v1 endpoints ignore consent) |
 | C96 | Free "at most 20,000 events a day" | pricing, llms (until 2026-10-26) | daily cap removed in PR #55 (absoluteDailyLimit null) | NOT-TRUE. Copy removed 2026-10-26 |
 | C97 | <yom-report> from the npm package @yourownmetric/embed | developers, llms, security/disclosure (package named) | npm @yourownmetric/embed latest is 0.1.0 (Feb 2026), which has no yom-report build; the element itself is served from YOM's host (C52) | BUILD-PENDING (other, until 2026-11-07). Publish @yourownmetric/embed 0.2.0 with dist/yom-report.iife.js |
+| C98 | Billing and tax records (invoices, payments, subscription records) kept 8 years after account closure, then deleted automatically | privacy §9 | YOM PR #61 (lifecycle: 24-month and 8-year billing retention), merged to develop 2026-10-26, not in prod | BUILD-PENDING (lifecycle, until 2026-11-07). Copy added 2026-10-25 at the coordinator's request; verify the purge job on main after release |
 | C93 | Retention "90 days on Free, 365 days on pay-as-you-go" | product, pricing, faq, compare, llms | v2 retention is 180 / 395 default (C08); 90/365 only in the legacy D1 cron | NOT-TRUE. Copy changed |
 | C92 | Company: YOM built by Aapastech; 14818032 Canada Inc., Burlington, Ontario; contact@aapastech.com; +1 437 800 0190 | all (footer, about, contact, JSON-LD) | business facts from the user, `src/config/site.ts` | EXTERNAL-SOURCE |
 
@@ -179,6 +180,7 @@ Every capability or factual claim on yom.aapastech.com (pages, metadata, JSON-LD
 | `client portal\|portals?` | C51 |
 | `yom-report` | C52 |
 | `@yourownmetric/embed` | C97 |
+| `8 years after the account` | C98 |
 | `embed tokens?` | C55 |
 | `custom dimensions` | C56 |
 | `Partner API\|management keys` | C57 |
@@ -208,7 +210,7 @@ Every capability or factual claim on yom.aapastech.com (pages, metadata, JSON-LD
 | billing | yom-build-billing (local_494e7aa6) | C04 (blocked on Stripe live keys) |
 | team | yom-build-team (local_2517071e) | (all verified 2026-10-26) |
 | sdk | yom-build-firstparty (local_e654c5fc) | C17 C18 C22 C23 C24 C26 C74 C75 |
-| lifecycle | data-lifecycle agent (branch feat/lifecycle) | C58 C80 C81 |
+| lifecycle | data-lifecycle agent (branch feat/lifecycle, PR #61) | C58 C80 C81 C98 |
 | other | coordinator (local_e5cb927e) | C15 C27 C42 C43 C48 C49 C50 C53 C64 C82 C97 |
 
 When a build is verified in prod, change the row to VERIFIED-IN-PROD with the new evidence. If the date passes first, `claims:check` and `npm test` fail: ship the build, or change the copy, or (with a reason in the row) move the date once.
