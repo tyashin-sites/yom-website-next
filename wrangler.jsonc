@@ -13,6 +13,13 @@
     // Shared platform namespace (SHARED_NEXT_INC_CACHE_KV_ID in the addendum).
     { "binding": "NEXT_INC_CACHE_KV", "id": "426d3a7563b14b9ab194d8495ae1c7ef" }
   ],
+  // ISR revalidation queue (open-next.config.ts `queue: doQueue`). Without it
+  // stale pages are never regenerated — tyashin-platform CLAUDE.md §12c-bis.
+  "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "site-yom-website" }],
+  "durable_objects": {
+    "bindings": [{ "name": "NEXT_CACHE_DO_QUEUE", "class_name": "DOQueueHandler" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["DOQueueHandler"] }],
   "vars": {
     "TYASHIN_API_URL": "https://website-api.tyashin.com",
     // Indexing switch. "false" for the production build (going live
