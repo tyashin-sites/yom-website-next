@@ -208,7 +208,7 @@ export default function DevelopersPage() {
       <Step n="05" id="http" title="Or call the HTTP API directly">
         <CodeBlock code={S.curl} label="bearer auth" lang="curl" />
         <CodeBlock code={S.hmac} label="HMAC auth" lang="shell" />
-        <p className="text-muted">Up to 50 events or 64 KB per request. 429 and 5xx responses are safe to retry with the same ids. For HMAC, send the key&rsquo;s id (<code className="font-mono">key_…</code>, returned by the keys API) as YOM-Key-Id and sign with the secret key itself.</p>
+        <p className="text-muted">Up to 50 events or 64 KB per request. 429 and 5xx responses are safe to retry with the same ids. For HMAC, send the key&rsquo;s id (<code className="font-mono">key_…</code>, shown next to the secret key in your dashboard and returned by the keys API) as YOM-Key-Id and sign with the secret key itself.</p>
       </Step>
 
       <Step n="06" id="webhooks" title="Verify signed webhooks">
