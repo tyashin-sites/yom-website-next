@@ -30,12 +30,25 @@ const EMAIL = 'contact@aapastech.com';
  * contracts with the Canadian company, which is their controller. Each is the
  * other's intra-group sub-processor.
  */
+const IN_REGISTERED = { street: '8/3, 2nd Floor, Roop Nagar', locality: 'Delhi', postalCode: '110007' } as const;
+const IN_PRINCIPAL = {
+  street: '1st Floor, 145, Sector 44',
+  locality: 'Gurugram',
+  region: 'Haryana',
+  postalCode: '122003',
+} as const;
+
 export const legalEntities = {
   india: {
     name: 'Aapastech Private Limited',
     cin: 'U72900DL2022PTC395508',
-    /** Registered office, as K1 prints it (no country). */
-    address: '8/3, 2nd Floor, Roop Nagar, Delhi 110007',
+    /** Registered office, as K1 prints it (no country). Legal notices go here. */
+    address: `${IN_REGISTERED.street}, ${IN_REGISTERED.locality} ${IN_REGISTERED.postalCode}`,
+    registeredOffice: IN_REGISTERED,
+    /** Principal place of business (GSTIN 06AAVCA6693D1ZK), PUBLISH-KIT v1.1 facts. */
+    principalPlace: `${IN_PRINCIPAL.street}, ${IN_PRINCIPAL.locality}, ${IN_PRINCIPAL.region} ${IN_PRINCIPAL.postalCode}`,
+    principalOffice: IN_PRINCIPAL,
+    countryCode: 'IN',
     country: 'India',
     email: EMAIL,
     phone: '+91 96677 47082',
@@ -46,6 +59,9 @@ export const legalEntities = {
     name: '14818032 Canada Inc.',
     place: 'Burlington, Ontario',
     address: 'Burlington, Ontario, Canada',
+    locality: 'Burlington',
+    regionCode: 'ON',
+    countryCode: 'CA',
     country: 'Canada',
     email: EMAIL,
     phone: '+1 437 800 0190',

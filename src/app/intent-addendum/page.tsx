@@ -12,7 +12,7 @@ import { legalEntities } from '@/config/legal';
  */
 const TITLE = 'YOM Intent Addendum';
 const DESCRIPTION =
-  'The processing terms for YOM Intent: interest profiles, segments, hot leads and audience exports to your own Meta, Google Ads and Klaviyo accounts, with consent rules, the CCPA third-party terms, retention and excluded regions.';
+  'The processing terms for YOM Intent: interest profiles, segments, hot leads and audience exports to your own Meta, Google Ads and Klaviyo accounts, with consent rules, the CCPA third-party terms, retention and excluded regions (EEA, UK, Switzerland, Quebec).';
 export const metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/intent-addendum' });
 
 const TOC = [
@@ -28,7 +28,7 @@ const TOC = [
   { id: 'breach', label: '9. Breach notice' },
   { id: 'rights', label: '10. Rights requests' },
   { id: 'us', label: '11. US state laws' },
-  { id: 'excluded-regions', label: '12. EEA, UK and Quebec' },
+  { id: 'excluded-regions', label: '12. EEA, UK, Switzerland and Quebec' },
   { id: 'subprocessors', label: '13. Sub-processors' },
   { id: 'schedule-1', label: 'Schedule 1: CCPA third-party terms' },
   { id: 'annex-1', label: 'Annex 1: Details of processing' },
@@ -104,8 +104,8 @@ export default function IntentAddendumPage() {
             <strong>Excluded Categories</strong>: the categories in <a href="#annex-2">Annex 2</a>.
           </li>
           <li>
-            <strong>Excluded Regions</strong>: the European Economic Area, the United Kingdom and the Canadian province of
-            Quebec.
+            <strong>Excluded Regions</strong>: the European Economic Area, the United Kingdom, Switzerland and the
+            Canadian province of Quebec.
           </li>
         </ul>
 
@@ -317,13 +317,15 @@ export default function IntentAddendumPage() {
         </p>
         <p>
           <strong>8.4</strong> DPA section 13 (return and deletion after termination) also applies to Intent Data,
-          including its exception for copies the law requires us to keep, which we keep sealed and use only for that
-          legal duty.
+          including its exception for copies the law requires us to keep. For people in India, from 13 May 2027 Indian
+          law will also require us to keep personal data, related traffic data and processing logs for one year from
+          processing. From then, when we delete Intent Data from our systems we will keep a sealed copy for the rest of
+          that year, which nobody uses except to meet that legal duty, and then destroy it.
         </p>
         <p>
-          <strong>8.5</strong> Consent receipts (records of what a person agreed to and when, holding no event data) are
-          kept for 3 years after the Profile they relate to is deleted, so that you can show what consent you had, and
-          then deleted.
+          <strong>8.5</strong> Consent receipts (records of what a person chose, when and on which page) are kept for
+          your project&rsquo;s retention period, like other events. If you need to keep them longer, export them before
+          that period ends.
         </p>
 
         <h2 id="breach">9. Breach notice</h2>
@@ -361,9 +363,10 @@ export default function IntentAddendumPage() {
           <strong>11.4</strong> YOM certifies that it understands and will comply with these restrictions.
         </p>
 
-        <h2 id="excluded-regions">12. EEA, UK and Quebec</h2>
+        <h2 id="excluded-regions">12. EEA, UK, Switzerland and Quebec</h2>
         <p>
-          YOM Intent is not available for End Users in the European Economic Area, the United Kingdom or Quebec. This
+          YOM Intent is not available for End Users in the European Economic Area, the United Kingdom, Switzerland or
+          Quebec. This
           Intent Addendum gives YOM no instructions for their personal data, and clauses 5.6 and 6.7 keep them out. If
           that changes, we will update this Intent Addendum first, with notice under the Terms, and for Quebec we will
           offer French versions of these terms before you accept them.
@@ -384,9 +387,9 @@ export default function IntentAddendumPage() {
         </p>
         <ol>
           <li>
-            <strong>Purpose.</strong> You make Intent Data available to YOM for one limited and specified purpose: to
-            send the Segments you choose from your own Profiles to the Destination Accounts you connect, on the schedule
-            you set, so that you can show your own advertising and marketing to the people in them.
+            <strong>Purpose.</strong> You make Intent Data available to YOM only for one limited and specified purpose:
+            to send the Segments you choose from your own Profiles to the Destination Accounts you connect, on the
+            schedule you set, so that you can show your own advertising and marketing to the people in them.
           </li>
           <li>
             <strong>Use only for that purpose.</strong> YOM uses that personal information only for the purpose in
@@ -394,25 +397,28 @@ export default function IntentAddendumPage() {
             and YOM&rsquo;s sub-processors.
           </li>
           <li>
-            <strong>Same level of protection.</strong> YOM complies with the obligations the CCPA and its regulations
-            place on it and gives the personal information the same level of privacy protection the CCPA requires of you,
-            including reasonable security. YOM honours every request to opt out of sale or sharing that you forward to
-            it, and treats a Global Privacy Control signal as clause 6.1 describes.
+            <strong>Same level of protection.</strong> YOM complies with all applicable sections of the CCPA and its
+            regulations and, for the personal information you make available to it, provides the same level of privacy
+            protection that the CCPA and its regulations require of businesses. In particular, YOM honours every request
+            to opt out of sale or sharing that you forward to it (and treats a Global Privacy Control signal as clause
+            6.1 describes), and keeps reasonable security procedures and practices appropriate to the nature of the
+            personal information, as Cal. Civ. Code §1798.81.5 requires.
           </li>
           <li>
-            <strong>Your right to check.</strong> You may take reasonable and appropriate steps to make sure YOM uses the
-            personal information consistently with your obligations under the CCPA, for example by asking YOM for a
-            written attestation or for the export records in clause 6.8.
+            <strong>Your right to check.</strong> For the personal information you make available to YOM, you may take
+            reasonable and appropriate steps to ensure that YOM uses it in a manner consistent with your obligations
+            under the CCPA and its regulations, for example by requiring YOM to attest that it treats that information
+            as you are obliged to treat it, or by asking for the export records in clause 6.8.
           </li>
           <li>
             <strong>Your right to stop and remediate.</strong> On notice, you may take reasonable and appropriate steps to
-            stop and remediate unauthorised use, including turning off or deleting an export, requiring YOM to stop the
-            processing, and requiring documentation that YOM no longer keeps or uses the personal information of people
-            whose opt-outs you forwarded.
+            stop and remediate unauthorised use of the personal information you made available to YOM, including turning
+            off or deleting an export, requiring YOM to stop the processing, and requiring documentation that verifies
+            YOM no longer keeps or uses the personal information of people whose opt-outs you forwarded.
           </li>
           <li>
-            <strong>Notice if YOM cannot comply.</strong> YOM will tell you if it decides that it can no longer meet its
-            obligations under the CCPA and its regulations.
+            <strong>Notice if YOM cannot comply.</strong> YOM will notify you after it determines that it can no longer
+            meet its obligations under the CCPA and its regulations.
           </li>
         </ol>
 
@@ -438,8 +444,8 @@ export default function IntentAddendumPage() {
           <li><strong>Special categories:</strong> none; Excluded Categories are blocked (Annex 2).</li>
           <li>
             <strong>Retention:</strong> Profiles 180 days after last activity by default, at most 13 months or your
-            project&rsquo;s retention period (clause 8.3); consent receipts 3 years after the Profile is deleted (clause
-            8.5); CSV export files 7 days; export run records while the export exists; audit records for your
+            project&rsquo;s retention period (clause 8.3); consent receipts for your project&rsquo;s retention period
+            (clause 8.5); CSV export files 7 days; export run records while the export exists; audit records for your
             plan&rsquo;s audit-log period.
           </li>
           <li><strong>Recipients:</strong> your Destination Accounts; YOM&rsquo;s sub-processors.</li>

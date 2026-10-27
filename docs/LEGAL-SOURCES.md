@@ -12,9 +12,12 @@ document list). Shared blocks: `src/components/LegalEntities.tsx` (K1 entity blo
 Shell: `src/components/LegalPage.tsx` (optional `lang` for the Hindi page).
 
 Entities (since 2026-10-26, see the next section): **Aapastech Private Limited** (CIN
-U72900DL2022PTC395508, 8/3, 2nd Floor, Roop Nagar, Delhi 110007, +91 96677 47082) for customers and
-users in India; **14818032 Canada Inc.**, Burlington, Ontario (+1 437 800 0190) everywhere else.
-Both at contact@aapastech.com. Officer: **Shikha Gupta**, named.
+U72900DL2022PTC395508; registered office 8/3, 2nd Floor, Roop Nagar, Delhi 110007, the address for
+legal notices; principal place of business 1st Floor, 145, Sector 44, Gurugram, Haryana 122003;
++91 96677 47082) for customers and users in India; **14818032 Canada Inc.**, Burlington, Ontario
+(+1 437 800 0190) everywhere else. Both at contact@aapastech.com. Officer: **Shikha Gupta**, named.
+Both companies are named in the footer, the JSON-LD graph (`#org-india`, `#org-canada`, parents of
+`#organization`), llms.txt and the about page.
 
 ## 2026-10-26 update: regional entities, India, grievance pages, YOM Intent Addendum
 
@@ -38,8 +41,13 @@ capitalised defined terms (Terms, Fees) and the K1 payment line turned into a se
 | Terms §19 changes: 30 days' notice, refund of prepaid Fees | Kit K7 (stronger than the old clause, which had no refund and a new-features carve-out) |
 | Terms §20: India = Indian law, sole arbitrator, seat New Delhi, English, Delhi courts; elsewhere Ontario law and Toronto courts | Determination A5 |
 | Privacy §5 Intent paragraph (first two sentences verbatim) | File 01 consequential edit 4 |
-| Privacy §12 India: rights, retention with sealed copy, transfers, security, Board | Kit K6, verbatim; determination C13 |
-| Consent receipts kept 3 years after the profile is deleted (privacy §5, Intent Addendum 8.5) | Determination C14 |
+| Privacy §12 India: rights, retention, transfers, security, Board | Kit K6 v1.1, verbatim, except the security-log sentence (next row) |
+| Sealed copy in the future tense ("From 13 May 2027 Indian law will also require ...") in privacy §9 and §12, DPA §13, Intent 8.4 | Determination C13 (Rule 8 commences May 2027); kit K6 v1.1 |
+| "We are extending security log retention to 180 days across all systems by 31 December 2026, as Indian cyber security rules require." (privacy §12) | Coordinator wording 2026-10-26, replacing K6's "at least 180 days", which is not true today; CERT-In Direction (iv); determinations §6 task due 31 Dec 2026. Privacy §9 keeps "days to weeks" for hosting-provider logs |
+| Consent receipts kept for the project's retention period, like other events (privacy §5, Intent 8.5, Annex 1) | What the code does: `docs/consent.md` ("Receipts follow the project's retention like other exact events"). Determination C14's 3-year rule is not promised until it is built |
+| Intent excluded for EEA, UK, Switzerland and Quebec (privacy §5, Intent definitions, 12, Annex 1) | Determination G38 (Switzerland added 26 Oct 2026), E23 |
+| Aapastech Private Limited's principal place of business next to its registered office (K1 block, terms §23, privacy §18, DPA Annex 1, `/grievance`, `/grievance/hi`, `/subprocessors`) | Determinations §1; kit v1.1 facts (GSTIN 06AAVCA6693D1ZK). Hindi labels "पंजीकृत कार्यालय" and "मुख्य कारोबारी स्थान" are Claude's translation |
+| DPA §7 security measures limited to seven commitments (TLS, encryption at rest by hosting and database providers, need-to-know production access, managed secret stores, security and admin event logging, incident response per §8, backups by database providers) | Coordinator instruction 2026-10-26; replaces the detailed list (no MFA, NTP or tested-restore promise in the DPA). The privacy policy §10 and `/security` still describe MFA availability, which is verified (claims ledger C67) |
 | Privacy §14 and DPA §12: Intent audience exports are the one CCPA "third party" exception | Determination D17; 11 CCR §7050(b) |
 | DPA §2 adds the DPDP Act 2023, DPDP Rules 2025 and IT Act 2000 to Data Protection Laws | File 01 consequential edit 3 |
 | DPA §3 adds "turning on YOM Intent features" to the instructions | File 01 consequential edit 2 |
@@ -48,7 +56,9 @@ capitalised defined terms (Terms, Fees) and the K1 payment line turned into a se
 | `/subprocessors` group-company rows: engineering, hosting operations, support, billing; India and Canada | Determination A1; file 11 §1 |
 | Cloudflare row now names Durable Objects | Already in the evidence row below (`DO`); Intent profile store is a Durable Object (`docs/intent.md` §4 on the Intent branch) |
 | Intent Addendum v1.0 (all clauses) | File 01 v0.1 as changed by determinations A1, B6, B7, B12, C13, C14, D17, E23, G37, G38, G39 |
-| Schedule 1 (third-party terms) | 11 CCR §7053(a)(1) to (6), read 26 Oct 2026 (Cornell LII summary of the official text); Cal. Civ. Code §1798.100(d) |
+| Schedule 1 (third-party terms) | **Official text** of 11 CCR §7053(a)(1) to (6), CCPA Regulations effective 1 January 2026, CPPA: https://cppa.ca.gov/regulations/pdf/ccpa_statute_eff_20260101.pdf (pages 62 to 63), read 26 Oct 2026. Drift fixed: "only" in para 1; para 3 now "all applicable sections" and the level of protection "required of businesses", plus the Civ. Code §1798.81.5 security example; para 4 "ensure ... in a manner consistent with" and the attestation example; para 6 "after it determines". Cal. Civ. Code §1798.100(d) not re-read |
+| Intent 6.1 quote of 11 CCR §7025(c)(1) and 5.3 citation of §7025(c)(6); clause 2.2 paraphrase of §7050(b) | Same CPPA PDF (pages 45 to 46, 59); quotes match the official text |
+| No third-party CDN sees visitors' IP addresses, so none is listed (closes claims ledger D7, jsDelivr) | YOM origin/main: `packages/sdk/README.md:268` (script builds served from `yom.aapastech.com/app/cdn/sdk/`), `docs/embed.md:120` ("no third-party CDN"); the only `jsdelivr`/`unpkg` hits are package.json fields in `packages/embed`. Live site 26 Oct 2026: external scripts only from `website-api.tyashin.com` (`server: cloudflare`), covered by the Cloudflare website row |
 
 Intent behaviour the addendum states, checked against `docs/intent.md` and code on
 `aapastech/yourownmetrics` branch `feat/intent-4-exports` @ 556b621 (PRs #79 to #82, **unmerged,
@@ -74,14 +84,14 @@ undeployed**; worktree `yom-wt-intent`):
 The legal hold in memory `yom-intent-phase1` stays: **do not set `intent.enabled` for any project**
 until each item below is built or the clause is changed.
 
-1. **Excluded Regions (Intent 6.7, privacy §5):** no code on the Intent branch drops EEA, UK or
-   Quebec (`cf.country` / `cf.regionCode = QC`) events from profiles, scores or exports.
-2. **Consent receipts kept 3 years after profile deletion (Intent 8.5, privacy §5):** receipts follow
-   the project's retention today (`docs/consent.md`, "Receipts follow the project's retention").
-3. **Sealed copy for India (privacy §12, DPA §13, Intent 8.4):** not built (T-0378, due
-   30 Apr 2027; `docs/intent.md` §9 "Not built"). DPDP Rule 8(3) applies from May 2027.
-4. **Security logs kept at least 180 days (privacy §12, kit K6):** CERT-In log task due
-   31 Dec 2026; privacy §9 still says hosting-provider logs last "days to weeks".
+1. **Excluded Regions (Intent 6.7, privacy §5):** no code on the Intent branch drops EEA, UK, Swiss
+   or Quebec (`cf.country` / `cf.regionCode = QC`) events from profiles, scores or exports.
+2. **Sealed copy for India (privacy §12, DPA §13, Intent 8.4):** now stated in the future tense
+   (from 13 May 2027); still to build before then (T-0378, due 30 Apr 2027; `docs/intent.md` §9).
+3. **Security logs to 180 days by 31 Dec 2026 (privacy §12):** stated as work in progress; the
+   CERT-In log task must land by that date.
+4. **Consent receipts:** exist only with the Consent SDK (PR #66) and the Intent branch; the pages
+   describe them only inside the YOM Intent paragraph and addendum.
 5. **Profiles deleted within 30 days of a written request after Intent is turned off (Intent 8.2):**
    manual ops step; turning Intent off keeps stored profiles until retention (`docs/intent.md` §2).
    Deleting audiences YOM created in a Destination Account is also manual.
@@ -145,13 +155,7 @@ First listed 2026-10-23. Status re-checked 2026-10-26 against YOM prod (main 75f
 
 ## Open points from the 2026-10-26 update
 
-- Switzerland is not in the Intent Excluded Regions (determination G38 names EEA and UK only), yet the
-  privacy policy and DPA cover Swiss law. Decide whether to add it.
 - The Terms liability floor is still CAD $100 for free accounts, including Indian ones.
-- The footer, JSON-LD Organization and llms.txt still name only 14818032 Canada Inc. (as the North
-  American entity, which stays true). The legal pages carry both entities.
-- jsDelivr is still not on the sub-processor list (claims ledger D7); not added because its operator
-  and role were not verified here.
 - Full Hindi versions of the policies are due 31 Dec 2026 (determination B10); only the grievance page
   is in Hindi today.
 

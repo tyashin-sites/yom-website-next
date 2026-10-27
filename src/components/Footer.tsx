@@ -1,4 +1,5 @@
 import { footerNav, siteConfig, withBlog } from '@/config/site';
+import { legalEntities } from '@/config/legal';
 import { getBlogStatusAtBuild } from '@/lib/blog';
 import { Wordmark } from './brand/Mark';
 
@@ -15,8 +16,9 @@ export async function Footer() {
           </a>
           <p className="mt-5 font-heading text-2xl leading-snug">{siteConfig.tagline}</p>
           <p className="mt-4 text-sm text-muted">
-            {siteConfig.longName} is built by {siteConfig.company.builder}. {siteConfig.company.legalName},
-            headquartered in {siteConfig.company.hq.city}, {siteConfig.company.hq.region}.
+            {siteConfig.longName} is built by {siteConfig.company.builder} and run by two companies in the same group:{' '}
+            {legalEntities.india.name} in India, and {legalEntities.canada.name} of {legalEntities.canada.place}{' '}
+            everywhere else.
           </p>
           <ul className="mt-6 space-y-1.5 text-sm">
             <li>
@@ -50,7 +52,8 @@ export async function Footer() {
       </div>
       <div className="container-y flex flex-col gap-3 border-t border-border py-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
         <p>
-          © {year} {siteConfig.company.legalName}. {siteConfig.name} is built by {siteConfig.company.builder}.
+          © {year} {legalEntities.india.name} and {legalEntities.canada.name}. {siteConfig.name} is built by{' '}
+          {siteConfig.company.builder}.
         </p>
         <p className="flex gap-5">
           <a href={siteConfig.app.logIn} className="hover:text-foreground">

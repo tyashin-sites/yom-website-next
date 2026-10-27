@@ -37,7 +37,9 @@ export default function GrievancePage() {
           <br />
           {IN.name}
           <br />
-          {IN.address}, {IN.country}
+          Registered office (for legal notices): {IN.address}, {IN.country}
+          <br />
+          Principal place of business: {IN.principalPlace}
           <br />
           Email: {mail}
           <br />

@@ -1,4 +1,5 @@
 import { siteConfig, solutions } from '@/config/site';
+import { legalEntities } from '@/config/legal';
 import { siteUrl } from '@/lib/seo';
 import { EVENT_TIERS, formatRate } from '@/lib/pricing';
 import { getBlogStatusAtBuild } from '@/lib/blog';
@@ -21,7 +22,7 @@ export async function GET() {
 
 > ${siteConfig.description}
 
-${siteConfig.name} is built by ${company.builder}. North American legal entity: ${company.legalName}, headquartered in ${company.hq.city}, ${company.hq.region}, ${company.hq.countryName}.
+${siteConfig.name} is built by ${company.builder} and run by two companies in the same group. Customers in India contract with ${legalEntities.india.name} (CIN ${legalEntities.india.cin}; registered office ${legalEntities.india.address}, ${legalEntities.india.country}; principal place of business ${legalEntities.india.principalPlace}). Everyone else contracts with ${legalEntities.canada.name}, headquartered in ${company.hq.city}, ${company.hq.region}, ${company.hq.countryName}. Legal documents: ${siteUrl('/terms')}; grievance officer: ${siteUrl('/grievance')}.
 
 ## What ships today
 - Exact, deduplicated counts for purchase, refund, generate_lead, form_submit and sign_up (deduplicated on the event id).

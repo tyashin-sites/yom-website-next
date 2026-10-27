@@ -168,10 +168,10 @@ export default function PrivacyPage() {
           built only with the End User&rsquo;s consent to personalisation, an audience export includes only people who
           consented to advertising, and anyone with a Global Privacy Control signal, opt-out or withdrawal on record on
           any linked device is left out. Profiles are deleted after 180 days without activity by default, and never later
-          than 13 months or the customer&rsquo;s own retention period. Consent receipts (a record of what a person agreed
-          to, with no event data) are kept for 3 years after the profile they belong to is deleted, so the customer can
-          show what consent it had. YOM Intent is not available for End Users in the European Economic Area, the United
-          Kingdom or Quebec.
+          than 13 months or the customer&rsquo;s own retention period. Consent receipts (a record of what a person chose,
+          when and on which page) are kept for the customer&rsquo;s project retention period, like other events. YOM
+          Intent is not available for End Users in the European Economic Area, the United Kingdom, Switzerland or
+          Quebec.
         </p>
         <p>
           We use Customer Data only to provide, secure and support the service for that customer, as the DPA sets out,
@@ -253,7 +253,8 @@ export default function PrivacyPage() {
         </ul>
         <p>
           We may keep information longer where the law requires it or to establish or defend legal claims. If you are in
-          India, <a href="#india">section 12</a> explains the sealed copy Indian law requires us to keep after deletion.
+          India, <a href="#india">section 12</a> explains the sealed copy Indian law will require us to keep after
+          deletion from 13 May 2027.
         </p>
 
         <h2 id="security">10. Security</h2>
@@ -295,10 +296,11 @@ export default function PrivacyPage() {
         <p>
           <strong>How long we keep data.</strong> We keep personal data while your account is active and as long as we
           need it for the purpose you gave it for, then delete it. Some records stay longer because the law requires it:
-          invoices and tax records for 8 years, and security logs for at least 180 days. Indian law also requires us to
-          keep personal data, related traffic data and processing logs for one year from processing; when we delete your
-          data from our systems we keep a sealed copy for the rest of that year, which nobody uses except to meet that
-          legal duty, and then destroy it.
+          invoices and tax records for 8 years. We are extending security log retention to 180 days across all systems
+          by 31 December 2026, as Indian cyber security rules require. From 13 May 2027 Indian law will also require us
+          to keep personal data, related traffic data and processing logs for one year from processing. From then, when
+          we delete your data from our systems we will keep a sealed copy for the rest of that year, which nobody uses
+          except to meet that legal duty, and then destroy it.
         </p>
         <p>
           <strong>Where data goes.</strong> We use service providers in other countries, listed on our{' '}
@@ -373,8 +375,9 @@ export default function PrivacyPage() {
 
         <h2 id="contact">18. Contact and complaints</h2>
         <p>
-          {o.name}, Grievance Officer (India) and Privacy Officer (Canada). In India: {legalEntities.india.name},{' '}
-          {legalEntities.india.address}, {legalEntities.india.country}, {o.phoneIndia}. Everywhere else:{' '}
+          {o.name}, Grievance Officer (India) and Privacy Officer (Canada). In India: {legalEntities.india.name},
+          registered office {legalEntities.india.address}, {legalEntities.india.country}; principal place of business{' '}
+          {legalEntities.india.principalPlace}; {o.phoneIndia}. Everywhere else:{' '}
           {legalEntities.canada.name}, {legalEntities.canada.address}, {o.phoneCanada}. Email {mail}. Please contact us
           first so we can try to resolve your concern; the <a href="/grievance">Grievance Officer</a> page explains how we
           handle complaints and how quickly. You keep the right to complain to the regulators named above.

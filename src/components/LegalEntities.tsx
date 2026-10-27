@@ -12,8 +12,8 @@ export function EntityBlock() {
     <>
       <p>
         YOM is run by two companies in the same group. If you are in India, your contract is with{' '}
-        <strong>{IN.name}</strong> (CIN {IN.cin}, {IN.address}), which is also the data fiduciary for your personal
-        data. Everywhere else, your contract is with <strong>{CA.name}</strong> of {CA.place}, which is the controller
+        <strong>{IN.name}</strong> (CIN {IN.cin}, registered office {IN.address}; principal place of business{' '}
+        {IN.principalPlace}), which is also the data fiduciary for your personal data. Everywhere else, your contract is with <strong>{CA.name}</strong> of {CA.place}, which is the controller
         of your personal data. The two companies share engineering, hosting and support, and each processes data for
         the other under a written intra-group agreement. In this document &ldquo;YOM&rdquo;, &ldquo;we&rdquo; and
         &ldquo;us&rdquo; mean whichever of them you deal with.

@@ -468,7 +468,8 @@ export default function TermsPage() {
 
         <h2 id="contact">23. Contact</h2>
         <p>
-          In India: {legalEntities.india.name}, {legalEntities.india.address}, {legalEntities.india.country},{' '}
+          In India: {legalEntities.india.name}, registered office {legalEntities.india.address},{' '}
+          {legalEntities.india.country}; principal place of business {legalEntities.india.principalPlace};{' '}
           {legalEntities.india.phone}. Everywhere else: {e.name}, {e.address}, {e.phone}. Email for both: {mail}.
         </p>
         <p>

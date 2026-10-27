@@ -45,13 +45,13 @@ const GROUP: Row[] = [
     IN.name,
     `Group company. Engineering, hosting operations, support and billing for YOM. Sub-processor for customers who contract with ${CA.name}`,
     'Customer Data and Account Data, as each task needs',
-    'India',
+    `India (principal place of business ${IN.principalPlace}; registered office ${IN.address})`,
   ],
   [
     CA.name,
     `Group company. Engineering, hosting operations, support and billing for YOM. Sub-processor for customers who contract with ${IN.name}`,
     'Customer Data and Account Data, as each task needs',
-    'Canada',
+    `Canada (${CA.place})`,
   ],
 ];
 
@@ -78,7 +78,7 @@ const ACCOUNT: Row[] = [
 ];
 
 const WEBSITE: Row[] = [
-  ['Cloudflare, Inc.', 'Hosting this website and the Tyashin platform that runs our contact form', 'Contact-form enquiries; technical request data', 'Global network'],
+  ['Cloudflare, Inc.', 'Hosting this website and the Tyashin platform that runs our contact form and serves its scripts', 'Contact-form enquiries; technical request data, including visitors’ IP addresses', 'Global network'],
   ['MongoDB, Inc. (Atlas)', 'Database for the Tyashin platform, which stores contact-form enquiries', 'Name, email, company, message', 'United States or other regions'],
   ['Twilio Inc. (SendGrid) or Resend', 'Emails our team about new enquiries and sends any auto-reply', 'Name, email and message', 'United States'],
 ];

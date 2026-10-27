@@ -223,7 +223,7 @@ When a build is verified in prod, change the row to VERIFIED-IN-PROD with the ne
 - **D4. Retention numbers disagree in code:** plan constants 90/365 (legacy D1 cron), v2 entitlements 180/1825, v2 default 395. The site now states the v2 values. If 90/365 is the intended product, change the code first (it deletes data, so plan it), then the copy.
 - **D5. Deletion within 180 days of termination and DSR handling are manual today.** Write the ops runbook, or build the purge across every prefix and shard.
 - **D6. Backup job exports the staging DB** into the prod bucket (`cron/src/jobs/backup.ts:13`).
-- **D7. Smaller code fixes:** MFA TOTP secret in plaintext; legacy SHA-256 password hashes never rehashed; `yom_fp` kept on withdrawal; SDK peer range `react >=18` but needs 19; `docs/integrations/shopify.md:15` says "Install from the Shopify App Store"; jsDelivr not on the sub-processor list; dashboard Funnels/Attribution pages show no "Estimate" label.
+- **D7. Smaller code fixes:** MFA TOTP secret in plaintext; legacy SHA-256 password hashes never rehashed; `yom_fp` kept on withdrawal; SDK peer range `react >=18` but needs 19; `docs/integrations/shopify.md:15` says "Install from the Shopify App Store"; jsDelivr closed 2026-10-26 (no third-party CDN serves the SDK or embed; see C79 and docs/LEGAL-SOURCES.md); dashboard Funnels/Attribution pages show no "Estimate" label.
 - **"First-party":** the site uses it for first-party data, not first-party domain (C75). Collection runs on YOM's ingest domain. A CNAME ingest option would make the stronger reading true too.
 
 ## YOM PRs from this audit

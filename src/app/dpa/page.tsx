@@ -150,18 +150,16 @@ export default function DpaPage() {
         <h2 id="security">7. Security measures</h2>
         <p>
           We implement appropriate technical and organisational measures to protect Customer Personal Data, taking into
-          account the nature of the processing and the risks. The measures in place at the date above include:
+          account the nature of the processing and the risks. We commit to these measures:
         </p>
         <ul>
-          <li><strong>Encryption in transit:</strong> all public endpoints are served over HTTPS/TLS through Cloudflare.</li>
-          <li><strong>Credential protection:</strong> passwords are stored as salted bcrypt hashes; API keys are stored as hashes; secret keys, destination credentials and multi-factor authentication secrets are encrypted at rest with AES-GCM; recovery codes are stored as hashes; embed tokens are signed and expire within 24 hours.</li>
-          <li><strong>Access control:</strong> role-based access (owner, admin, analyst, viewer), scoped API keys, keys and tokens that can be bound to one project or sub-tenant, origin allow-lists for embeds, and multi-factor authentication available to every user.</li>
-          <li><strong>Separation of customers:</strong> each organisation&rsquo;s data is held in its own database or partitioned by organisation and project, and every API request is checked against the caller&rsquo;s organisation and project.</li>
-          <li><strong>Data minimisation by default:</strong> no persistent identifiers without consent; query strings stripped and referrers reduced to a host in browser events; personal-looking parameters scrubbed from browser events; IP addresses and raw user agents not stored in event records.</li>
-          <li><strong>Integrity of data out:</strong> webhook deliveries are signed with HMAC-SHA256 and carry stable event ids; delivery attempts are logged.</li>
-          <li><strong>Abuse protection:</strong> rate limiting on the API and ingest, request-size limits and bot filtering.</li>
-          <li><strong>Accountability:</strong> audit records of administrative actions.</li>
-          <li><strong>Infrastructure:</strong> physical and environmental security, and resilience of the underlying platform, are provided by Cloudflare.</li>
+          <li>TLS encryption on every public endpoint.</li>
+          <li>Encryption at rest, provided by our hosting and database providers.</li>
+          <li>Access to production systems limited to staff who need it.</li>
+          <li>Secrets kept in managed secret stores, never in source code.</li>
+          <li>Logging of security and administrative events.</li>
+          <li>Incident response, with the notification times in section 8.</li>
+          <li>Backups, provided by our database providers.</li>
         </ul>
         <p>
           We may update these measures as long as the overall level of protection is not materially reduced. You are
@@ -259,9 +257,15 @@ export default function DpaPage() {
           can be restored or exported. After that we delete it from every store automatically. After termination of the Service,
           and at your election made in writing within 30 days, we will provide an export of the Customer Personal Data we
           still hold or delete it. In any case we will delete Customer Personal Data within 180 days after termination,
-          except where the law requires us to keep it (for example the one-year retention Indian law requires), in which
-          case we will keep it sealed and confidential and process it only for that purpose. Copies in backups are deleted as the backups expire, within 30 days. On request we will confirm deletion in
-          writing.
+          except where the law requires us to keep it, in which case we will keep it confidential and process it only for
+          that purpose. Copies in backups are deleted as the backups expire, within 30 days. On request we will confirm
+          deletion in writing.
+        </p>
+        <p>
+          For personal data of people in India: from 13 May 2027 Indian law will also require us to keep personal data,
+          related traffic data and processing logs for one year from processing. From then, when we delete Customer
+          Personal Data from our systems we will keep a sealed copy for the rest of that year, which nobody uses except
+          to meet that legal duty, and then destroy it.
         </p>
 
         <h2 id="liability">14. Liability and precedence</h2>
@@ -274,7 +278,7 @@ export default function DpaPage() {
 
         <h2 id="annex-1">Annex 1: Details of processing</h2>
         <ul>
-          <li><strong>Parties:</strong> data exporter: the Customer (controller or processor); data importer (processor): {IN.name}, {IN.address}, {IN.country} (CIN {IN.cin}) for Customers in India, or {CA.name}, {CA.address}, for everyone else; contact {e.email}.</li>
+          <li><strong>Parties:</strong> data exporter: the Customer (controller or processor); data importer (processor): {IN.name} (CIN {IN.cin}; registered office {IN.address}, {IN.country}; principal place of business {IN.principalPlace}) for Customers in India, or {CA.name}, {CA.address}, for everyone else; contact {e.email}.</li>
           <li><strong>Subject matter and duration:</strong> provision of the Service under the Terms, for the term of the Terms and until deletion under section 13.</li>
           <li><strong>Nature and purpose:</strong> collecting, receiving, enriching (device, browser, operating system and approximate location), storing, aggregating, analysing, reporting, exporting and forwarding analytics events as configured by the Customer; providing reports, portals, embeds, email reports and API and MCP access; security and support.</li>
           <li><strong>Data subjects:</strong> visitors and users of the Customer&rsquo;s websites, apps and stores (End Users), and the Customer&rsquo;s clients and their users where the Customer serves clients.</li>

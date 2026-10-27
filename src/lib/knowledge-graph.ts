@@ -1,4 +1,5 @@
 import { siteConfig } from '@/config/site';
+import { legalEntities, legalContact } from '@/config/legal';
 import { SITE, siteUrl } from '@/lib/seo';
 
 /**
@@ -10,6 +11,8 @@ const ORIGIN = SITE.url;
 const ORG_ID = `${ORIGIN}/#organization`;
 const SITE_ID = `${ORIGIN}/#website`;
 const APP_ID = `${ORIGIN}/#software`;
+const ORG_IN_ID = `${ORIGIN}/#org-india`;
+const ORG_CA_ID = `${ORIGIN}/#org-canada`;
 
 type Node = Record<string, unknown>;
 
@@ -19,13 +22,12 @@ function organization(): Node {
     '@id': ORG_ID,
     name: `${siteConfig.name} (${siteConfig.longName})`,
     alternateName: siteConfig.longName,
-    legalName: siteConfig.company.legalName,
     url: siteUrl('/'),
     logo: siteUrl('/brand/mark-512.png'),
     email: siteConfig.contact.email,
     telephone: siteConfig.contact.phone.replace(/\s+/g, ''),
     description: siteConfig.description,
-    parentOrganization: { '@type': 'Organization', name: siteConfig.company.builder },
+    parentOrganization: [{ '@id': ORG_IN_ID }, { '@id': ORG_CA_ID }],
     address: {
       '@type': 'PostalAddress',
       addressLocality: siteConfig.company.hq.city,
@@ -37,7 +39,7 @@ function organization(): Node {
       contactType: 'sales',
       email: siteConfig.contact.email,
       telephone: siteConfig.contact.phone.replace(/\s+/g, ''),
-      areaServed: ['US', 'CA'],
+      areaServed: ['US', 'CA', 'IN'],
       availableLanguage: ['en'],
     },
     knowsAbout: [
@@ -54,6 +56,58 @@ function organization(): Node {
     ],
     ...(siteConfig.sameAs.length ? { sameAs: siteConfig.sameAs } : {}),
   };
+}
+
+/** The two group companies that run YOM (PUBLISH-KIT K1): India, and everywhere else. */
+function legalOrganizations(): Node[] {
+  const { india: IN, canada: CA } = legalEntities;
+  return [
+    {
+      '@type': 'Organization',
+      '@id': ORG_IN_ID,
+      name: IN.name,
+      legalName: IN.name,
+      alternateName: siteConfig.company.builder,
+      identifier: { '@type': 'PropertyValue', propertyID: 'CIN', value: IN.cin },
+      email: legalContact.email,
+      telephone: IN.phone.replace(/\s+/g, ''),
+      areaServed: IN.countryCode,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: IN.registeredOffice.street,
+        addressLocality: IN.registeredOffice.locality,
+        postalCode: IN.registeredOffice.postalCode,
+        addressCountry: IN.countryCode,
+      },
+      location: {
+        '@type': 'Place',
+        name: 'Principal place of business',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: IN.principalOffice.street,
+          addressLocality: IN.principalOffice.locality,
+          addressRegion: IN.principalOffice.region,
+          postalCode: IN.principalOffice.postalCode,
+          addressCountry: IN.countryCode,
+        },
+      },
+    },
+    {
+      '@type': 'Organization',
+      '@id': ORG_CA_ID,
+      name: CA.name,
+      legalName: CA.name,
+      alternateName: siteConfig.company.builder,
+      email: legalContact.email,
+      telephone: CA.phone.replace(/\s+/g, ''),
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: CA.locality,
+        addressRegion: CA.regionCode,
+        addressCountry: CA.countryCode,
+      },
+    },
+  ];
 }
 
 function website(): Node {
@@ -115,7 +169,7 @@ export interface GraphPage {
 }
 
 export function buildGraph(page?: GraphPage): { '@context': string; '@graph': Node[] } {
-  const nodes: Node[] = [organization(), website(), software()];
+  const nodes: Node[] = [organization(), ...legalOrganizations(), website(), software()];
   if (page) {
     const url = siteUrl(page.path);
     const isHome = page.path === '/';
