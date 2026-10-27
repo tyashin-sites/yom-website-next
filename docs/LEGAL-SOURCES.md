@@ -129,30 +129,19 @@ in that checkout is stale; always check `origin/main`.
 
 ## Wording chosen to stay true despite engineering gaps
 
-These are real gaps in the YOM code (reported to the coordinator). The legal text was written so
-it is accurate today; fixing them lets the text be tightened later.
+First listed 2026-10-23. Status re-checked 2026-10-26 against YOM prod (main 75fa6b2, PRs #56 #57
+#58 #61 #62) and the claims ledger; wording tightened the same day where the gap is closed.
 
-1. **Legacy v1 endpoints** (`/v1/ingest`, `/v1/beacon`, `/v1/pixel.gif`) are live and derive an
-   IP+UA daily hash without consent/DNT/GPC handling or scrubbing. → Privacy §5 names "legacy v1
-   endpoints"; "by default" statements are scoped to "the current YOM browser SDK and ingest API".
-2. **Raw R2 archive is never purged by retention**; tenant hard-delete misses `v2/`,
-   `compressed-archive/`, `DB_ANALYTICS` and Analytics Engine; project delete removes no event
-   data. → No page promises automatic deletion at the end of a retention period. Terms §17 / DPA
-   §13 promise deletion **within 180 days after termination** — an ops step (manual purge of all
-   prefixes/tables for the org) until the code does it. /security now says the raw archive is
-   kept for the life of the project.
-3. **Retention numbers disagree** (plan constants 90/365, entitlements 180/1825, v2 default 395
-   uncapped until a config save). → Legal pages say "as set by your plan and settings"; the
-   marketing pages' 90/365 (ASSET-DEBT #19) is unchanged and still needs the YOM team's call.
-4. **Webhooks and warehouse exports are not consent-gated** (by design: unconsented events go
-   without ids). → Only ad-platform forwarding is described as consent-gated.
-5. **MFA TOTP secret stored in plaintext**. → No page claims MFA secrets are encrypted.
-6. **D1 backup job targets the staging DB id** (`packages/cron/src/jobs/backup.ts:13`). → Pages
-   only say backup copies "expire on their own cycle"; no backup/RPO promise.
-7. **No data-subject tooling** (delete/export by visitor or user id). → DPA §9 promises help
-   "mainly through the Service's controls and documentation" and at reasonable cost beyond that.
-8. **No self-service account deletion for users**; org delete is owner-only via API. → Terms §17:
-   "by asking us … or, where available, using the controls".
+| # | Gap (2026-10-23) | Status 2026-10-26 | Wording now |
+|---|---|---|---|
+| 1 | Legacy v1 endpoints: no consent/DNT/GPC, no scrubbing | v1 applies GPC/DNT, path-only URLs, PII scrubbing, never keeps a fingerprint (C17, VERIFIED-IN-PROD). Still no consent signal: an old SDK keeps its own visitor id when no GPC/DNT is set (`ingest/src/v1-privacy.ts`, cookieless only on `denied`) | Privacy §5 keeps "with the current SDK and ingest API" for the no-persistent-id promise and adds a v1 bullet saying exactly what v1 does and doesn't do |
+| 2 | Archive never purged; hard delete and project delete leave data | Deletion lifecycle live (C80): close / delete → collection stops → 30-day grace (restorable) → automated purge of every store → certificate. Coordinator decision: raw archive kept for the life of the project, so retention never purges it (C43) | Privacy §9, Terms §17, DPA §13: 30-day grace, automatic deletion, 180-day cap kept as the outer promise; project deletion deletes its data; event records/reports follow plan retention, raw archive for the life of the project. /security adds the purge bullet |
+| 3 | Retention numbers disagree | One constant since YOM #55 (Free 180, PAYG 395 default / 1,825 max); site copy matches | Legal pages still say "plan and settings" (no numbers in legal text on purpose) |
+| 4 | Webhooks / warehouse exports not consent-gated | By design | Unchanged |
+| 5 | MFA TOTP secret plaintext | Sealed with AES-GCM, existing rows re-sealed (C83, VERIFIED-IN-PROD) | Privacy §10, DPA §7, /security now say MFA secrets are encrypted at rest; recovery codes hashed |
+| 6 | Backup job targets staging DB | Fix released (YOM #56); first prod run 2026-10-27 00:00Z, C82 still BUILD-PENDING | **No backup promise yet.** Only "backup copies expire within 30 days" (D1 Time Travel and dumps both ≤ 30 days, true whether or not dumps run). Add a backup statement only after C82 is verified |
+| 7 | No data-subject tooling | Access + erasure by visitor id, user id or email hash, dashboard + API (C81); Analytics Engine rows suppressed by tombstone until they expire at 90 days | DPA §9 describes the controls and the 90-day analytics-engine exception; reasonable-cost clause kept for help beyond them. /security adds a bullet |
+| 8 | No self-service account deletion | Owner "Close organisation" in dashboard settings, restore within 30 days (#61) | Terms §17 names the control and the 30-day restore |
 
 ## Open points from the 2026-10-26 update
 

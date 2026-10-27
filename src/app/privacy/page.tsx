@@ -144,6 +144,11 @@ export default function PrivacyPage() {
             our legacy v1 endpoints, to compute a daily-rotating hashed identifier.
           </li>
           <li>
+            <strong>Legacy v1 endpoints:</strong> they apply the same Do Not Track, Global Privacy Control, path-only URL
+            and scrubbing rules as the current SDK. They receive no consent signal, though, so an older SDK that still
+            uses them may keep its own visitor id in the browser. We never keep a browser fingerprint from them.
+          </li>
+          <li>
             <strong>Scrubbing:</strong> parameters that look like emails, phone numbers, names, addresses or card numbers
             are removed from browser events. Events a customer sends from its own servers are not scrubbed; the customer
             controls their content.
@@ -240,8 +245,10 @@ export default function PrivacyPage() {
           <li>Audit and security records: as long as needed for security and accountability, normally no more than 24 months.</li>
           <li>Short-lived operational logs kept by our hosting provider: days to weeks.</li>
           <li>
-            Customer Data: according to the customer&rsquo;s plan and settings while the account is active, and deleted
-            after termination as the DPA describes. Copies in backups expire on their own cycle.
+            Customer Data: event records and reports follow the retention period of the customer&rsquo;s plan and
+            settings. The raw event archive is kept for the life of the project so the customer can export it. When a
+            customer deletes a project or closes its account, its Customer Data is deleted after a 30-day grace period,
+            and in any case within 180 days, as the DPA describes. Copies in backups expire within 30 days.
           </li>
         </ul>
         <p>
@@ -252,8 +259,8 @@ export default function PrivacyPage() {
         <h2 id="security">10. Security</h2>
         <p>
           We use technical and organisational safeguards appropriate to the sensitivity of the information, including
-          encryption in transit, hashing of passwords and API keys, encryption of stored destination credentials and
-          secret keys, role-based access, multi-factor authentication available to every account, and isolation of each
+          encryption in transit, hashing of passwords and API keys, encryption of stored destination credentials,
+          secret keys and multi-factor authentication secrets, role-based access, multi-factor authentication available to every account, and isolation of each
           customer&rsquo;s data. A summary is in the <a href="/dpa#security">DPA</a> and on our{' '}
           <a href="/security">security page</a>. No system is perfectly secure; if a breach of security safeguards creates
           a real risk of significant harm, we will notify affected people and regulators as the law requires.

@@ -36,7 +36,7 @@ const TODAY: { area: string; items: string[] }[] = [
       'Keys and embed tokens can be bound to one sub-tenant; asking for another returns 403.',
       'Server events can be HMAC-signed instead of sending the key.',
       'Webhook secrets are shown once and encrypted at rest; every delivery is HMAC-signed.',
-      'Passwords stored as bcrypt hashes; API keys stored hashed; destination credentials encrypted with AES-GCM.',
+      'Passwords stored as bcrypt hashes; API keys stored hashed; destination credentials and MFA secrets encrypted with AES-GCM.',
     ],
   },
   {
@@ -46,6 +46,8 @@ const TODAY: { area: string; items: string[] }[] = [
       'GPC and DNT honoured; PII-like params scrubbed from browser events; path-only URLs.',
       'Retention windows applied to report data and delivery logs; the raw archive is kept for the life of the project so you can export it.',
       'Export any time as CSV or NDJSON.',
+      'Find, export or erase one person\'s events by visitor id, user id or email hash.',
+      'Closing an account or deleting a project purges every store after a 30-day grace period.',
     ],
   },
 ];

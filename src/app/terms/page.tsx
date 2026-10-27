@@ -345,8 +345,9 @@ export default function TermsPage() {
         <ul>
           <li>These Terms apply from when you first accept them until your account is closed.</li>
           <li>
-            You may stop using the Service and close your account at any time by asking us at {legalOfficer.email} or, where available, using the
-            controls in the product. Fees for usage up to closing remain payable.
+            You may stop using the Service and close your account at any time, either with Close organisation in the
+            dashboard settings (account owners) or by asking us at {legalOfficer.email}. You can restore a closed account
+            during the 30 days after you close it. Fees for usage up to closing remain payable.
           </li>
           <li>
             We may terminate for convenience with at least 30 days&rsquo; notice. We may terminate immediately on notice
@@ -361,9 +362,11 @@ export default function TermsPage() {
             give you an export of Customer Data that we still hold, in a commonly used format.
           </li>
           <li>
-            <strong>Deletion.</strong> After that 30-day period we may delete Customer Data at any time, and we will delete
-            it within 180 days after termination as described in the DPA, except where the law requires us to keep it.
-            Before termination, data is kept and deleted according to your plan&rsquo;s retention and your settings.
+            <strong>Deletion.</strong> After that 30-day period we delete Customer Data automatically, and in any case
+            within 180 days after termination as described in the DPA, except where the law requires us to keep it.
+            Deleting a project deletes its data the same way. Before termination, event records and reports are kept
+            according to your plan&rsquo;s retention and your settings, and the raw event archive for the life of each
+            project.
           </li>
           <li>
             Sections that by their nature should survive termination survive, including sections 5 (for amounts owed), 6,

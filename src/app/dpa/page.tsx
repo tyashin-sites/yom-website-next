@@ -154,7 +154,7 @@ export default function DpaPage() {
         </p>
         <ul>
           <li><strong>Encryption in transit:</strong> all public endpoints are served over HTTPS/TLS through Cloudflare.</li>
-          <li><strong>Credential protection:</strong> passwords are stored as salted bcrypt hashes; API keys are stored as hashes; secret keys and destination credentials are encrypted at rest with AES-GCM; embed tokens are signed and expire within 24 hours.</li>
+          <li><strong>Credential protection:</strong> passwords are stored as salted bcrypt hashes; API keys are stored as hashes; secret keys, destination credentials and multi-factor authentication secrets are encrypted at rest with AES-GCM; recovery codes are stored as hashes; embed tokens are signed and expire within 24 hours.</li>
           <li><strong>Access control:</strong> role-based access (owner, admin, analyst, viewer), scoped API keys, keys and tokens that can be bound to one project or sub-tenant, origin allow-lists for embeds, and multi-factor authentication available to every user.</li>
           <li><strong>Separation of customers:</strong> each organisation&rsquo;s data is held in its own database or partitioned by organisation and project, and every API request is checked against the caller&rsquo;s organisation and project.</li>
           <li><strong>Data minimisation by default:</strong> no persistent identifiers without consent; query strings stripped and referrers reduced to a host in browser events; personal-looking parameters scrubbed from browser events; IP addresses and raw user agents not stored in event records.</li>
@@ -186,7 +186,10 @@ export default function DpaPage() {
         <p>
           Taking into account the nature of the processing, we will give you reasonable help to respond to requests from
           data subjects and to carry out data-protection impact assessments and prior consultations, mainly through the
-          Service&rsquo;s own controls and documentation. If we receive a request from your End User, we will refer it to
+          Service&rsquo;s own controls and documentation. The Service lets you find, export and erase one End
+          User&rsquo;s events by visitor id, user id or a hash of their email address, from the dashboard or the API.
+          Copies held in our analytics engine cannot be erased one by one; they expire 90 days after they were written,
+          and the Service leaves the erased person out of your reports and exports until then. If we receive a request from your End User, we will refer it to
           you and not respond ourselves except to say so, unless the law requires otherwise. Help beyond the Service&rsquo;s
           standard functionality may be charged at reasonable cost.
         </p>
@@ -251,11 +254,13 @@ export default function DpaPage() {
 
         <h2 id="deletion">13. Return and deletion</h2>
         <p>
-          During the term you can export Customer Data with the Service&rsquo;s tools. After termination of the Service,
+          During the term you can export Customer Data with the Service&rsquo;s tools. When you close your account or
+          delete a project, or the Service is terminated, collection stops at once and nothing is deleted for 30 days, so it
+          can be restored or exported. After that we delete it from every store automatically. After termination of the Service,
           and at your election made in writing within 30 days, we will provide an export of the Customer Personal Data we
           still hold or delete it. In any case we will delete Customer Personal Data within 180 days after termination,
           except where the law requires us to keep it (for example the one-year retention Indian law requires), in which
-          case we will keep it sealed and confidential and process it only for that purpose. Copies in backups are deleted as the backups expire. On request we will confirm deletion in
+          case we will keep it sealed and confidential and process it only for that purpose. Copies in backups are deleted as the backups expire, within 30 days. On request we will confirm deletion in
           writing.
         </p>
 
