@@ -186,8 +186,7 @@ First listed 2026-10-23. Status re-checked 2026-10-26 against YOM prod (main 75f
 ## Open points from the 2026-10-26 and 2026-10-27 updates
 
 - The Terms liability floor is still CAD $100 for free accounts, including Indian and EU/UK ones.
-- SCC clauses 17 and 18 still choose Irish law and courts; with Aapastech OÜ (Estonia) now the
-  exporter, Estonian law may fit better. Counsel to decide.
+- SCC clauses 17 and 18 choose Estonian law and courts (27 Oct 2026, counsel), matching the intra-group agreement (file 11 §4.2) now that Aapastech OÜ is the EU/UK exporter.
 - Aapastech OÜ's register standing (annual reports, beneficial owners, deletion notice; T-0538)
   and the UK representative (T-0563) are owner tasks the pages depend on.
 - EU/UK card payments are collected by 14818032 Canada Inc. as billing agent; OÜ invoicing and
@@ -202,7 +201,7 @@ First listed 2026-10-23. Status re-checked 2026-10-26 against YOM prod (main 75f
   for Quebec customers. Consider a French version of the Terms/DPA/Privacy.
 - Enforceability of the CAD $100 free-plan cap and the one-year limitation period in Ontario.
 - Whether to add an arbitration clause (kept out for simplicity).
-- SCC module selection and clause 17/18 choice (Ireland) for EU customers; Swiss FADP wording.
+- SCC module selection settled (Module 3; clauses 17/18 Estonia). Open: Swiss FADP wording.
 - Law 25: privacy-impact assessment for transfers outside Quebec (we state we assess them; make
   sure that process exists), and the confidentiality-incident register.
 - CCPA service-provider language vs. Workers AI processing of aggregated customer data.

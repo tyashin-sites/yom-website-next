@@ -238,7 +238,7 @@ export default function DpaPage() {
             under the Standard Contractual Clauses adopted by Commission Implementing Decision (EU) 2021/914, Module 3
             (processor to processor), which are incorporated by reference: clause 7 (docking) applies; under clause 9
             option 2 (general authorisation) applies with the notice period in section 6; the optional language in clause
-            11 does not apply; under clauses 17 and 18 the law and courts of Ireland apply; Annex I is Annex 1 below; Annex
+            11 does not apply; under clauses 17 and 18 the law and courts of Estonia apply; Annex I is Annex 1 below; Annex
             II is section 7; and Annex III is our sub-processors page.
           </li>
           <li>
