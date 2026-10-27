@@ -42,7 +42,7 @@ agent sentence, governing law, K2 v2.0, K6-EU v2.0), owner decision of 27 Octobe
 | DPA §1: Aapastech OÜ is the processor for EU and UK customers; the DPA is the Art. 28 contract | E2 |
 | DPA §4: EU and UK customers' ePrivacy consent before device storage | E6 (customer duty in the DPA) |
 | DPA §6, `/subprocessors`: Aapastech Private Limited and 14818032 Canada Inc. are each other's sub-processors and both are Aapastech OÜ's; OÜ listed as the EU/UK contracting party; Canada Inc. collects EU/UK card payments as OÜ's billing agent | Determinations §1 ("each lists the others as sub-processors where they actually process"); K6-EU ("our group companies operate the services for Aapastech OÜ") |
-| DPA §11: OÜ's transfers to Canada on adequacy (Decision 2002/2/EC; UK adequacy regulations); to India and non-adequate countries under SCCs Module 3 plus the UK Addendum | E2. Module 2 dropped: EU and UK customers now contract with an EU company. The SCC clause 17/18 choice (Ireland) is unchanged |
+| DPA §11: OÜ's transfers to Canada on adequacy (Decision 2002/2/EC; UK adequacy regulations); to India and non-adequate countries under SCCs Module 3 plus the UK Addendum | E2. Module 2 dropped: EU and UK customers now contract with an EU company. SCC clauses 17/18 now choose Estonia (27 Oct) |
 | DPA Annex 1: OÜ as processor for EU and UK customers | E2 |
 | `/grievance`: EU (AKI or own authority), UK (ICO) bullet; "Shikha Gupta is also the privacy contact for Aapastech OÜ" | K2 v2.0, verbatim |
 | `/grievance/hi`: EU/UK and Canada bullets in Hindi | Claude's translation of the K2 v2.0 bullets (the kit's K3 Hindi has neither) |
