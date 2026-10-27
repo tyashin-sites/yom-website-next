@@ -50,7 +50,7 @@ const GROUP: Row[] = [
   ],
   [
     CA.name,
-    `Group company. Engineering, hosting operations, support and billing for YOM; collects card payments from customers in the EU and the UK as billing agent for ${EE.name}. Sub-processor for customers who contract with ${IN.name} or ${EE.name}`,
+    `Group company. Engineering, hosting operations, support and billing for YOM. Sub-processor for customers who contract with ${IN.name} or ${EE.name}`,
     'Customer Data and Account Data, as each task needs',
     `Canada (${CA.place})`,
   ],

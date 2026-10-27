@@ -148,9 +148,9 @@ export default function TermsPage() {
             Fees when due. Fees are non-refundable except where these Terms or the law require a refund.
           </li>
           <li>
-            Card payments from customers outside India are currently collected by {e.name}. For customers in the
-            European Union or the United Kingdom it collects them as billing and collection agent for{' '}
-            {legalEntities.estonia.name}. This does not change who your contract is with.
+            Each company bills and collects payment from its own customers: {legalEntities.india.name} in India,{' '}
+            {legalEntities.estonia.name} in the European Union and the United Kingdom, and {legalEntities.canada.name}{' '}
+            everywhere else.
           </li>
           <li>
             Fees exclude taxes. You pay all applicable sales, use, goods and services, harmonized, value-added and similar

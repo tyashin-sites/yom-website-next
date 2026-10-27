@@ -205,3 +205,7 @@ First listed 2026-10-23. Status re-checked 2026-10-26 against YOM prod (main 75f
 - Law 25: privacy-impact assessment for transfers outside Quebec (we state we assess them; make
   sure that process exists), and the confidentiality-incident register.
 - CCPA service-provider language vs. Workers AI processing of aggregated customer data.
+
+## 27 October 2026 (billing, owner statement)
+
+- Owner statement: each regional company bills and collects payment from its own customers (India: Aapastech Private Limited; EU and UK: Aapastech OÜ; elsewhere: 14818032 Canada Inc.). Terms §5 and /subprocessors no longer describe a billing agent. Code gap: `packages/shared/src/utils/invoice.ts` still names 14818032 Canada Inc. as seller on every Stripe invoice (backlog).
