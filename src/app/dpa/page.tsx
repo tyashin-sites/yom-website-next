@@ -6,7 +6,7 @@ import { EntityBlock } from '@/components/LegalEntities';
 
 const TITLE = 'Data Processing Addendum';
 const DESCRIPTION =
-  'The processor terms for YOM: instructions, confidentiality, sub-processors and group companies, security measures, 24-hour breach notice, audits, international transfers (India, SCCs and UK Addendum) and deletion on termination.';
+  'The processor terms for YOM, including the GDPR Article 28 terms for EU and UK customers: instructions, sub-processors and group companies, security measures, 24-hour breach notice, audits, transfers (Canada adequacy, SCCs Module 3, UK Addendum, India) and deletion.';
 export const metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/dpa' });
 
 const TOC = [
@@ -29,7 +29,7 @@ const TOC = [
 
 export default function DpaPage() {
   const e = legalContact;
-  const { india: IN, canada: CA } = legalEntities;
+  const { india: IN, estonia: EE, canada: CA } = legalEntities;
   return (
     <>
       <JsonLd page={{ path: '/dpa', title: TITLE, description: DESCRIPTION }} />
@@ -57,6 +57,11 @@ export default function DpaPage() {
           you are the controller (or a processor acting for your own client, in which case we are your sub-processor),
           and we are your processor or service provider. Each party will comply with the Data Protection Laws that apply
           to it.
+        </p>
+        <p>
+          For customers in the European Union and the United Kingdom, the processor is {EE.name}, and this DPA is the
+          contract that Article 28 of the GDPR and of the UK GDPR requires. {EE.name} engages {IN.name} and {CA.name} as
+          Sub-processors (section 6).
         </p>
         <p>
           If you turn on YOM Intent, the <a href="/intent-addendum">YOM Intent Addendum</a> supplements this DPA for that
@@ -103,7 +108,9 @@ export default function DpaPage() {
         <p>
           You are responsible for the lawfulness of the Customer Personal Data you send and of your instructions,
           including having a lawful basis, giving notices and obtaining consents for collection and for every
-          destination you configure, and for honouring End Users&rsquo; choices. You will not send special categories of
+          destination you configure, and for honouring End Users&rsquo; choices. In the European Union and the United
+          Kingdom this includes any consent the ePrivacy rules require before anything is stored on, or read from, an End
+          User&rsquo;s device. You will not send special categories of
           data or other data prohibited by the <a href="/acceptable-use">Acceptable Use Policy</a>. You will keep your
           credentials secure.
         </p>
@@ -133,8 +140,9 @@ export default function DpaPage() {
           </li>
           <li>
             <strong>Our group companies.</strong> {IN.name} (India) and {CA.name} (Canada) each act as a Sub-processor
-            for the other, for engineering, hosting operations, support and billing, under a written intra-group agreement
-            whose terms are no less protective than this DPA. Both are listed on the sub-processors page.
+            for the other, and both act as Sub-processors for {EE.name} (Estonia), for engineering, hosting operations,
+            support and billing, under a written intra-group agreement whose terms are no less protective than this DPA.
+            All three companies are listed on the sub-processors page.
           </li>
           <li>
             We impose data-protection obligations on each Sub-processor that are no less protective in substance than
@@ -208,10 +216,11 @@ export default function DpaPage() {
 
         <h2 id="transfers">11. International transfers</h2>
         <p>
-          Our two companies are based in India and Canada, each can access Customer Personal Data to run the Service for
-          the other, and the Service runs on Cloudflare&rsquo;s global network, so Customer Personal Data may be processed
-          in India, Canada, the United States and other countries. We do not commit to storing data in any particular
-          country. Where Data Protection Laws restrict a transfer:
+          Our three companies are based in India, Estonia and Canada. {IN.name} and {CA.name} run the Service for the
+          whole group and can access Customer Personal Data, and the Service runs on Cloudflare&rsquo;s global network,
+          so Customer Personal Data may be processed in India, Canada, the European Union, the United States and other
+          countries. We do not commit to storing data in any particular country. Where Data Protection Laws restrict a
+          transfer:
         </p>
         <ul>
           <li>
@@ -219,18 +228,23 @@ export default function DpaPage() {
             We will not transfer it to any country the Government of India restricts.
           </li>
           <li>
-            Transfers from the EEA to us in Canada rely on the European Commission&rsquo;s adequacy decision for Canada to
-            the extent it applies. Otherwise, including access from India and onward transfers, the Standard Contractual Clauses adopted by
-            Commission Implementing Decision (EU) 2021/914 are incorporated by reference: Module 2 (controller to
-            processor) or Module 3 (processor to processor) as applicable; clause 7 (docking) applies; under clause 9
+            Customer Personal Data of customers in the European Union and the United Kingdom is processed by {EE.name} as
+            your processor. Its transfers to {CA.name} in Canada rely on the European Commission&rsquo;s adequacy decision
+            for Canada (Decision 2002/2/EC, for commercial organisations subject to PIPEDA) and on the United
+            Kingdom&rsquo;s adequacy regulations for Canada.
+          </li>
+          <li>
+            Its transfers to {IN.name} in India, and to Sub-processors in countries without an adequacy decision, are made
+            under the Standard Contractual Clauses adopted by Commission Implementing Decision (EU) 2021/914, Module 3
+            (processor to processor), which are incorporated by reference: clause 7 (docking) applies; under clause 9
             option 2 (general authorisation) applies with the notice period in section 6; the optional language in clause
             11 does not apply; under clauses 17 and 18 the law and courts of Ireland apply; Annex I is Annex 1 below; Annex
             II is section 7; and Annex III is our sub-processors page.
           </li>
           <li>
-            For the UK, the International Data Transfer Addendum to the EU Standard Contractual Clauses issued by the
-            Information Commissioner (version B1.0) is incorporated, with its tables completed by this section and Annex 1,
-            and either party may end it as allowed by its section 19.
+            For the United Kingdom, the International Data Transfer Addendum to the EU Standard Contractual Clauses issued
+            by the Information Commissioner (version B1.0) is incorporated for the same transfers, with its tables
+            completed by this section and Annex 1, and either party may end it as allowed by its section 19.
           </li>
           <li>
             For Switzerland, the Standard Contractual Clauses apply with references to the GDPR read as references to the
@@ -281,7 +295,7 @@ export default function DpaPage() {
 
         <h2 id="annex-1">Annex 1: Details of processing</h2>
         <ul>
-          <li><strong>Parties:</strong> data exporter: the Customer (controller or processor); data importer (processor): {IN.name} (CIN {IN.cin}; registered office {IN.address}, {IN.country}; principal place of business {IN.principalPlace}) for Customers in India, or {CA.name}, {CA.address}, for everyone else; contact {e.email}.</li>
+          <li><strong>Parties:</strong> data exporter: the Customer (controller or processor); data importer (processor): {IN.name} (CIN {IN.cin}; registered office {IN.address}, {IN.country}; principal place of business {IN.principalPlace}) for Customers in India; {EE.name} (registry code {EE.registryCode}, VAT {EE.vat}, {EE.address}) for Customers in the European Union and the United Kingdom, which transfers onward under section 11; or {CA.name}, {CA.address}, for everyone else; contact {e.email}.</li>
           <li><strong>Subject matter and duration:</strong> provision of the Service under the Terms, for the term of the Terms and until deletion under section 13.</li>
           <li><strong>Nature and purpose:</strong> collecting, receiving, enriching (device, browser, operating system and approximate location), storing, aggregating, analysing, reporting, exporting and forwarding analytics events as configured by the Customer; providing reports, portals, embeds, email reports and API and MCP access; security and support.</li>
           <li><strong>Data subjects:</strong> visitors and users of the Customer&rsquo;s websites, apps and stores (End Users), and the Customer&rsquo;s clients and their users where the Customer serves clients.</li>

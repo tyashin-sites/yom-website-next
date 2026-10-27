@@ -6,7 +6,7 @@ import { EntityBlock, OfficerBlock } from '@/components/LegalEntities';
 
 const TITLE = 'Privacy Policy';
 const DESCRIPTION =
-  'How Aapastech Private Limited (India) and 14818032 Canada Inc. (everywhere else) handle personal information for YOM: as data fiduciary or controller for visitors and account holders, and as processor for the analytics data customers send.';
+  'How Aapastech Private Limited (India), Aapastech OÜ (EU and UK) and 14818032 Canada Inc. (everywhere else) handle personal information for YOM: as data fiduciary or controller for visitors and account holders, and as processor for the analytics data customers send.';
 export const metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/privacy' });
 
 const TOC = [
@@ -24,7 +24,7 @@ const TOC = [
   { id: 'india', label: 'India: the Digital Personal Data Protection Act, 2023' },
   { id: 'canada', label: 'Canada: PIPEDA and Quebec Law 25' },
   { id: 'us', label: 'United States: CCPA/CPRA and other state laws' },
-  { id: 'eu-uk', label: 'EEA, UK and Switzerland' },
+  { id: 'eu-uk', label: 'European Union, United Kingdom and Switzerland' },
   { id: 'children', label: 'Children' },
   { id: 'changes', label: 'Changes' },
   { id: 'contact', label: 'Contact and complaints' },
@@ -57,7 +57,9 @@ export default function PrivacyPage() {
           <li>
             <strong>As a controller</strong> (the organisation that decides why and how information is used) for
             information about visitors to this website, people who contact us, and the people who hold or use YOM
-            accounts. In India we are the data fiduciary for this information. Sections 3, 4 and 6 to 18 describe this.
+            accounts. In India we are the data fiduciary for this information, and in the European Union and the United
+            Kingdom {legalEntities.estonia.name} is its controller (section 15). Sections 3, 4 and 6 to 18 describe
+            this.
           </li>
           <li>
             <strong>As a processor or service provider</strong> for the analytics data our customers collect about
@@ -170,8 +172,8 @@ export default function PrivacyPage() {
           any linked device is left out. Profiles are deleted after 180 days without activity by default, and never later
           than 13 months or the customer&rsquo;s own retention period. Consent receipts (a record of what a person chose,
           when and on which page) are kept for the customer&rsquo;s project retention period, like other events. YOM
-          Intent is not available for End Users in the European Economic Area, the United Kingdom, Switzerland or
-          Quebec.
+          Intent is not offered to customers in the European Union or the United Kingdom, and it is not available for
+          End Users in the European Economic Area, the United Kingdom, Switzerland or Quebec.
         </p>
         <p>
           We use Customer Data only to provide, secure and support the service for that customer, as the DPA sets out,
@@ -226,14 +228,17 @@ export default function PrivacyPage() {
 
         <h2 id="transfers">8. Where data is processed</h2>
         <p>
-          Our two companies are based in India and Canada, and each can access personal information to run YOM for the
-          other. Our service runs on Cloudflare&rsquo;s global network, so personal information may be processed and
-          stored in India, Canada, the United States and other countries where our providers or their data centres
+          Our three companies are based in India, Estonia and Canada. {legalEntities.india.name} and{' '}
+          {legalEntities.canada.name} run YOM for the whole group, so either can access personal information. Our service
+          runs on Cloudflare&rsquo;s global network, so personal information may be processed and stored in India,
+          Canada, the European Union, the United States and other countries where our providers or their data centres
           operate. We do not currently offer a choice of data location or promise that data stays in any country. Data
-          processed outside your province or country may be accessible to courts and authorities there. Where the law
-          requires a transfer mechanism, such as for data from the EEA, UK or Switzerland, we rely on the European
-          Commission&rsquo;s adequacy decision for Canada (for commercial organisations subject to PIPEDA), the Standard
-          Contractual Clauses and the UK Addendum, or other lawful mechanisms, as the <a href="/dpa">DPA</a> describes.
+          processed outside your province or country may be accessible to courts and authorities there. For data from
+          the European Union or the United Kingdom, transfers to Canada rely on the adequacy decisions of the European
+          Commission (for commercial organisations subject to PIPEDA) and of the United Kingdom, and transfers to India
+          and the United States on the Standard Contractual Clauses with the UK International Data Transfer Addendum, or
+          the Data Privacy Framework where the provider is certified (<a href="#eu-uk">section 15</a>). Data from
+          Switzerland is covered by the same mechanisms as Swiss law allows, as the <a href="/dpa">DPA</a> describes.
           Transfers out of India are covered in <a href="#india">section 12</a>.
         </p>
 
@@ -350,13 +355,39 @@ export default function PrivacyPage() {
           section 11.
         </p>
 
-        <h2 id="eu-uk">15. EEA, UK and Switzerland</h2>
+        <h2 id="eu-uk">15. European Union, United Kingdom and Switzerland</h2>
         <p>
-          Where the GDPR, UK GDPR or Swiss law applies to our processing as a controller, our legal bases are those in
-          section 6, and you may also lodge a complaint with your local supervisory authority. Where you rely on
-          legitimate interests, you may object to that processing. For Customer Data, the customer is the controller and
-          our processor terms are in the <a href="/dpa">DPA</a>. We have not appointed a representative in the EU or UK;
-          contact us at {mail}.
+          <strong>If you are in the European Union or the United Kingdom.</strong> {legalEntities.estonia.name} is the
+          controller. We process your account and billing data to perform our contract with you, tax records to meet
+          legal obligations, and security logs, fraud checks and aggregate usage statistics on the basis of our
+          legitimate interest in running a safe and reliable service; you can object to that last use at any time. We
+          send marketing email only with your consent. You can ask for access to your data, correction, deletion,
+          restriction, a portable copy, and you can object or withdraw consent, by emailing {mail}. You can complain to
+          the Estonian Data Protection Inspectorate (Andmekaitse Inspektsioon,{' '}
+          <a href="https://www.aki.ee" rel="noopener">
+            www.aki.ee
+          </a>
+          ), to the authority where you live, or in the United Kingdom to the Information Commissioner&rsquo;s Office (
+          <a href="https://ico.org.uk" rel="noopener">
+            ico.org.uk
+          </a>
+          ). Our group companies operate the services for {legalEntities.estonia.name}: {legalEntities.canada.name} in
+          Canada, which the European Commission and the United Kingdom recognise as giving adequate protection, and{' '}
+          {legalEntities.india.name} in India. Some of our service providers are in the United States. Transfers to
+          India and the United States are covered by the European Commission&rsquo;s Standard Contractual Clauses with the
+          UK Addendum, or by the EU-U.S. and UK-U.S. Data Privacy Framework where the provider is certified. You can ask
+          us for a copy.
+        </p>
+        <p>
+          For Customer Data, the customer is the controller and we are its processor; for customers in the European Union
+          and the United Kingdom that processor is {legalEntities.estonia.name}, under the <a href="/dpa">DPA</a>.{' '}
+          {legalEntities.estonia.name} is established in the European Union, so it has no separate EU representative. Its
+          representative in the United Kingdom will be named here once appointed; until then, contact us at {mail}.
+        </p>
+        <p>
+          In Switzerland, {legalEntities.canada.name} is the controller. Where Swiss law applies, our legal bases are those
+          in section 6, you may object to processing based on our legitimate interests, and you may complain to the
+          Federal Data Protection and Information Commissioner.
         </p>
 
         <h2 id="children">16. Children</h2>
@@ -375,9 +406,12 @@ export default function PrivacyPage() {
 
         <h2 id="contact">18. Contact and complaints</h2>
         <p>
-          {o.name}, Grievance Officer (India) and Privacy Officer (Canada). In India: {legalEntities.india.name},
+          {o.name}, Grievance Officer (India), Privacy Officer (Canada) and privacy contact for{' '}
+          {legalEntities.estonia.name}. In India: {legalEntities.india.name},
           registered office {legalEntities.india.address}, {legalEntities.india.country}; principal place of business{' '}
-          {legalEntities.india.principalPlace}; {o.phoneIndia}. Everywhere else:{' '}
+          {legalEntities.india.principalPlace}; {o.phoneIndia}. In the European Union and the United Kingdom:{' '}
+          {legalEntities.estonia.name}, registry code {legalEntities.estonia.registryCode}, VAT{' '}
+          {legalEntities.estonia.vat}, {legalEntities.estonia.address}. Everywhere else:{' '}
           {legalEntities.canada.name}, {legalEntities.canada.address}, {o.phoneCanada}. Email {mail}. Please contact us
           first so we can try to resolve your concern; the <a href="/grievance">Grievance Officer</a> page explains how we
           handle complaints and how quickly. You keep the right to complain to the regulators named above.

@@ -8,16 +8,46 @@ to ask them first.
 Pages: `/terms`, `/privacy`, `/dpa`, `/intent-addendum`, `/acceptable-use`, `/cookies`,
 `/subprocessors`, `/security/disclosure`, `/grievance`, `/grievance/hi`,
 `public/.well-known/security.txt`. Shared strings: `src/config/legal.ts` (entities, officer, date,
-document list). Shared blocks: `src/components/LegalEntities.tsx` (K1 entity block, officer).
+document list). Shared blocks: `src/components/LegalEntities.tsx` (K1 entity block, summary lines, officer).
 Shell: `src/components/LegalPage.tsx` (optional `lang` for the Hindi page).
 
-Entities (since 2026-10-26, see the next section): **Aapastech Private Limited** (CIN
+Entities (since 2026-10-27, three regions; see the next section): **Aapastech Private Limited** (CIN
 U72900DL2022PTC395508; registered office 8/3, 2nd Floor, Roop Nagar, Delhi 110007, the address for
 legal notices; principal place of business 1st Floor, 145, Sector 44, Gurugram, Haryana 122003;
-+91 96677 47082) for customers and users in India; **14818032 Canada Inc.**, Burlington, Ontario
-(+1 437 800 0190) everywhere else. Both at contact@aapastech.com. Officer: **Shikha Gupta**, named.
-Both companies are named in the footer, the JSON-LD graph (`#org-india`, `#org-canada`, parents of
-`#organization`), llms.txt and the about page.
++91 96677 47082) for India; **Aapastech OÜ** (registry code 16453146, VAT EE102489493, Tornimäe tn
+3 // 5 // 7, 10145 Tallinn, Estonia) for the European Union and the United Kingdom; **14818032 Canada
+Inc.**, Burlington, Ontario (+1 437 800 0190) everywhere else. Region = country of a business's
+billing address (anyone else: where they live). All at contact@aapastech.com. Officer: **Shikha
+Gupta**, named. K1 text lives once in `src/config/legal.ts` (`k1`, `k1Summary`) and renders through
+`src/components/LegalEntities.tsx` (`EntityBlock`, `EntityLine`, `EntityLineHindi`) on every legal
+page, the grievance pages, the footer, the about page and llms.txt; the JSON-LD graph has
+`#org-india`, `#org-estonia` and `#org-canada` as parents of `#organization`.
+
+## 2026-10-27 update: Aapastech OÜ for the EU and the UK (counsel v2.0)
+
+Source: `COUNSEL-DETERMINATIONS.md` v2.0 (§1, §8 E1 to E8) and `PUBLISH-KIT.md` v2.0 (K1 v2.0, billing
+agent sentence, governing law, K2 v2.0, K6-EU v2.0), owner decision of 27 October 2026.
+
+| Statement (page) | Source |
+|---|---|
+| Three-entity block, verbatim (all legal pages, `/subprocessors`, `/grievance`) | K1 v2.0 |
+| One-sentence summary (footer, about lead) and the about "Company details" rows | K1 v2.0, shortened; E4 (OÜ name, address, registry code and VAT shown on the site) |
+| Hindi summary on `/grievance/hi` | Claude's translation of the K1 summary; the kit has no Hindi K1. English prevails |
+| Terms §5: "Card payments from customers outside India are currently collected by 14818032 Canada Inc. ..." | K1 v2.0 billing agent sentence (Tyashin and YOM line); determinations §1 billing reality |
+| Terms §20: India / Estonia and Harju County Court for the EU and UK, with mandatory consumer law kept / Ontario | K1 v2.0 governing law, verbatim. The India arbitration clause from 2026-10-26 is removed (the kit keeps arbitration only in Thridify's Platform Terms) |
+| Terms §6, privacy §5, Intent Addendum intro and scope: YOM Intent not offered to customers of Aapastech OÜ (EU and UK); EEA, UK, Swiss and Quebec end users stay excluded | E8; G38 |
+| Privacy §15: K6-EU v2.0 verbatim; Canada on adequacy; India and US under SCCs with the UK Addendum or DPF | K6-EU v2.0; E1 |
+| Privacy §15: "Its representative in the United Kingdom will be named here once appointed" | E7 (UK representative owed, T-0563); E3 (no EU representative needed) |
+| Privacy §15: Switzerland falls under 14818032 Canada Inc. | K1 v2.0 (Switzerland is "everywhere else") |
+| DPA §1: Aapastech OÜ is the processor for EU and UK customers; the DPA is the Art. 28 contract | E2 |
+| DPA §4: EU and UK customers' ePrivacy consent before device storage | E6 (customer duty in the DPA) |
+| DPA §6, `/subprocessors`: Aapastech Private Limited and 14818032 Canada Inc. are each other's sub-processors and both are Aapastech OÜ's; OÜ listed as the EU/UK contracting party; Canada Inc. collects EU/UK card payments as OÜ's billing agent | Determinations §1 ("each lists the others as sub-processors where they actually process"); K6-EU ("our group companies operate the services for Aapastech OÜ") |
+| DPA §11: OÜ's transfers to Canada on adequacy (Decision 2002/2/EC; UK adequacy regulations); to India and non-adequate countries under SCCs Module 3 plus the UK Addendum | E2. Module 2 dropped: EU and UK customers now contract with an EU company. The SCC clause 17/18 choice (Ireland) is unchanged |
+| DPA Annex 1: OÜ as processor for EU and UK customers | E2 |
+| `/grievance`: EU (AKI or own authority), UK (ICO) bullet; "Shikha Gupta is also the privacy contact for Aapastech OÜ" | K2 v2.0, verbatim |
+| `/grievance/hi`: EU/UK and Canada bullets in Hindi | Claude's translation of the K2 v2.0 bullets (the kit's K3 Hindi has neither) |
+| DPA §7 security list | Unchanged: the verified list restored by the coordinator in c3abeb4 |
+| Privacy §12 security logs: "We are extending security log retention to 180 days across all systems by 31 December 2026, as Indian cyber security rules require." | Kept from 2026-10-26 instead of K6 v2.0's "security logs for 180 days ... (we are extending this to every system by 31 December 2026)", because no YOM system keeps security logs for 180 days yet (Cloudflare Logpush jobs not created; memory `certin-logs-takedown`). Hosting-log ("days to weeks") and consent-receipt (project retention) statements unchanged |
 
 ## 2026-10-26 update: regional entities, India, grievance pages, YOM Intent Addendum
 
@@ -153,9 +183,15 @@ First listed 2026-10-23. Status re-checked 2026-10-26 against YOM prod (main 75f
 | 7 | No data-subject tooling | Access + erasure by visitor id, user id or email hash, dashboard + API (C81); Analytics Engine rows suppressed by tombstone until they expire at 90 days | DPA §9 describes the controls and the 90-day analytics-engine exception; reasonable-cost clause kept for help beyond them. /security adds a bullet |
 | 8 | No self-service account deletion | Owner "Close organisation" in dashboard settings, restore within 30 days (#61) | Terms §17 names the control and the 30-day restore |
 
-## Open points from the 2026-10-26 update
+## Open points from the 2026-10-26 and 2026-10-27 updates
 
-- The Terms liability floor is still CAD $100 for free accounts, including Indian ones.
+- The Terms liability floor is still CAD $100 for free accounts, including Indian and EU/UK ones.
+- SCC clauses 17 and 18 still choose Irish law and courts; with Aapastech OÜ (Estonia) now the
+  exporter, Estonian law may fit better. Counsel to decide.
+- Aapastech OÜ's register standing (annual reports, beneficial owners, deletion notice; T-0538)
+  and the UK representative (T-0563) are owner tasks the pages depend on.
+- EU/UK card payments are collected by 14818032 Canada Inc. as billing agent; OÜ invoicing and
+  EU VAT/OSS alignment is T-0564.
 - Full Hindi versions of the policies are due 31 Dec 2026 (determination B10); only the grievance page
   is in Hindi today.
 

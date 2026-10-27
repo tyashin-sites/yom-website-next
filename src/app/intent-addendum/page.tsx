@@ -36,7 +36,7 @@ const TOC = [
 ];
 
 export default function IntentAddendumPage() {
-  const { india: IN, canada: CA } = legalEntities;
+  const { india: IN, estonia: EE, canada: CA } = legalEntities;
   return (
     <>
       <JsonLd page={{ path: '/intent-addendum', title: TITLE, description: DESCRIPTION }} />
@@ -51,15 +51,18 @@ export default function IntentAddendumPage() {
             It covers the processing YOM Intent needs: per-customer profiles, interest scores, segments, hot leads,
             on-site personalisation, assisted-conversion reports and audience exports to your own accounts. It applies
             only if you turn on YOM Intent. YOM Intent is not yet available to customers; once it is, it stays off
-            unless you turn it on.
+            unless you turn it on. It is not offered to customers of {EE.name} (customers in the European Union and the
+            United Kingdom).
           </p>
         }
       >
         <h2 id="scope">Who this addendum is with and when it applies</h2>
         <EntityBlock />
         <p>
-          This Intent Addendum is between that company and the customer (&ldquo;Customer&rdquo;, &ldquo;you&rdquo;). It
-          applies when you turn on any YOM Intent feature, and only to the processing those features do. If it conflicts
+          This Intent Addendum is between that company and the customer (&ldquo;Customer&rdquo;, &ldquo;you&rdquo;), which
+          means {IN.name} or {CA.name}: YOM Intent is not offered to customers of {EE.name}, and this Intent Addendum does
+          not apply to them. It applies when you turn on any YOM Intent feature, and only to the processing those
+          features do. If it conflicts
           with the DPA about that processing, this Intent Addendum wins. Words defined in the DPA or the Terms have the
           same meaning here. It does not create any pooled data: your Profiles are yours alone.
         </p>

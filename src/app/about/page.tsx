@@ -1,6 +1,6 @@
 import { pageMetadata } from '@/lib/seo';
 import { siteConfig } from '@/config/site';
-import { legalEntities } from '@/config/legal';
+import { k1, k1Summary } from '@/config/legal';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { PageHero } from '@/components/ui/PageHero';
 import { GhostLink, PrimaryCta } from '@/components/ui/Cta';
@@ -9,7 +9,7 @@ import { CtaBand } from '@/components/ui/CtaBand';
 
 const TITLE = 'About';
 const DESCRIPTION =
-  'YOM (Your Own Metrics) is built by Aapastech: Aapastech Private Limited in India, and 14818032 Canada Inc., headquartered in Burlington, Ontario, everywhere else.';
+  'YOM (Your Own Metrics) is built by Aapastech: Aapastech Private Limited in India, Aapastech OÜ in the EU and the UK, and 14818032 Canada Inc., headquartered in Burlington, Ontario, everywhere else.';
 
 export const metadata = pageMetadata({ title: 'About YOM', description: DESCRIPTION, path: '/about' });
 
@@ -28,7 +28,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About"
         title="We build the measurement layer we wanted to trust."
-        lead={`${siteConfig.longName} is built by ${company.builder}. In India we are ${legalEntities.india.name}; everywhere else, ${company.legalName}, headquartered in ${company.hq.city}, ${company.hq.region}.`}
+        lead={`${siteConfig.longName} is built by ${company.builder}. ${k1Summary}`}
         trail={[{ name: TITLE, path: '/about' }]}
       >
         <PrimaryCta id="about-hero" />
@@ -71,8 +71,10 @@ export default function AboutPage() {
             {[
               ['Product', `${siteConfig.name} (${siteConfig.longName})`],
               ['Built by', company.builder],
-              ['Legal entity (India)', `${legalEntities.india.name}, ${legalEntities.india.principalOffice.locality}, ${legalEntities.india.principalOffice.region}`],
-              ['Legal entity (outside India)', company.legalName],
+              ...k1.regions.map((r) => [
+                `Legal entity (${r.key === 'canada' ? 'everywhere else' : r.label})`,
+                r.text.replace(/\. It is .*$/, ''),
+              ]),
               ['Headquarters', `${company.hq.city}, ${company.hq.region}, ${company.hq.countryName}`],
             ].map(([k, v]) => (
               <div key={k} className="grid gap-1 py-3.5 sm:grid-cols-[14rem_1fr]">

@@ -6,7 +6,7 @@ import { EntityBlock } from '@/components/LegalEntities';
 
 const TITLE = 'Terms of Service';
 const DESCRIPTION =
-  'The terms for using YOM (Your Own Metrics), offered by Aapastech Private Limited in India and 14818032 Canada Inc. everywhere else: plans and fees, your data, YOM Intent, consent, liability limits, termination, and Indian or Ontario law.';
+  'The terms for using YOM (Your Own Metrics), offered by Aapastech Private Limited in India, Aapastech OÜ in the EU and UK, and 14818032 Canada Inc. everywhere else: plans and fees, your data, consent, liability limits, termination and governing law.';
 export const metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/terms' });
 
 const TOC = [
@@ -48,8 +48,8 @@ export default function TermsPage() {
         intro={
           <p>
             Please read these terms carefully. They limit our liability and make you responsible for consent on your
-            own sites and apps. For disputes they set Indian law and arbitration in New Delhi if you are in India, and
-            Ontario law and the courts of Toronto everywhere else.
+            own sites and apps. For disputes they set Indian law if you are in India, Estonian law if you are in the
+            European Union or the United Kingdom, and Ontario law everywhere else.
           </p>
         }
       >
@@ -148,6 +148,11 @@ export default function TermsPage() {
             Fees when due. Fees are non-refundable except where these Terms or the law require a refund.
           </li>
           <li>
+            Card payments from customers outside India are currently collected by {e.name}. For customers in the
+            European Union or the United Kingdom it collects them as billing and collection agent for{' '}
+            {legalEntities.estonia.name}. This does not change who your contract is with.
+          </li>
+          <li>
             Fees exclude taxes. You pay all applicable sales, use, goods and services, harmonized, value-added and similar
             taxes, other than taxes on our net income.
           </li>
@@ -187,7 +192,8 @@ export default function TermsPage() {
           We will not sell Customer Data. We do not use it to build profiles of End Users or for advertising, except
           when you turn on YOM Intent. Then we build interest profiles and send audiences for you alone, from your own
           sites and apps and on your instructions, under the <a href="/intent-addendum">YOM Intent Addendum</a>, which
-          becomes part of these Terms when you turn YOM Intent on. YOM Intent is off unless you turn it on.
+          becomes part of these Terms when you turn YOM Intent on. YOM Intent is off unless you turn it on, and it is not
+          offered to customers in the European Union or the United Kingdom.
         </p>
         <p>
           Our handling of Account Data and of website visitors&rsquo; information is described in our{' '}
@@ -328,7 +334,7 @@ export default function TermsPage() {
 
         <h2 id="indemnity">16. Indemnity</h2>
         <p>
-          You will defend, indemnify and hold harmless us, our affiliates (including the other company named in section
+          You will defend, indemnify and hold harmless us, our affiliates (including the other companies named in section
           1), and their directors, officers, employees
           and agents from and against any third-party claim, regulatory investigation or proceeding, and resulting
           losses, damages, fines, penalties, costs and reasonable legal fees, arising out of or relating to: (a) Customer
@@ -398,30 +404,23 @@ export default function TermsPage() {
           not apply.
         </p>
         <p>
-          <strong>If you are in India</strong> (your contract is with {legalEntities.india.name}), these Terms are governed
-          by the laws of India. A dispute that is not resolved in those 30 days will be settled by arbitration under the
-          Arbitration and Conciliation Act, 1996, before a sole arbitrator appointed by agreement of the parties (or,
-          failing agreement, under that Act). The seat of arbitration is New Delhi and the language is English. Subject to
-          that, the courts at Delhi have exclusive jurisdiction, including over interim relief and applications about the
-          arbitration.
+          If you are in India, Indian law governs these Terms and the courts at Delhi have jurisdiction. If you are in the
+          European Union or the United Kingdom, Estonian law governs them and the Harju County Court in Tallinn has
+          jurisdiction, but you keep any protection that the mandatory law of the country where you live gives
+          consumers. Everywhere else, the laws of the Province of Ontario and the federal laws of Canada that apply there
+          govern them, and the courts of Ontario have jurisdiction.
         </p>
         <p>
-          <strong>Everywhere else</strong> (your contract is with {e.name}), these Terms are governed by the laws of the
-          Province of Ontario and the federal laws of Canada that apply there, without regard to conflict-of-laws rules.
-          The courts located in Toronto, Ontario have exclusive jurisdiction over any dispute arising out of or relating to
-          these Terms or the Service, and each party submits to them. The parties may agree in writing to resolve a
-          particular dispute by arbitration instead.
-        </p>
-        <p>
-          In either case, either party may seek urgent injunctive relief, or relief to protect its intellectual property
-          or confidential information, in any court of competent jurisdiction.
+          The parties may agree in writing to resolve a particular dispute by arbitration instead. In every case, either
+          party may seek urgent injunctive relief, or relief to protect its intellectual property or confidential
+          information, in any court of competent jurisdiction.
         </p>
 
         <h2 id="consumers">21. Consumers and non-waivable rights</h2>
         <p>
           The Service is intended for businesses. If, despite that, you use it as a consumer, or the law of the place you
           live gives you rights that cannot be excluded or limited by contract (including consumer-protection law in
-          India, Quebec or elsewhere in Canada), nothing in these Terms excludes or limits those rights, and any provision that
+          India, the European Union, the United Kingdom, Quebec or elsewhere in Canada), nothing in these Terms excludes or limits those rights, and any provision that
           would do so (including on governing law, choice of courts, warranties, liability or notice of changes) applies
           only to the extent the law permits. Residents of Quebec who are consumers may bring proceedings in the courts of
           Quebec.
@@ -470,7 +469,10 @@ export default function TermsPage() {
         <p>
           In India: {legalEntities.india.name}, registered office {legalEntities.india.address},{' '}
           {legalEntities.india.country}; principal place of business {legalEntities.india.principalPlace};{' '}
-          {legalEntities.india.phone}. Everywhere else: {e.name}, {e.address}, {e.phone}. Email for both: {mail}.
+          {legalEntities.india.phone}. In the European Union and the United Kingdom: {legalEntities.estonia.name},
+          registry code {legalEntities.estonia.registryCode}, VAT {legalEntities.estonia.vat},{' '}
+          {legalEntities.estonia.address}. Everywhere else: {e.name}, {e.address}, {e.phone}. Email for all three:{' '}
+          {mail}.
         </p>
         <p>
           Complaints about YOM, about content or data we hold, or about how we handle personal data go to our{' '}

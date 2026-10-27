@@ -1,5 +1,6 @@
 import { footerNav, siteConfig, withBlog } from '@/config/site';
-import { legalEntities } from '@/config/legal';
+import { k1 } from '@/config/legal';
+import { EntityLine } from './LegalEntities';
 import { getBlogStatusAtBuild } from '@/lib/blog';
 import { Wordmark } from './brand/Mark';
 
@@ -16,10 +17,9 @@ export async function Footer() {
           </a>
           <p className="mt-5 font-heading text-2xl leading-snug">{siteConfig.tagline}</p>
           <p className="mt-4 text-sm text-muted">
-            {siteConfig.longName} is built by {siteConfig.company.builder} and run by two companies in the same group:{' '}
-            {legalEntities.india.name} in India, and {legalEntities.canada.name} of {legalEntities.canada.place}{' '}
-            everywhere else.
+            {siteConfig.longName} is built by {siteConfig.company.builder}.
           </p>
+          <EntityLine className="mt-2 text-sm text-muted" />
           <ul className="mt-6 space-y-1.5 text-sm">
             <li>
               <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-primary">
@@ -52,8 +52,8 @@ export async function Footer() {
       </div>
       <div className="container-y flex flex-col gap-3 border-t border-border py-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
         <p>
-          © {year} {legalEntities.india.name} and {legalEntities.canada.name}. {siteConfig.name} is built by{' '}
-          {siteConfig.company.builder}.
+          © {year} {k1.regions.map((r) => r.name).join(', ').replace(/, ([^,]*)$/, ' and $1')}. {siteConfig.name} is
+          built by {siteConfig.company.builder}.
         </p>
         <p className="flex gap-5">
           <a href={siteConfig.app.logIn} className="hover:text-foreground">

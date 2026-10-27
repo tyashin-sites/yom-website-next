@@ -3,11 +3,12 @@ import { pageMetadata, siteUrl } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
 import { legalEntities, legalOfficer } from '@/config/legal';
+import { EntityBlock } from '@/components/LegalEntities';
 
 /** PUBLISH-KIT K2 (English grievance page, with the Canada/Quebec line), {Brand} = YOM. */
 const TITLE = 'Grievance Officer';
 const DESCRIPTION =
-  'How to complain about YOM, about content or data we hold, or about how we handle personal data: our Grievance Officer, response times, and where to appeal in India and Canada.';
+  'How to complain about YOM, about content or data we hold, or about how we handle personal data: our Grievance Officer, response times, and where to appeal in India, the EU, the UK and Canada.';
 const base = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/grievance' });
 export const metadata: Metadata = {
   ...base,
@@ -92,11 +93,27 @@ export default function GrievancePage() {
             complain to the Data Protection Board of India after using this process.
           </li>
           <li>
+            In the European Union you can complain to the Estonian Data Protection Inspectorate (Andmekaitse
+            Inspektsioon,{' '}
+            <a href="https://www.aki.ee" rel="noopener">
+              www.aki.ee
+            </a>
+            ) or to the data protection authority where you live. In the United Kingdom you can complain to the
+            Information Commissioner&rsquo;s Office (
+            <a href="https://ico.org.uk" rel="noopener">
+              ico.org.uk
+            </a>
+            ). {o.name} is also the privacy contact for {legalEntities.estonia.name}.
+          </li>
+          <li>
             In Canada you can contact the Office of the Privacy Commissioner of Canada, and in Quebec the Commission
             d&rsquo;accès à l&rsquo;information. {o.name} is also our Privacy Officer for {legalEntities.canada.name} and
             the person in charge of the protection of personal information for Quebec ({o.email}, {o.phoneCanada}).
           </li>
         </ul>
+
+        <h2 id="companies">Which company you deal with</h2>
+        <EntityBlock />
 
         <p>
           This page is also available in{' '}

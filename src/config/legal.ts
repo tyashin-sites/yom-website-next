@@ -6,8 +6,8 @@
  * Intent Addendum. Every data-handling statement traces to the YOM codebase
  * or the legal pack; see docs/LEGAL-SOURCES.md.
  */
-export const LEGAL_UPDATED = '26 October 2026';
-export const LEGAL_UPDATED_ISO = '2026-10-26';
+export const LEGAL_UPDATED = '27 October 2026';
+export const LEGAL_UPDATED_ISO = '2026-10-27';
 
 export const legalDocs = [
   { href: '/terms', label: 'Terms of Service' },
@@ -24,11 +24,13 @@ export const legalDocs = [
 const EMAIL = 'contact@aapastech.com';
 
 /**
- * The two contracting entities (PUBLISH-KIT K1, determination A1). Customers and
- * users in India (billed through Razorpay) contract with the Indian company,
- * which is their data fiduciary; everyone else (billed through Stripe)
- * contracts with the Canadian company, which is their controller. Each is the
- * other's intra-group sub-processor.
+ * The three contracting entities (PUBLISH-KIT K1 v2.0, COUNSEL-DETERMINATIONS
+ * v2.0 §1, owner decision 27 Oct 2026). Region = the country of a business's
+ * billing address (anyone else: where they live): India → Aapastech Private
+ * Limited (data fiduciary); EU and UK → Aapastech OÜ (controller under the GDPR
+ * and UK GDPR, processor for customers' end-user data); everywhere else →
+ * 14818032 Canada Inc. Aapastech Private Limited and 14818032 Canada Inc. do the
+ * processing for each other and for Aapastech OÜ.
  */
 const IN_REGISTERED = { street: '8/3, 2nd Floor, Roop Nagar', locality: 'Delhi', postalCode: '110007' } as const;
 const IN_PRINCIPAL = {
@@ -55,6 +57,18 @@ export const legalEntities = {
     phoneHref: 'tel:+919667747082',
     payments: 'Razorpay',
   },
+  estonia: {
+    name: 'Aapastech OÜ',
+    registryCode: '16453146',
+    vat: 'EE102489493',
+    street: 'Tornimäe tn 3 // 5 // 7',
+    locality: 'Tallinn',
+    postalCode: '10145',
+    address: 'Tornimäe tn 3 // 5 // 7, 10145 Tallinn, Estonia',
+    countryCode: 'EE',
+    country: 'Estonia',
+    email: EMAIL,
+  },
   canada: {
     name: '14818032 Canada Inc.',
     place: 'Burlington, Ontario',
@@ -69,6 +83,50 @@ export const legalEntities = {
     payments: 'Stripe',
   },
 } as const;
+
+const { india: IN_E, estonia: EE_E, canada: CA_E } = legalEntities;
+
+/**
+ * PUBLISH-KIT K1 v2.0, verbatim with {Brand} = YOM, as plain text. The React
+ * block (components/LegalEntities.tsx), llms.txt and the about page all render
+ * from this, so the three entities read the same everywhere.
+ */
+export const k1 = {
+  intro:
+    "YOM is run by three companies in the same group. Which one you deal with depends on where you are. For a business account, that is the country of the business's billing address.",
+  regions: [
+    {
+      key: 'india',
+      label: 'India',
+      short: 'in India',
+      name: IN_E.name,
+      text: `${IN_E.name} (CIN ${IN_E.cin}; registered office ${IN_E.address}; principal place of business ${IN_E.principalPlace}). It is the data fiduciary for your personal data under Indian law.`,
+    },
+    {
+      key: 'estonia',
+      label: 'European Union and United Kingdom',
+      short: 'in the European Union and the United Kingdom',
+      name: EE_E.name,
+      text: `${EE_E.name} (registry code ${EE_E.registryCode}, VAT ${EE_E.vat}, ${EE_E.address}). It is the controller of your personal data under the GDPR and the UK GDPR.`,
+    },
+    {
+      key: 'canada',
+      label: 'Everywhere else',
+      short: 'everywhere else',
+      name: CA_E.name,
+      text: `${CA_E.name} (${CA_E.address}). It is the controller of your personal data.`,
+    },
+  ],
+  shared:
+    'The three companies share engineering, hosting and support, and each processes personal data for the others under a written intra-group agreement.',
+  meaning: 'In this document \u201cYOM\u201d, \u201cwe\u201d and \u201cus\u201d mean whichever of them you deal with.',
+} as const;
+
+/** One sentence naming all three, for the footer and other short places. */
+export const k1Summary = `YOM is run by three companies in the same group: ${k1.regions
+  .map((r) => `${r.name} ${r.short}`)
+  .join(', ')
+  .replace(/, ([^,]*)$/, ', and $1')}.`;
 
 /** One officer for the group (determination A2). */
 export const legalOfficer = {

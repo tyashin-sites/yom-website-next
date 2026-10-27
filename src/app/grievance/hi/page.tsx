@@ -3,11 +3,12 @@ import { pageMetadata, siteUrl } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
 import { legalOfficer, legalEntities } from '@/config/legal';
+import { EntityLineHindi } from '@/components/LegalEntities';
 
 /** PUBLISH-KIT K3 (Hindi grievance page), {Brand} = YOM. The English page (K2) prevails. */
 const TITLE = 'शिकायत अधिकारी';
 const DESCRIPTION =
-  'YOM से जुड़ी शिकायत कैसे करें: हमारे शिकायत अधिकारी, जवाब देने का समय, और भारत में अपील कहाँ करें। Grievance Officer, in Hindi.';
+  'YOM से जुड़ी शिकायत कैसे करें: हमारे शिकायत अधिकारी, जवाब देने का समय, और भारत, यूरोपीय संघ, यूनाइटेड किंगडम और कनाडा में शिकायत कहाँ करें। Grievance Officer, in Hindi.';
 const base = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/grievance/hi' });
 export const metadata: Metadata = {
   ...base,
@@ -106,7 +107,30 @@ export default function GrievanceHindiPage() {
             निजी डेटा के मामलों में, डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम, 2023 के संबंधित प्रावधान लागू होने के बाद, इस
             प्रक्रिया का उपयोग करने के बाद आप भारतीय डेटा संरक्षण बोर्ड से शिकायत कर सकते हैं।
           </li>
+          <li>
+            यूरोपीय संघ में आप एस्टोनिया के डेटा संरक्षण निरीक्षणालय (<span lang="et">Andmekaitse Inspektsioon</span>,{' '}
+            <a href="https://www.aki.ee" rel="noopener">
+              www.aki.ee
+            </a>
+            ) से या अपने देश के डेटा संरक्षण प्राधिकरण से शिकायत कर सकते हैं। यूनाइटेड किंगडम में आप सूचना आयुक्त कार्यालय (
+            <span lang="en">Information Commissioner&rsquo;s Office</span>,{' '}
+            <a href="https://ico.org.uk" rel="noopener">
+              ico.org.uk
+            </a>
+            ) से शिकायत कर सकते हैं। शिखा गुप्ता <span lang="en">{legalEntities.estonia.name}</span> के लिए भी निजता
+            संपर्क हैं।
+          </li>
+          <li>
+            कनाडा में आप कनाडा के निजता आयुक्त कार्यालय (<span lang="en">Office of the Privacy Commissioner of Canada</span>)
+            से, और क्यूबेक में <span lang="fr">Commission d&rsquo;accès à l&rsquo;information</span> से संपर्क कर सकते हैं।
+            शिखा गुप्ता <span lang="en">{legalEntities.canada.name}</span> के लिए हमारी निजता अधिकारी (
+            <span lang="en">Privacy Officer</span>) और क्यूबेक के लिए व्यक्तिगत जानकारी की सुरक्षा की प्रभारी व्यक्ति भी हैं
+            ({o.email}, {o.phoneCanada})।
+          </li>
         </ul>
+
+        <h2 id="companies">आप किस कंपनी से जुड़े हैं</h2>
+        <EntityLineHindi />
 
         <p>
           यह हिंदी अनुवाद है। किसी अंतर की स्थिति में{' '}

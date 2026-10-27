@@ -13,6 +13,7 @@ const SITE_ID = `${ORIGIN}/#website`;
 const APP_ID = `${ORIGIN}/#software`;
 const ORG_IN_ID = `${ORIGIN}/#org-india`;
 const ORG_CA_ID = `${ORIGIN}/#org-canada`;
+const ORG_EE_ID = `${ORIGIN}/#org-estonia`;
 
 type Node = Record<string, unknown>;
 
@@ -27,7 +28,7 @@ function organization(): Node {
     email: siteConfig.contact.email,
     telephone: siteConfig.contact.phone.replace(/\s+/g, ''),
     description: siteConfig.description,
-    parentOrganization: [{ '@id': ORG_IN_ID }, { '@id': ORG_CA_ID }],
+    parentOrganization: [{ '@id': ORG_IN_ID }, { '@id': ORG_EE_ID }, { '@id': ORG_CA_ID }],
     address: {
       '@type': 'PostalAddress',
       addressLocality: siteConfig.company.hq.city,
@@ -58,9 +59,9 @@ function organization(): Node {
   };
 }
 
-/** The two group companies that run YOM (PUBLISH-KIT K1): India, and everywhere else. */
+/** The three group companies that run YOM (PUBLISH-KIT K1 v2.0): India, EU and UK, everywhere else. */
 function legalOrganizations(): Node[] {
-  const { india: IN, canada: CA } = legalEntities;
+  const { india: IN, estonia: EE, canada: CA } = legalEntities;
   return [
     {
       '@type': 'Organization',
@@ -105,6 +106,24 @@ function legalOrganizations(): Node[] {
         addressLocality: CA.locality,
         addressRegion: CA.regionCode,
         addressCountry: CA.countryCode,
+      },
+    },
+    {
+      '@type': 'Organization',
+      '@id': ORG_EE_ID,
+      name: EE.name,
+      legalName: EE.name,
+      alternateName: siteConfig.company.builder,
+      identifier: { '@type': 'PropertyValue', propertyID: 'Estonian registry code', value: EE.registryCode },
+      vatID: EE.vat,
+      email: legalContact.email,
+      areaServed: ['EU', 'GB'],
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: EE.street,
+        addressLocality: EE.locality,
+        postalCode: EE.postalCode,
+        addressCountry: EE.countryCode,
       },
     },
   ];

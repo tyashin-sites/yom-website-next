@@ -30,8 +30,9 @@ export default function AcceptableUsePage() {
         intro={
           <p>
             This policy is part of the <a href="/terms">Terms of Service</a> between you and the company that runs YOM for
-            you: {legalEntities.india.name} if you are in India, and {legalEntities.canada.name} everywhere else
-            (&ldquo;we&rdquo;, &ldquo;us&rdquo;). It applies to every account, project,
+            you: {legalEntities.india.name} if you are in India, {legalEntities.estonia.name} if you are in the European
+            Union or the United Kingdom, and {legalEntities.canada.name} everywhere else (&ldquo;we&rdquo;,
+            &ldquo;us&rdquo;). It applies to every account, project,
             key, token, portal and integration of YOM (Your Own Metrics). Capitalised words have the meaning given in the
             Terms.
           </p>
