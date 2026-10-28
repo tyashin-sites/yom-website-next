@@ -253,7 +253,7 @@ export default function PrivacyPage() {
             Customer Data: event records and reports follow the retention period of the customer&rsquo;s plan and
             settings. The raw event archive is kept for the life of the project so the customer can export it. When a
             customer deletes a project or closes its account, its Customer Data is deleted after a 30-day grace period,
-            and in any case within 180 days, as the DPA describes. Copies in backups expire within 30 days.
+            and in any case within 180 days, as the DPA describes. We back up our databases daily and keep each backup for 30 days, so deleted data leaves the backups within 30 days.
           </li>
         </ul>
         <p>

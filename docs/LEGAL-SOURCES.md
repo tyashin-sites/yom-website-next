@@ -179,7 +179,7 @@ First listed 2026-10-23. Status re-checked 2026-10-26 against YOM prod (main 75f
 | 3 | Retention numbers disagree | One constant since YOM #55 (Free 180, PAYG 395 default / 1,825 max); site copy matches | Legal pages still say "plan and settings" (no numbers in legal text on purpose) |
 | 4 | Webhooks / warehouse exports not consent-gated | By design | Unchanged |
 | 5 | MFA TOTP secret plaintext | Sealed with AES-GCM, existing rows re-sealed (C83, VERIFIED-IN-PROD) | Privacy §10, DPA §7, /security now say MFA secrets are encrypted at rest; recovery codes hashed |
-| 6 | Backup job targets staging DB | Fix released (YOM #56); first prod run 2026-10-27 00:00Z, C82 still BUILD-PENDING | **No backup promise yet.** Only "backup copies expire within 30 days" (D1 Time Travel and dumps both ≤ 30 days, true whether or not dumps run). Add a backup statement only after C82 is verified |
+| 6 | Backup job targets staging DB | Fixed (YOM #56); first prod run 2026-10-27 00:00:39Z, platform + analytics-0 ok (C82 VERIFIED-IN-PROD) | Added 2026-10-28: Privacy §9 "daily, each backup kept 30 days"; DPA §7 Backups bullet. Still no restore-time (RPO/RTO) promise |
 | 7 | No data-subject tooling | Access + erasure by visitor id, user id or email hash, dashboard + API (C81); Analytics Engine rows suppressed by tombstone until they expire at 90 days | DPA §9 describes the controls and the 90-day analytics-engine exception; reasonable-cost clause kept for help beyond them. /security adds a bullet |
 | 8 | No self-service account deletion | Owner "Close organisation" in dashboard settings, restore within 30 days (#61) | Terms §17 names the control and the 30-day restore |
 

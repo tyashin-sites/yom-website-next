@@ -169,6 +169,7 @@ export default function DpaPage() {
           <li><strong>Integrity of data out:</strong> webhook deliveries are signed with HMAC-SHA256 and carry stable event ids; delivery attempts are logged.</li>
           <li><strong>Abuse protection:</strong> rate limiting on the API and ingest, request-size limits and bot filtering.</li>
           <li><strong>Accountability:</strong> audit records of administrative actions.</li>
+          <li><strong>Backups:</strong> the platform and analytics databases are backed up daily, and each backup is kept for 30 days.</li>
           <li><strong>Infrastructure:</strong> physical and environmental security, and resilience of the underlying platform, are provided by Cloudflare.</li>
           <li><strong>Logs:</strong> security and administrative events are logged; we are extending log retention to 180 days across all systems by 31 December 2026.</li>
         </ul>
