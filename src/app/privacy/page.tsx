@@ -1,7 +1,7 @@
 import { pageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { legalEntities, legalOfficer } from '@/config/legal';
+import { PRIVACY_UPDATED, PRIVACY_UPDATED_ISO, legalEntities, legalOfficer } from '@/config/legal';
 import { EntityBlock, OfficerBlock } from '@/components/LegalEntities';
 
 const TITLE = 'Privacy Policy';
@@ -39,6 +39,7 @@ export default function PrivacyPage() {
       <LegalPage
         title={TITLE}
         path="/privacy"
+        updated={{ label: PRIVACY_UPDATED, iso: PRIVACY_UPDATED_ISO }}
         toc={TOC}
         intro={
           <p>
@@ -324,13 +325,32 @@ export default function PrivacyPage() {
 
         <h2 id="canada">13. Canada: PIPEDA and Quebec Law 25</h2>
         <p>
-          We handle personal information in line with the Personal Information Protection and Electronic Documents Act
-          and applicable provincial laws, including Quebec&rsquo;s Act respecting the protection of personal information in
-          the private sector as amended by Law 25. {o.name}, our Privacy Officer, is the person in charge of the
-          protection of personal information ({mail}, {o.phoneCanada}). Quebec residents may request access, rectification, de-indexing where applicable, and
-          information about the communication of their information outside Quebec, and may withdraw consent. We assess
-          the privacy risks of communicating personal information outside Quebec before doing so. You may complain to the
-          Office of the Privacy Commissioner of Canada or, in Quebec, the Commission d&rsquo;accès à l&rsquo;information.
+          <strong>If you are in Canada.</strong> {legalEntities.canada.name} is the controller. Under the Personal
+          Information Protection and Electronic Documents Act (PIPEDA) you can ask for access to the personal information
+          we hold about you and ask us to correct it. You can withdraw your consent at any time, subject to legal or
+          contractual limits and reasonable notice, and we will tell you what that means for the service. You can also
+          challenge how we comply with PIPEDA. Write to our Privacy Officer at {mail}. If you are not satisfied with our
+          answer, you can complain to the Office of the Privacy Commissioner of Canada (
+          <a href="https://www.priv.gc.ca" rel="noopener">
+            priv.gc.ca
+          </a>
+          ).
+        </p>
+        <p>
+          <strong>If you are in Quebec.</strong> Quebec&rsquo;s Act respecting the protection of personal information in
+          the private sector, as amended by Law 25, gives you the same rights of access and correction. You can also ask us
+          to stop disseminating your personal information, or to de-index a link attached to your name that gives access
+          to it, where the law allows. You can ask to receive the computerized personal information we collected from you
+          in a structured, commonly used technological format. If we make a decision about you based exclusively on
+          automated processing of your personal information, we will tell you, and you can submit your observations to a
+          member of our staff who can review the decision. You can reach the person in charge of the protection of
+          personal information at {mail}. You can complain to the Commission d&rsquo;accès à l&rsquo;information du
+          Québec (
+          <a href="https://www.cai.gouv.qc.ca" rel="noopener">
+            cai.gouv.qc.ca
+          </a>
+          ). We assess the privacy risks before we communicate personal information outside Quebec, and you can ask us
+          about it.
         </p>
 
         <h2 id="us">14. United States: CCPA/CPRA and other state laws</h2>

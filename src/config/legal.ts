@@ -8,6 +8,9 @@
  */
 export const LEGAL_UPDATED = '27 October 2026';
 export const LEGAL_UPDATED_ISO = '2026-10-27';
+/** The privacy policy alone changed on 2 November 2026 (PUBLISH-KIT K6-CA: rights in Canada and Quebec). */
+export const PRIVACY_UPDATED = '2 November 2026';
+export const PRIVACY_UPDATED_ISO = '2026-11-02';
 
 export const legalDocs = [
   { href: '/terms', label: 'Terms of Service' },
