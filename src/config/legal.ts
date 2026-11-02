@@ -6,11 +6,14 @@
  * Intent Addendum. Every data-handling statement traces to the YOM codebase
  * or the legal pack; see docs/LEGAL-SOURCES.md.
  */
-export const LEGAL_UPDATED = '27 October 2026';
-export const LEGAL_UPDATED_ISO = '2026-10-27';
-/** The privacy policy alone changed on 2 November 2026 (PUBLISH-KIT K6-CA: rights in Canada and Quebec). */
-export const PRIVACY_UPDATED = '2 November 2026';
-export const PRIVACY_UPDATED_ISO = '2026-11-02';
+/**
+ * 2 November 2026: rights in Canada and Quebec (PUBLISH-KIT K6-CA), Hindi privacy policy and terms, and the
+ * India entity shown with its registered office only. Every document whose visible text changed carries this date.
+ */
+export const LEGAL_UPDATED = '2 November 2026';
+export const LEGAL_UPDATED_ISO = '2026-11-02';
+/** Documents whose text did not change on 2 November 2026 (acceptable use, cookies, vulnerability disclosure). */
+export const LEGAL_UPDATED_27_OCT = { label: '27 October 2026', iso: '2026-10-27' } as const;
 
 export const legalDocs = [
   { href: '/terms', label: 'Terms of Service' },

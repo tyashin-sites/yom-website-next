@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { pageMetadata, siteUrl } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { PRIVACY_UPDATED, PRIVACY_UPDATED_ISO, legalEntities, legalOfficer } from '@/config/legal';
+import { legalEntities, legalOfficer } from '@/config/legal';
 import { EntityBlockHindi, OfficerBlockHindi } from '@/components/LegalEntities';
 
 /**
@@ -65,7 +65,6 @@ export default function PrivacyHindiPage() {
         title={TITLE}
         path="/privacy/hi"
         lang="hi"
-        updated={{ label: PRIVACY_UPDATED, iso: PRIVACY_UPDATED_ISO }}
         trail={[
           { name: 'Privacy Policy', path: '/privacy' },
           { name: TITLE, path: '/privacy/hi' },
