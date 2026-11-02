@@ -12,8 +12,7 @@ document list). Shared blocks: `src/components/LegalEntities.tsx` (K1 entity blo
 Shell: `src/components/LegalPage.tsx` (optional `lang` for the Hindi page).
 
 Entities (since 2026-10-27, three regions; see the next section): **Aapastech Private Limited** (CIN
-U72900DL2022PTC395508; registered office 8/3, 2nd Floor, Roop Nagar, Delhi 110007, the address for
-legal notices; principal place of business 1st Floor, 145, Sector 44, Gurugram, Haryana 122003;
+U72900DL2022PTC395508; registered office 8/3, 2nd Floor, Roop Nagar, Delhi 110007, India;
 +91 96677 47082) for India; **Aapastech OÜ** (registry code 16453146, VAT EE102489493, Tornimäe tn
 3 // 5 // 7, 10145 Tallinn, Estonia) for the European Union and the United Kingdom; **14818032 Canada
 Inc.**, Burlington, Ontario (+1 437 800 0190) everywhere else. Region = country of a business's
@@ -76,7 +75,7 @@ capitalised defined terms (Terms, Fees) and the K1 payment line turned into a se
 | "We are extending security log retention to 180 days across all systems by 31 December 2026, as Indian cyber security rules require." (privacy §12) | Coordinator wording 2026-10-26, replacing K6's "at least 180 days", which is not true today; CERT-In Direction (iv); determinations §6 task due 31 Dec 2026. Privacy §9 keeps "days to weeks" for hosting-provider logs |
 | Consent receipts kept for the project's retention period, like other events (privacy §5, Intent 8.5, Annex 1) | What the code does: `docs/consent.md` ("Receipts follow the project's retention like other exact events"). Determination C14's 3-year rule is not promised until it is built |
 | Intent excluded for EEA, UK, Switzerland and Quebec (privacy §5, Intent definitions, 12, Annex 1) | Determination G38 (Switzerland added 26 Oct 2026), E23 |
-| Aapastech Private Limited's principal place of business next to its registered office (K1 block, terms §23, privacy §18, DPA Annex 1, `/grievance`, `/grievance/hi`, `/subprocessors`) | Determinations §1; kit v1.1 facts (GSTIN 06AAVCA6693D1ZK). Hindi labels "पंजीकृत कार्यालय" and "मुख्य कारोबारी स्थान" are Claude's translation |
+| Aapastech Private Limited is shown with its registered office only (K1 block, terms §23, privacy §18, DPA Annex 1, `/grievance`, `/grievance/hi`, `/subprocessors`, knowledge graph) | Coordinator correction 2026-11-02: a second address and its GST number came from Thridify's invoice code by mistake and are not the company's (CEO, 7 Oct 2026). Only the registered office is published, with no GSTIN. Hindi label "पंजीकृत कार्यालय" is Claude's translation |
 | DPA §7 security measures limited to seven commitments (TLS, encryption at rest by hosting and database providers, need-to-know production access, managed secret stores, security and admin event logging, incident response per §8, backups by database providers) | Coordinator instruction 2026-10-26; replaces the detailed list (no MFA, NTP or tested-restore promise in the DPA). The privacy policy §10 and `/security` still describe MFA availability, which is verified (claims ledger C67) |
 | Privacy §14 and DPA §12: Intent audience exports are the one CCPA "third party" exception | Determination D17; 11 CCR §7050(b) |
 | DPA §2 adds the DPDP Act 2023, DPDP Rules 2025 and IT Act 2000 to Data Protection Laws | File 01 consequential edit 3 |
