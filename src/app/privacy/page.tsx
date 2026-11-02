@@ -408,8 +408,7 @@ export default function PrivacyPage() {
         <p>
           {o.name}, Grievance Officer (India), Privacy Officer (Canada) and privacy contact for{' '}
           {legalEntities.estonia.name}. In India: {legalEntities.india.name},
-          registered office {legalEntities.india.address}, {legalEntities.india.country}; principal place of business{' '}
-          {legalEntities.india.principalPlace}; {o.phoneIndia}. In the European Union and the United Kingdom:{' '}
+          registered office {legalEntities.india.address}, {legalEntities.india.country}; {o.phoneIndia}. In the European Union and the United Kingdom:{' '}
           {legalEntities.estonia.name}, registry code {legalEntities.estonia.registryCode}, VAT{' '}
           {legalEntities.estonia.vat}, {legalEntities.estonia.address}. Everywhere else:{' '}
           {legalEntities.canada.name}, {legalEntities.canada.address}, {o.phoneCanada}. Email {mail}. Please contact us

@@ -33,23 +33,14 @@ const EMAIL = 'contact@aapastech.com';
  * processing for each other and for Aapastech OÜ.
  */
 const IN_REGISTERED = { street: '8/3, 2nd Floor, Roop Nagar', locality: 'Delhi', postalCode: '110007' } as const;
-const IN_PRINCIPAL = {
-  street: '1st Floor, 145, Sector 44',
-  locality: 'Gurugram',
-  region: 'Haryana',
-  postalCode: '122003',
-} as const;
 
 export const legalEntities = {
   india: {
     name: 'Aapastech Private Limited',
     cin: 'U72900DL2022PTC395508',
-    /** Registered office, as K1 prints it (no country). Legal notices go here. */
+    /** Registered office without the country (the only address we publish for this company). */
     address: `${IN_REGISTERED.street}, ${IN_REGISTERED.locality} ${IN_REGISTERED.postalCode}`,
     registeredOffice: IN_REGISTERED,
-    /** Principal place of business (GSTIN 06AAVCA6693D1ZK), PUBLISH-KIT v1.1 facts. */
-    principalPlace: `${IN_PRINCIPAL.street}, ${IN_PRINCIPAL.locality}, ${IN_PRINCIPAL.region} ${IN_PRINCIPAL.postalCode}`,
-    principalOffice: IN_PRINCIPAL,
     countryCode: 'IN',
     country: 'India',
     email: EMAIL,
@@ -100,7 +91,7 @@ export const k1 = {
       label: 'India',
       short: 'in India',
       name: IN_E.name,
-      text: `${IN_E.name} (CIN ${IN_E.cin}; registered office ${IN_E.address}; principal place of business ${IN_E.principalPlace}). It is the data fiduciary for your personal data under Indian law.`,
+      text: `${IN_E.name} (CIN ${IN_E.cin}; registered office ${IN_E.address}, ${IN_E.country}). It is the data fiduciary for your personal data under Indian law.`,
     },
     {
       key: 'estonia',
