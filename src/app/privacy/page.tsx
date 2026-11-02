@@ -1,4 +1,5 @@
-import { pageMetadata } from '@/lib/seo';
+import type { Metadata } from 'next';
+import { pageMetadata, siteUrl } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
 import { PRIVACY_UPDATED, PRIVACY_UPDATED_ISO, legalEntities, legalOfficer } from '@/config/legal';
@@ -7,7 +8,11 @@ import { EntityBlock, OfficerBlock } from '@/components/LegalEntities';
 const TITLE = 'Privacy Policy';
 const DESCRIPTION =
   'How Aapastech Private Limited (India), Aapastech OÜ (EU and UK) and 14818032 Canada Inc. (everywhere else) handle personal information for YOM: as data fiduciary or controller for visitors and account holders, and as processor for the analytics data customers send.';
-export const metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/privacy' });
+const base = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/privacy' });
+export const metadata: Metadata = {
+  ...base,
+  alternates: { ...base.alternates, languages: { en: siteUrl('/privacy'), hi: siteUrl('/privacy/hi') } },
+};
 
 const TOC = [
   { id: 'who', label: 'Who we are' },
@@ -42,11 +47,18 @@ export default function PrivacyPage() {
         updated={{ label: PRIVACY_UPDATED, iso: PRIVACY_UPDATED_ISO }}
         toc={TOC}
         intro={
-          <p>
-            This policy explains what personal information we collect, why, who we share it with, and the choices and
-            rights you have. It applies to this website, to the YOM (Your Own Metrics) service, and to our dealings with
-            customers and prospects.
-          </p>
+          <>
+            <p>
+              <a href="/privacy/hi" hrefLang="hi" lang="hi">
+                हिन्दी में पढ़ें
+              </a>
+            </p>
+            <p>
+              This policy explains what personal information we collect, why, who we share it with, and the choices and
+              rights you have. It applies to this website, to the YOM (Your Own Metrics) service, and to our dealings with
+              customers and prospects.
+            </p>
+          </>
         }
       >
         <h2 id="who">1. Who we are</h2>
