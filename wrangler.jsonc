@@ -3,6 +3,7 @@
   // keep this identical to the workerScriptName /adopt returns.
   "name": "site-yom-website",
   "main": ".open-next/worker.js",
+  "logpush": true,
   "compatibility_date": "2025-04-01",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
