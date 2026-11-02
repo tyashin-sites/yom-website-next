@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { pageMetadata, siteUrl } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
+import { GrievanceForm } from '@/components/GrievanceForm';
 import { legalEntities, legalOfficer } from '@/config/legal';
 import { EntityBlock } from '@/components/LegalEntities';
 
@@ -54,6 +55,8 @@ export default function GrievancePage() {
           links if you have them. For a request about your personal data, tell us which product you use and the email
           address you use with us, so we can find your records without asking for more than we need.
         </p>
+
+        <GrievanceForm lang="en" />
 
         <h2 id="next">What happens next</h2>
         <ul>

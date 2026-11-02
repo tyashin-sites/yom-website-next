@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { pageMetadata, siteUrl } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
+import { GrievanceForm } from '@/components/GrievanceForm';
 import { legalOfficer, legalEntities } from '@/config/legal';
 import { EntityLineHindi } from '@/components/LegalEntities';
 
@@ -70,6 +71,8 @@ export default function GrievanceHindiPage() {
           निजी डेटा के बारे में अनुरोध हो तो बताएँ कि आप कौन सा उत्पाद इस्तेमाल करते हैं और हमारे साथ कौन सा ईमेल पता
           इस्तेमाल करते हैं।
         </p>
+
+        <GrievanceForm lang="hi" />
 
         <h2 id="next">आगे क्या होगा</h2>
         <ul>
