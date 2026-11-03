@@ -315,7 +315,7 @@ export default function TermsHindiPage() {
         <h2 id="early-access">10. अर्ली-एक्सेस, बीटा और जल्द आने वाली सुविधाएँ</h2>
         <p>
           &ldquo;early access&rdquo;, &ldquo;beta&rdquo;, &ldquo;preview&rdquo; या इसी तरह के लेबल वाली सुविधाएँ (जिनमें,
-          ऊपर दी गई तारीख पर, Shopify ऐप, WooCommerce plugin और Looker Studio connector शामिल हैं){' '}
+          ऊपर दी गई तारीख पर, WooCommerce plugin और Looker Studio connector शामिल हैं){' '}
           <strong>
             &ldquo;जैसी हैं&rdquo; (&ldquo;as is&rdquo;) और &ldquo;जैसी उपलब्ध हैं&rdquo; (&ldquo;as available&rdquo;)
           </strong>{' '}

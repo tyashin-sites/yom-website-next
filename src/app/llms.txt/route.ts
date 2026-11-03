@@ -49,7 +49,7 @@ ${k1.shared} Headquarters: ${company.hq.city}, ${company.hq.region}, ${company.h
 - Partner API: management keys create and suspend projects and mint keys; they cannot read analytics data.
 
 ## Early access
-- Shopify app and WooCommerce plugin (not yet listed in the Shopify App Store or on wordpress.org).
+- WordPress and WooCommerce plugin (submitted to wordpress.org, waiting for review). Shopify is coming soon.
 - Looker Studio community connector (self-deployed; not in the public gallery).
 
 ## Exact vs estimated

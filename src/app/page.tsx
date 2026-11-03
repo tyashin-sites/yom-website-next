@@ -244,8 +244,8 @@ export default function HomePage() {
             <ul className="mt-6 divide-y divide-border">
               {[
                 'Google Ads Enhanced Conversions',
-                'Shopify App Store listing (the app is in early access)',
-                'WooCommerce plugin on wordpress.org (early access today)',
+                'Shopify',
+                'WooCommerce plugin on wordpress.org (in review today)',
                 'Looker Studio connector in the public gallery',
               ].map((t) => (
                 <li key={t} className="flex items-center justify-between gap-4 py-3 text-[0.95rem]">

@@ -273,7 +273,7 @@ export default function TermsPage() {
         <h2 id="early-access">10. Early-access, beta and coming-soon features</h2>
         <p>
           Features labelled &ldquo;early access&rdquo;, &ldquo;beta&rdquo;, &ldquo;preview&rdquo; or similar (including,
-          at the date above, the Shopify app, the WooCommerce plugin and the Looker Studio connector) are provided{' '}
+          at the date above, the WooCommerce plugin and the Looker Studio connector) are provided{' '}
           <strong>&ldquo;as is&rdquo; and &ldquo;as available&rdquo;</strong>, may be changed or withdrawn at any time, may
           have limited support, and are excluded from any warranty, support or service commitment. Features described as
           &ldquo;coming soon&rdquo; or on a roadmap are not part of the Service until released, and you should not rely on

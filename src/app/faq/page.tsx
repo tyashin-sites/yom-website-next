@@ -66,8 +66,8 @@ const GROUPS: { id: string; title: string; items: Faq[] }[] = [
     items: [
       { q: 'Is there an MCP server for Claude or other AI agents?', a: 'Yes. It exposes 13 read-only report tools and accepts a read-scoped secret key or a short-lived embed token. Publishable keys are refused.' },
       { q: 'Can I see traffic from ChatGPT and other AI assistants?', a: 'Yes. Visits referred by 12 AI assistants, including ChatGPT, Perplexity, Claude and Gemini, get their own channel instead of landing in Direct. A separate AI-crawler report covers the last 88 days, for crawlers that reach YOM through server-side tracking or the pixel; most crawlers don’t run JavaScript, so a browser-only install sees few.' },
-      { q: 'Is there a Shopify app or WooCommerce plugin?', a: 'Both exist and are in early access. Neither is listed in the Shopify App Store or on wordpress.org yet, so we set them up with you. Talk to us.' },
-      { q: 'What is still coming soon?', a: 'Google Ads Enhanced Conversions, and the public Shopify App Store, wordpress.org and Looker Studio gallery listings.' },
+      { q: 'Is there a WordPress or WooCommerce plugin?', a: 'The WordPress and WooCommerce plugin is built and waiting for review on wordpress.org. Until it is listed, we set it up with you. Shopify is coming soon. Talk to us.' },
+      { q: 'What is still coming soon?', a: 'Shopify, Google Ads Enhanced Conversions, and the public wordpress.org and Looker Studio gallery listings.' },
     ],
   },
 ];
