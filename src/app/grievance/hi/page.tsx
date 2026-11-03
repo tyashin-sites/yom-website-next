@@ -54,7 +54,7 @@ export default function GrievanceHindiPage() {
           <br />
           आपसटेक प्राइवेट लिमिटेड (<span lang="en">{IN.name}</span>)
           <br />
-          पंजीकृत कार्यालय: 8/3, दूसरी मंज़िल, रूप नगर, दिल्ली 110007, भारत
+          पंजीकृत कार्यालय: {IN.addressHi}
           <br />
           ईमेल: <a href={`mailto:${o.email}?subject=Grievance`}>{o.email}</a>
           <br />

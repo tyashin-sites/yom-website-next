@@ -47,6 +47,8 @@ export const legalEntities = {
     /** Registered office without the country (the only address we publish for this company). */
     address: `${IN_REGISTERED.street}, ${IN_REGISTERED.locality} ${IN_REGISTERED.postalCode}`,
     registeredOffice: IN_REGISTERED,
+    /** The same registered office written in Hindi, for the /hi pages. Change with `address`. */
+    addressHi: '8/3, दूसरी मंज़िल, रूप नगर, दिल्ली 110007, भारत',
     countryCode: 'IN',
     country: 'India',
     email: EMAIL,
