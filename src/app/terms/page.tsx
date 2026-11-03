@@ -1,4 +1,5 @@
-import { pageMetadata } from '@/lib/seo';
+import type { Metadata } from 'next';
+import { pageMetadata, siteUrl } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
 import { legalEntities, legalOfficer } from '@/config/legal';
@@ -7,7 +8,11 @@ import { EntityBlock } from '@/components/LegalEntities';
 const TITLE = 'Terms of Service';
 const DESCRIPTION =
   'The terms for using YOM (Your Own Metrics), offered by Aapastech Private Limited in India, Aapastech OÜ in the EU and UK, and 14818032 Canada Inc. everywhere else: plans and fees, your data, consent, liability limits, termination and governing law.';
-export const metadata = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/terms' });
+const base = pageMetadata({ title: TITLE, description: DESCRIPTION, path: '/terms' });
+export const metadata: Metadata = {
+  ...base,
+  alternates: { ...base.alternates, languages: { en: siteUrl('/terms'), hi: siteUrl('/terms/hi') } },
+};
 
 const TOC = [
   { id: 'agreement', label: 'The agreement' },
@@ -46,11 +51,18 @@ export default function TermsPage() {
         path="/terms"
         toc={TOC}
         intro={
-          <p>
-            Please read these terms carefully. They limit our liability and make you responsible for consent on your
-            own sites and apps. For disputes they set Indian law if you are in India, Estonian law if you are in the
-            European Union or the United Kingdom, and Ontario law everywhere else.
-          </p>
+          <>
+            <p>
+              <a href="/terms/hi" hrefLang="hi" lang="hi">
+                हिन्दी में पढ़ें
+              </a>
+            </p>
+            <p>
+              Please read these terms carefully. They limit our liability and make you responsible for consent on your
+              own sites and apps. For disputes they set Indian law if you are in India, Estonian law if you are in the
+              European Union or the United Kingdom, and Ontario law everywhere else.
+            </p>
+          </>
         }
       >
         <h2 id="agreement">1. The agreement</h2>

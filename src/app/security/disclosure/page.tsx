@@ -1,7 +1,7 @@
 import { pageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { legalContact } from '@/config/legal';
+import { LEGAL_UPDATED_27_OCT, legalContact } from '@/config/legal';
 
 const TITLE = 'Vulnerability disclosure policy';
 const DESCRIPTION =
@@ -25,6 +25,7 @@ export default function DisclosurePage() {
       <LegalPage
         title={TITLE}
         path="/security/disclosure"
+        updated={LEGAL_UPDATED_27_OCT}
         trail={[
           { name: 'Security', path: '/security' },
           { name: TITLE, path: '/security/disclosure' },

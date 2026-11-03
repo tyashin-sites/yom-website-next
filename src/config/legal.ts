@@ -6,8 +6,14 @@
  * Intent Addendum. Every data-handling statement traces to the YOM codebase
  * or the legal pack; see docs/LEGAL-SOURCES.md.
  */
-export const LEGAL_UPDATED = '27 October 2026';
-export const LEGAL_UPDATED_ISO = '2026-10-27';
+/**
+ * 2 November 2026: rights in Canada and Quebec (PUBLISH-KIT K6-CA), Hindi privacy policy and terms, and the
+ * India entity shown with its registered office only. Every document whose visible text changed carries this date.
+ */
+export const LEGAL_UPDATED = '2 November 2026';
+export const LEGAL_UPDATED_ISO = '2026-11-02';
+/** Documents whose text did not change on 2 November 2026 (acceptable use, cookies, vulnerability disclosure). */
+export const LEGAL_UPDATED_27_OCT = { label: '27 October 2026', iso: '2026-10-27' } as const;
 
 export const legalDocs = [
   { href: '/terms', label: 'Terms of Service' },
@@ -41,6 +47,8 @@ export const legalEntities = {
     /** Registered office without the country (the only address we publish for this company). */
     address: `${IN_REGISTERED.street}, ${IN_REGISTERED.locality} ${IN_REGISTERED.postalCode}`,
     registeredOffice: IN_REGISTERED,
+    /** The same registered office written in Hindi, for the /hi pages. Change with `address`. */
+    addressHi: '8/3, दूसरी मंज़िल, रूप नगर, दिल्ली 110007, भारत',
     countryCode: 'IN',
     country: 'India',
     email: EMAIL,

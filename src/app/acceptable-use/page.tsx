@@ -1,7 +1,7 @@
 import { pageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { legalContact, legalEntities } from '@/config/legal';
+import { LEGAL_UPDATED_27_OCT, legalContact, legalEntities } from '@/config/legal';
 
 const TITLE = 'Acceptable Use Policy';
 const DESCRIPTION =
@@ -26,6 +26,7 @@ export default function AcceptableUsePage() {
       <LegalPage
         title={TITLE}
         path="/acceptable-use"
+        updated={LEGAL_UPDATED_27_OCT}
         toc={TOC}
         intro={
           <p>

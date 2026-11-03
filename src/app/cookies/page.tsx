@@ -1,7 +1,7 @@
 import { pageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { legalContact } from '@/config/legal';
+import { LEGAL_UPDATED_27_OCT, legalContact } from '@/config/legal';
 
 const TITLE = 'Cookie Policy';
 const DESCRIPTION =
@@ -73,6 +73,7 @@ export default function CookiesPage() {
       <LegalPage
         title={TITLE}
         path="/cookies"
+        updated={LEGAL_UPDATED_27_OCT}
         toc={TOC}
         intro={
           <p>

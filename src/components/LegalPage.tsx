@@ -11,6 +11,7 @@ export function LegalPage({
   toc,
   trail,
   lang,
+  updated,
   children,
 }: {
   title: string;
@@ -20,6 +21,8 @@ export function LegalPage({
   trail?: { name: string; path: string }[];
   /** Language of the title and body when it is not English (the shell stays English). */
   lang?: string;
+  /** Date this document last changed, when it differs from the shared LEGAL_UPDATED. */
+  updated?: { label: string; iso: string };
   children: React.ReactNode;
 }) {
   return (
@@ -29,7 +32,7 @@ export function LegalPage({
         {title}
       </h1>
       <p className="mt-4 font-mono text-[0.78rem] text-muted">
-        Last updated: <time dateTime={LEGAL_UPDATED_ISO}>{LEGAL_UPDATED}</time>
+        Last updated: <time dateTime={updated?.iso ?? LEGAL_UPDATED_ISO}>{updated?.label ?? LEGAL_UPDATED}</time>
       </p>
       <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_15rem]">
         <div className="prose-y min-w-0" lang={lang}>
