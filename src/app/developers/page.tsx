@@ -86,6 +86,7 @@ process.on('SIGTERM', async () => {
   curl: `curl -X POST ${INGEST}/v2/events \\
   -H "Authorization: Bearer $YOM_SECRET_KEY" \\
   -H "Content-Type: application/json" \\
+  -H "User-Agent: my-app/1.0" \\
   -d '{
     "v": 2,
     "events": [{
@@ -209,6 +210,7 @@ export default function DevelopersPage() {
         <CodeBlock code={S.curl} label="bearer auth" lang="curl" />
         <CodeBlock code={S.hmac} label="HMAC auth" lang="shell" />
         <p className="text-muted">Up to 50 events or 64 KB per request. 429 and 5xx responses are safe to retry with the same ids. For HMAC, send the key&rsquo;s id (<code className="font-mono">key_…</code>, shown next to the secret key in your dashboard and returned by the keys API) as YOM-Key-Id and sign with the secret key itself.</p>
+        <p className="text-muted">Calling from a script? Send your own <code className="font-mono">User-Agent</code> header, for example <code className="font-mono">my-app/1.0</code>. Our edge blocks some library defaults before they reach the API: Python&rsquo;s <code className="font-mono">urllib</code> sends <code className="font-mono">Python-urllib/3.x</code>, which gets a Cloudflare 1010 error. With <code className="font-mono">requests</code> or <code className="font-mono">urllib</code>, pass <code className="font-mono">headers=&#123;&quot;User-Agent&quot;: &quot;my-app/1.0&quot;&#125;</code>.</p>
       </Step>
 
       <Step n="06" id="webhooks" title="Verify signed webhooks">
