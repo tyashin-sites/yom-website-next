@@ -468,8 +468,7 @@ export default function TermsPage() {
         <h2 id="contact">23. Contact</h2>
         <p>
           In India: {legalEntities.india.name}, registered office {legalEntities.india.address},{' '}
-          {legalEntities.india.country}; principal place of business {legalEntities.india.principalPlace};{' '}
-          {legalEntities.india.phone}. In the European Union and the United Kingdom: {legalEntities.estonia.name},
+          {legalEntities.india.country}; {legalEntities.india.phone}. In the European Union and the United Kingdom: {legalEntities.estonia.name},
           registry code {legalEntities.estonia.registryCode}, VAT {legalEntities.estonia.vat},{' '}
           {legalEntities.estonia.address}. Everywhere else: {e.name}, {e.address}, {e.phone}. Email for all three:{' '}
           {mail}.
