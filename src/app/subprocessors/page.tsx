@@ -46,7 +46,7 @@ const GROUP: Row[] = [
     IN.name,
     `Group company. Engineering, hosting operations, support and billing for YOM. Sub-processor for customers who contract with ${CA.name} or ${EE.name}`,
     'Customer Data and Account Data, as each task needs',
-    `India (principal place of business ${IN.principalPlace}; registered office ${IN.address})`,
+    `India (registered office ${IN.address})`,
   ],
   [
     CA.name,

@@ -80,18 +80,6 @@ function legalOrganizations(): Node[] {
         postalCode: IN.registeredOffice.postalCode,
         addressCountry: IN.countryCode,
       },
-      location: {
-        '@type': 'Place',
-        name: 'Principal place of business',
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: IN.principalOffice.street,
-          addressLocality: IN.principalOffice.locality,
-          addressRegion: IN.principalOffice.region,
-          postalCode: IN.principalOffice.postalCode,
-          addressCountry: IN.countryCode,
-        },
-      },
     },
     {
       '@type': 'Organization',
