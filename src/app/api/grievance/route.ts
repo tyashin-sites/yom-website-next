@@ -1,6 +1,13 @@
 import { NextResponse } from 'next/server';
 import { getCloudflareContext } from '@opennextjs/cloudflare';
-import { GRIEVANCE_EMAIL, parseGrievance, toContactSubmission } from '@/lib/grievance';
+import { siteConfig } from '@/config/site';
+import {
+  grievanceError,
+  grievanceLogFields,
+  parseGrievance,
+  toContactSubmission,
+  type GrievanceInput,
+} from '@/lib/grievance';
 
 /**
  * Grievance complaints (POST /api/grievance), from the form on /grievance and /grievance/hi.
@@ -9,11 +16,12 @@ import { GRIEVANCE_EMAIL, parseGrievance, toContactSubmission } from '@/lib/grie
  * the complaint, because the reply carries the reference number the IT Rules
  * acknowledgement needs: the plugin's submission id, shown as GRV-<id>. The
  * plugin emails the team, so the complaint reaches the Grievance Officer the
- * same way contact leads do. If the plugin cannot be reached, the whole
- * complaint is logged with a GRIEVANCE_UNDELIVERED: prefix so it is never lost,
- * and the visitor is asked to email contact@aapastech.com instead.
+ * same way contact leads do. If the plugin cannot be reached the visitor is
+ * asked to email contact@aapastech.com instead. Log lines carry only the
+ * category and language (grievanceLogFields), never the complainant's details
+ * or the complaint text.
  */
-const SITE = 'yom.aapastech.com';
+const SITE = new URL(siteConfig.url).host;
 
 function resolveTyashin(): { apiKey?: string; endpoint: string } {
   let env: Record<string, unknown> = {};
@@ -27,12 +35,9 @@ function resolveTyashin(): { apiKey?: string; endpoint: string } {
   return { apiKey: apiKey || undefined, endpoint: `${apiUrl.replace(/\/+$/, '')}/api/v1/contact/public/submit` };
 }
 
-function undelivered(reason: string, submission: object) {
-  console.log('GRIEVANCE_UNDELIVERED:', JSON.stringify({ reason, ...submission }));
-  return NextResponse.json(
-    { ok: false, error: `We could not send this. Please email it to ${GRIEVANCE_EMAIL}.` },
-    { status: 502 }
-  );
+function undelivered(reason: string, g: GrievanceInput) {
+  console.log('GRIEVANCE_UNDELIVERED:', JSON.stringify({ reason, ...grievanceLogFields(g) }));
+  return NextResponse.json({ ok: false, error: grievanceError('undelivered', g.lang) }, { status: 502 });
 }
 
 export async function POST(request: Request) {
@@ -40,7 +45,7 @@ export async function POST(request: Request) {
   try {
     body = (await request.json()) as Record<string, unknown>;
   } catch {
-    return NextResponse.json({ ok: false, error: 'Invalid request.' }, { status: 400 });
+    return NextResponse.json({ ok: false, error: grievanceError('invalid', 'en') }, { status: 400 });
   }
 
   // Honeypot: bots fill hidden fields; accept silently so they don't retry.
@@ -54,7 +59,7 @@ export async function POST(request: Request) {
   const submission = toContactSubmission(g, SITE, request.headers.get('referer') || undefined);
 
   const { apiKey, endpoint } = resolveTyashin();
-  if (!apiKey) return undelivered('no-api-key', submission);
+  if (!apiKey) return undelivered('no-api-key', g);
 
   try {
     const res = await fetch(endpoint, {
@@ -65,12 +70,12 @@ export async function POST(request: Request) {
     const data = (await res.json().catch(() => ({}))) as { success?: boolean; data?: { id?: string | number } };
     const id = data.data?.id;
     if (!res.ok || !data.success || id === undefined || id === null) {
-      return undelivered(`status-${res.status}`, submission);
+      return undelivered(`status-${res.status}`, g);
     }
     const reference = `GRV-${id}`;
-    console.log('GRIEVANCE:', JSON.stringify({ reference, category: g.categoryId, contentUrl: g.contentUrl || undefined, lang: g.lang }));
+    console.log('GRIEVANCE:', JSON.stringify({ reference, ...grievanceLogFields(g) }));
     return NextResponse.json({ ok: true, reference });
   } catch (err) {
-    return undelivered(`fetch-error: ${String(err)}`, submission);
+    return undelivered(`fetch-error: ${err instanceof Error ? err.name : 'unknown'}`, g);
   }
 }

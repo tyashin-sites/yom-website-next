@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { GRIEVANCE_CATEGORIES, GRIEVANCE_COPY, parseGrievance, toContactSubmission } from '@/lib/grievance';
+import {
+  GRIEVANCE_CATEGORIES,
+  GRIEVANCE_COPY,
+  grievanceLogFields,
+  parseGrievance,
+  toContactSubmission,
+} from '@/lib/grievance';
 
 const valid = {
   name: 'Asha',
@@ -23,6 +29,7 @@ describe('grievance form', () => {
 
   it('has Hindi copy for every English string and category', () => {
     expect(Object.keys(GRIEVANCE_COPY.hi).sort()).toEqual(Object.keys(GRIEVANCE_COPY.en).sort());
+    expect(Object.keys(GRIEVANCE_COPY.hi.errors).sort()).toEqual(Object.keys(GRIEVANCE_COPY.en.errors).sort());
     for (const c of GRIEVANCE_CATEGORIES) {
       expect(c.label.hi.length).toBeGreaterThan(0);
       expect(c.clock.hi.length).toBeGreaterThan(0);
@@ -43,6 +50,24 @@ describe('grievance form', () => {
     expect(parseGrievance({ ...valid, category: 'made-up' }).ok).toBe(false);
     expect(parseGrievance({ ...valid, contentUrl: 'javascript:alert(1)' }).ok).toBe(false);
     expect(parseGrievance({ ...valid, message: '   ' }).ok).toBe(false);
+  });
+
+  it('returns validation errors in the visitor language', () => {
+    const en = parseGrievance({ ...valid, name: '' });
+    const hi = parseGrievance({ ...valid, name: '', lang: 'hi' });
+    expect(en).toMatchObject({ ok: false, code: 'name', error: GRIEVANCE_COPY.en.errors.name });
+    expect(hi).toMatchObject({ ok: false, code: 'name', error: GRIEVANCE_COPY.hi.errors.name });
+  });
+
+  it('log fields carry no name, email, link or complaint text', () => {
+    const r = parseGrievance(valid);
+    if (!r.ok) throw new Error('expected valid');
+    const logged = JSON.stringify(grievanceLogFields(r.value));
+    expect(logged).not.toContain(valid.name);
+    expect(logged).not.toContain(valid.email);
+    expect(logged).not.toContain(valid.contentUrl);
+    expect(logged).not.toContain(valid.message);
+    expect(grievanceLogFields(r.value)).toEqual({ category: 'intimate-or-impersonation', lang: 'en', hasContentUrl: true });
   });
 
   it('allows an empty content link', () => {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, type FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
 import {
   GRIEVANCE_CATEGORIES,
   GRIEVANCE_COPY,
@@ -19,8 +19,8 @@ export function GrievanceForm({ lang = 'en' }: { lang?: GrievanceLang }) {
   const [error, setError] = useState('');
   const [result, setResult] = useState<{ reference: string | null; clock: string }>({ reference: null, clock: '' });
   // Time-trap for the Contact Form plugin: submissions < 2 s after render are treated as spam.
-  const [renderedAt, setRenderedAt] = useState(0);
-  useEffect(() => setRenderedAt(Date.now()), []);
+  // Set at first render (on the client during hydration), so a fast submit never sends 0.
+  const [renderedAt] = useState(() => Date.now());
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();

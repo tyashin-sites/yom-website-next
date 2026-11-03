@@ -75,6 +75,15 @@ export const GRIEVANCE_COPY = {
     doneEmail: 'Quote this number if you write to us again at',
     error: 'We could not send this. Please email it to',
     optional: 'optional',
+    errors: {
+      invalid: 'Invalid request.',
+      name: 'Please add your name.',
+      email: 'Please add a valid email address.',
+      category: 'Please choose what the complaint is about.',
+      contentUrl: 'The link should start with http:// or https://.',
+      message: 'Please tell us what happened.',
+      undelivered: 'We could not send this. Please email it to contact@aapastech.com.',
+    },
   },
   hi: {
     intro: 'या यह फ़ॉर्म भरें। भेजते ही आपको संदर्भ संख्या मिल जाएगी।',
@@ -92,6 +101,15 @@ export const GRIEVANCE_COPY = {
     doneEmail: 'दोबारा लिखें तो यह संख्या बताएँ:',
     error: 'यह नहीं भेजा जा सका। कृपया इसे ईमेल करें:',
     optional: 'वैकल्पिक',
+    errors: {
+      invalid: 'अनुरोध सही नहीं है।',
+      name: 'कृपया अपना नाम लिखें।',
+      email: 'कृपया सही ईमेल पता लिखें।',
+      category: 'कृपया चुनें कि शिकायत किस बारे में है।',
+      contentUrl: 'लिंक http:// या https:// से शुरू होना चाहिए।',
+      message: 'कृपया बताएँ कि क्या हुआ।',
+      undelivered: 'यह नहीं भेजा जा सका। कृपया इसे contact@aapastech.com पर ईमेल करें।',
+    },
   },
 } as const;
 
@@ -113,21 +131,39 @@ export type GrievanceInput = {
   renderedAt?: number;
 };
 
-/** Validate a raw request body. Returns the cleaned input or an error message. */
-export function parseGrievance(body: Record<string, unknown>): { ok: true; value: GrievanceInput } | { ok: false; error: string } {
+export type GrievanceErrorCode = keyof (typeof GRIEVANCE_COPY)['en']['errors'];
+
+/** The visitor's language from a raw body (anything but 'hi' is English). */
+export function grievanceLang(body: Record<string, unknown> | null | undefined): GrievanceLang {
+  return body?.lang === 'hi' ? 'hi' : 'en';
+}
+
+/** A validation or delivery message in the visitor's language. */
+export function grievanceError(code: GrievanceErrorCode, lang: GrievanceLang): string {
+  return GRIEVANCE_COPY[lang].errors[code];
+}
+
+/**
+ * Validate a raw request body. Returns the cleaned input, or an error code
+ * plus the message in the visitor's language (so /grievance/hi shows Hindi).
+ */
+export function parseGrievance(
+  body: Record<string, unknown>
+): { ok: true; value: GrievanceInput } | { ok: false; code: GrievanceErrorCode; error: string } {
   const name = str(body.name, 100);
   const email = str(body.email, 200);
   const category = findGrievanceCategory(str(body.category, 60));
   const contentUrl = str(body.contentUrl, 500);
   const message = str(body.message, 5000);
-  const lang: GrievanceLang = body.lang === 'hi' ? 'hi' : 'en';
+  const lang = grievanceLang(body);
   const renderedAt = Number(body.renderedAt);
+  const fail = (code: GrievanceErrorCode) => ({ ok: false as const, code, error: grievanceError(code, lang) });
 
-  if (!name) return { ok: false, error: 'Please add your name.' };
-  if (!email || !EMAIL_RE.test(email)) return { ok: false, error: 'Please add a valid email address.' };
-  if (!category) return { ok: false, error: 'Please choose what the complaint is about.' };
-  if (contentUrl && !/^https?:\/\//i.test(contentUrl)) return { ok: false, error: 'The link should start with http:// or https://.' };
-  if (!message) return { ok: false, error: 'Please tell us what happened.' };
+  if (!name) return fail('name');
+  if (!email || !EMAIL_RE.test(email)) return fail('email');
+  if (!category) return fail('category');
+  if (contentUrl && !/^https?:\/\//i.test(contentUrl)) return fail('contentUrl');
+  if (!message) return fail('message');
 
   return {
     ok: true,
@@ -141,6 +177,15 @@ export function parseGrievance(body: Record<string, unknown>): { ok: true; value
       renderedAt: Number.isFinite(renderedAt) && renderedAt > 0 ? renderedAt : undefined,
     },
   };
+}
+
+/**
+ * What a grievance log line may carry: no name, email, link or complaint text.
+ * Logs are kept for months (CERT-In) and are not the place for complaint data;
+ * the complaint itself lives only in the Contact Form plugin's inbox.
+ */
+export function grievanceLogFields(g: GrievanceInput) {
+  return { category: g.categoryId, lang: g.lang, hasContentUrl: g.contentUrl !== '' };
 }
 
 /** Payload for the Tyashin Contact Form plugin (`/api/v1/contact/public/submit`). */
