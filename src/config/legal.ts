@@ -12,6 +12,8 @@
  */
 export const LEGAL_UPDATED = '2 November 2026';
 export const LEGAL_UPDATED_ISO = '2026-11-02';
+/** 3 November 2026: accounts a partner opens (terms 3, DPA 1, privacy 4; en + hi). Only those documents carry it. */
+export const LEGAL_UPDATED_3_NOV = { label: '3 November 2026', iso: '2026-11-03' } as const;
 /** Documents whose text did not change on 2 November 2026 (acceptable use, cookies, vulnerability disclosure). */
 export const LEGAL_UPDATED_27_OCT = { label: '27 October 2026', iso: '2026-10-27' } as const;
 

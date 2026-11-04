@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { pageMetadata, siteUrl } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { legalEntities, legalOfficer } from '@/config/legal';
+import { LEGAL_UPDATED_3_NOV, legalEntities, legalOfficer } from '@/config/legal';
 import { EntityBlockHindi } from '@/components/LegalEntities';
 
 /**
@@ -68,6 +68,7 @@ export default function TermsHindiPage() {
       />
       <LegalPage
         title={TITLE}
+        updated={LEGAL_UPDATED_3_NOV}
         path="/terms/hi"
         lang="hi"
         trail={[
@@ -159,6 +160,34 @@ export default function TermsHindiPage() {
             क्लाइंट-पोर्टल लॉगिन और sub-tenant keys शामिल हैं।
           </li>
         </ul>
+        <h3 id="partner-accounts">पार्टनर द्वारा आपके लिए खोले गए खाते</h3>
+        <p>
+          आप जिस प्लेटफ़ॉर्म का उपयोग करते हैं, जैसे कोई वेबसाइट बिल्डर (&ldquo;पार्टनर&rdquo;), वह आपके नाम से YOM
+          खाता खोल सकता है और उसे आपके लिए चला सकता है। जब तक आप उस खाते पर दावा (claim) नहीं करते:
+        </p>
+        <ul>
+          <li>
+            उस खाते के लिए पार्टनर हमारा ग्राहक है। पार्टनर ने खाते के लिए ये शर्तें स्वीकार की हैं, उसका भुगतान करता
+            है, और उसके लिए उसी तरह ज़िम्मेदार है जैसा धारा 7 अपने क्लाइंट को सेवा देने वाले ग्राहकों के लिए बताती है;
+          </li>
+          <li>
+            पार्टनर खाते के साथ क्या करता है, यह पार्टनर और आपके बीच का अपना समझौता तय करता है, और हम खाते के डेटा को{' '}
+            <a href="/dpa" lang="en" hrefLang="en">
+              DPA
+            </a>{' '}
+            के तहत पार्टनर के निर्देशों पर प्रोसेस करते हैं; और
+          </li>
+          <li>खाते के लिए हमारे दायित्व पार्टनर के प्रति हैं। इससे कानून द्वारा आपको दिया गया कोई अधिकार नहीं छिनता।</li>
+        </ul>
+        <p>
+          पार्टनर द्वारा दिए गए लिंक से आप खाते पर दावा कर सकते हैं। दावा करने पर आप उसके मालिक बन जाते हैं, और YOM के
+          अपने उपयोग के लिए ये शर्तें, DPA और हमारी{' '}
+          <a href="/privacy/hi">गोपनीयता नीति</a> स्वीकार करते हैं। आप पार्टनर को जितनी पहुँच देते हैं, वह उसके पास
+          रहती है, और जब तक वह पहुँच है, पार्टनर खाते के उपयोग का भुगतान करता है। आप Settings, Access में किसी भी समय
+          पार्टनर की पहुँच हटा सकते हैं। उसके बाद पार्टनर खाते का भुगतान नहीं करता, और उस पर हमारे सामान्य प्लान और शुल्क
+          लागू होते हैं। अगर पार्टनर ऐसा खाता बंद करता है जिस पर किसी ने दावा नहीं किया, तो हम उसे धारा 17 के अनुसार
+          मिटा देते हैं।
+        </p>
 
         <h2 id="service">4. सेवा, प्लान और सीमाएँ</h2>
         <p>
