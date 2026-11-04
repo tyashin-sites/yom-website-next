@@ -1,7 +1,7 @@
 import { pageMetadata } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { legalContact, legalEntities } from '@/config/legal';
+import { LEGAL_UPDATED_3_NOV, legalContact, legalEntities } from '@/config/legal';
 import { EntityBlock } from '@/components/LegalEntities';
 
 const TITLE = 'Data Processing Addendum';
@@ -35,6 +35,7 @@ export default function DpaPage() {
       <JsonLd page={{ path: '/dpa', title: TITLE, description: DESCRIPTION }} />
       <LegalPage
         title={TITLE}
+        updated={LEGAL_UPDATED_3_NOV}
         path="/dpa"
         toc={TOC}
         intro={
@@ -57,6 +58,13 @@ export default function DpaPage() {
           you are the controller (or a processor acting for your own client, in which case we are your sub-processor),
           and we are your processor or service provider. Each party will comply with the Data Protection Laws that apply
           to it.
+        </p>
+        <p id="partner-accounts">
+          <strong>Accounts a partner opens.</strong> When a Partner (section 3 of the <a href="/terms">Terms</a>) opens and
+          runs an account for one of its own customers, that customer is the controller, the Partner is its processor,
+          and we are the Partner&rsquo;s sub-processor. The Partner gives us instructions under this DPA and is
+          responsible for having a lawful agreement with its customer. When the customer claims the account, this DPA
+          applies directly between the customer and us, and the Partner keeps only the access the customer allows.
         </p>
         <p>
           For customers in the European Union and the United Kingdom, the processor is {EE.name}, and this DPA is the

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { pageMetadata, siteUrl } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { legalEntities, legalOfficer } from '@/config/legal';
+import { LEGAL_UPDATED_3_NOV, legalEntities, legalOfficer } from '@/config/legal';
 import { EntityBlock, OfficerBlock } from '@/components/LegalEntities';
 
 const TITLE = 'Privacy Policy';
@@ -43,6 +43,7 @@ export default function PrivacyPage() {
       <JsonLd page={{ path: '/privacy', title: TITLE, description: DESCRIPTION }} />
       <LegalPage
         title={TITLE}
+        updated={LEGAL_UPDATED_3_NOV}
         path="/privacy"
         toc={TOC}
         intro={
@@ -125,6 +126,11 @@ export default function PrivacyPage() {
           <li>
             <strong>Recipients you add:</strong> email addresses you enter for scheduled reports, alerts and client-portal
             logins. Please only add people who expect to receive them.
+          </li>
+          <li>
+            <strong>Accounts a partner opens for you:</strong> if a platform you use opened a YOM account for you, it gave
+            us your business name, the names and web addresses of your sites, and the email address of the person allowed
+            to claim the account, so that we could create the account and let that person claim it.
           </li>
         </ul>
 
