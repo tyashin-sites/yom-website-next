@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { pageMetadata, siteUrl } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { legalEntities, legalOfficer } from '@/config/legal';
+import { LEGAL_UPDATED_3_NOV, legalEntities, legalOfficer } from '@/config/legal';
 import { EntityBlock } from '@/components/LegalEntities';
 
 const TITLE = 'Terms of Service';
@@ -48,6 +48,7 @@ export default function TermsPage() {
       <JsonLd page={{ path: '/terms', title: TITLE, description: DESCRIPTION }} />
       <LegalPage
         title={TITLE}
+        updated={LEGAL_UPDATED_3_NOV}
         path="/terms"
         toc={TOC}
         intro={
@@ -123,6 +124,33 @@ export default function TermsPage() {
             them, including client-portal logins and sub-tenant keys.
           </li>
         </ul>
+        <h3 id="partner-accounts">Accounts a partner opens for you</h3>
+        <p>
+          A platform you use, such as a website builder (a &ldquo;Partner&rdquo;), can open a YOM account in your name
+          and run it for you. Until you claim that account:
+        </p>
+        <ul>
+          <li>
+            the Partner is our customer for it. The Partner has accepted these Terms for the account, pays for it, and is
+            responsible for it as section 7 describes for customers who serve their own clients;
+          </li>
+          <li>
+            the Partner&rsquo;s own agreement with you governs what the Partner does with the account, and we process the
+            data in it on the Partner&rsquo;s instructions under the <a href="/dpa">DPA</a>; and
+          </li>
+          <li>
+            our obligations for the account are owed to the Partner. This does not take away any right the law gives
+            you.
+          </li>
+        </ul>
+        <p>
+          You can claim the account with the link the Partner gives you. When you claim it you become its owner, and you
+          accept these Terms, the DPA and our <a href="/privacy">Privacy Policy</a> for your own use of YOM. The Partner
+          keeps the access you allow, and pays for the account&rsquo;s usage while it has that access. You can remove the
+          Partner&rsquo;s access at any time in Settings, Access. From then on the Partner no longer pays for the
+          account, and our normal plans and Fees apply to it. If the Partner closes an account that nobody has claimed,
+          we delete it as section 17 describes.
+        </p>
 
         <h2 id="service">4. The Service, plans and limits</h2>
         <p>

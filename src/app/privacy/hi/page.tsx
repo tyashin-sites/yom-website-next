@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { pageMetadata, siteUrl } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { legalEntities, legalOfficer } from '@/config/legal';
+import { LEGAL_UPDATED_3_NOV, legalEntities, legalOfficer } from '@/config/legal';
 import { EntityBlockHindi, OfficerBlockHindi } from '@/components/LegalEntities';
 
 /**
@@ -63,6 +63,7 @@ export default function PrivacyHindiPage() {
       />
       <LegalPage
         title={TITLE}
+        updated={LEGAL_UPDATED_3_NOV}
         path="/privacy/hi"
         lang="hi"
         trail={[
@@ -161,6 +162,11 @@ export default function PrivacyHindiPage() {
           <li>
             <strong>आपके जोड़े गए प्राप्तकर्ता:</strong> निर्धारित रिपोर्टों, अलर्ट और क्लाइंट-पोर्टल लॉगिन के लिए आप जो
             ईमेल पते दर्ज करते हैं। कृपया केवल उन्हीं लोगों को जोड़ें जो इन्हें पाने की उम्मीद रखते हैं।
+          </li>
+          <li>
+            <strong>पार्टनर द्वारा आपके लिए खोले गए खाते:</strong> अगर आपके उपयोग किए जाने वाले किसी प्लेटफ़ॉर्म ने आपके
+            लिए YOM खाता खोला है, तो उसने हमें आपके व्यवसाय का नाम, आपकी साइटों के नाम और वेब पते, और खाते पर दावा करने
+            की अनुमति वाले व्यक्ति का ईमेल पता दिया, ताकि हम खाता बना सकें और वह व्यक्ति उस पर दावा कर सके।
           </li>
         </ul>
 
