@@ -15,13 +15,14 @@ const esc = (v: string) =>
   v.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 
 export async function GET(): Promise<Response> {
-  const lastmod = new Date().toISOString().slice(0, 10);
+  // No <lastmod>: the site has no per-page change dates, and the build date
+  // would tell Google every page changed on every deploy.
   const { hasPosts } = await getBlogStatusAtBuild();
   const urls = getSiteRoutes()
     .filter((r) => r.path !== '/blog' || hasPosts)
     .map(
       (r) =>
-        `  <url>\n    <loc>${esc(siteUrl(r.path))}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${r.changeFrequency}</changefreq>\n    <priority>${r.priority.toFixed(1)}</priority>\n  </url>`,
+        `  <url>\n    <loc>${esc(siteUrl(r.path))}</loc>\n    <changefreq>${r.changeFrequency}</changefreq>\n    <priority>${r.priority.toFixed(1)}</priority>\n  </url>`,
     )
     .join('\n');
   const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
