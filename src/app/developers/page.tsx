@@ -242,7 +242,7 @@ export default function DevelopersPage() {
                 ['Meta CAPI and GA4 Measurement Protocol destinations, consent-gated', 'live'],
                 ['Warehouse exports: S3, GCS, R2, BigQuery; Snowflake via external stage', 'live'],
                 ['GA4 gtag shim (@yourownmetric/sdk/gtag-shim) and GA4 BigQuery import', 'live'],
-                ['WordPress and WooCommerce plugin', 'early'],
+                ['WordPress and WooCommerce plugin on wordpress.org', 'live'],
                 ['Shopify', 'soon'],
                 ['Looker Studio community connector (self-deploy)', 'early'],
                 ['Google Ads Enhanced Conversions', 'soon'],

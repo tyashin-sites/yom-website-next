@@ -28,6 +28,19 @@ Rules: the dot is always the signal colour; the ring is always a single ink/pape
 rotate, outline, gradient or animate the mark (the 404 page is the only exception: the dot
 drifts off-centre, "no reading").
 
+## App icon (one icon everywhere)
+
+The YOM app icon is the mark on an instrument-ink tile: `#14171C` square, the mark in its
+dark-surface colours (ring `#ECE8DF`, zero line `#D2B06A`, null point `#FF6B3D`) at 400/512 of the
+tile, centred. It is the **only** icon used in public: favicon (`src/app/icon.svg`,
+`src/app/favicon.ico`, `src/app/apple-icon.png`), the YOM dashboard favicon, the wordpress.org plugin
+icon, npm READMEs, the GTM template thumbnails, the YOM LinkedIn / Instagram / X avatars and the YOM
+card on aapastech.com. No light-tile, outline or transparent variant in public.
+
+Files (all from `npm run og`): `public/brand/icon.svg` (master), `icon-1024.png` (social avatars:
+Instagram, X), `icon-400.png` (LinkedIn page logo), `mark-512.png` (same tile). Circular crops
+(Instagram, X) keep the whole ring inside the circle.
+
 ## Voice
 
 Plain, exact, a little dry. An engineer explaining to a CFO. Short sentences. Numbers carry

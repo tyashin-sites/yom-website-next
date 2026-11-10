@@ -2,7 +2,7 @@
 // hand-made HTML/SVG using the locally installed Chrome via puppeteer-core. No network,
 // no paid image generation (ai-cost-gate). Run: npm run og
 import puppeteer from 'puppeteer-core';
-import { readFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
@@ -37,15 +37,37 @@ em{font-family:ISI;font-style:italic;color:#FF6B3D}
 const logo = `<!doctype html><html><head><meta charset="utf-8"><style>${css}body{width:512px;height:512px;background:#14171C;display:grid;place-items:center}</style></head><body>${mark(400)}</body></html>`;
 
 const browser = await puppeteer.launch({ executablePath: CHROME, headless: true, args: ['--allow-file-access-from-files'] });
-async function shoot(html, out, w, h) {
+async function shoot(html, out, w, h, opts = {}) {
   const page = await browser.newPage();
   await page.setViewport({ width: w, height: h, deviceScaleFactor: 1 });
   await page.setContent(html, { waitUntil: 'load' });
   await page.evaluate(() => document.fonts.ready);
-  await page.screenshot({ path: path.join(root, out) });
+  const buf = await page.screenshot({ ...(out ? { path: path.join(root, out) } : {}), omitBackground: !!opts.alpha });
   await page.close();
-  console.log('wrote', out);
+  if (out) console.log('wrote', out);
+  return buf;
 }
 await shoot(og, 'public/og/default.png', 1200, 630);
 await shoot(logo, 'public/brand/mark-512.png', 512, 512);
+// The canonical YOM app icon (= mark-512 and public/brand/icon.svg / src/app/icon.svg): every
+// public avatar and favicon uses these files — wordpress.org, npm READMEs, GTM templates,
+// LinkedIn / Instagram / X, aapastech.com. See docs/BRAND.md "App icon".
+const tile = readFileSync(path.join(root, 'public/brand/icon.svg'), 'utf8');
+const tileHtml = (s) => `<!doctype html><html><head><meta charset="utf-8"><style>*{margin:0}body{width:${s}px;height:${s}px}svg{display:block;width:${s}px;height:${s}px}</style></head><body>${tile}</body></html>`;
+await shoot(tileHtml(1024), 'public/brand/icon-1024.png', 1024, 1024);
+await shoot(tileHtml(400), 'public/brand/icon-400.png', 400, 400);
+await shoot(tileHtml(180), 'src/app/apple-icon.png', 180, 180);
+// public/favicon.ico (static: Next's app-dir ICO decoder rejects opaque RGB entries): 16 + 32 px PNGs.
+const icoPngs = [];
+for (const s of [16, 32]) icoPngs.push([s, Buffer.from(await shoot(tileHtml(s), null, s, s))]);
+const head = Buffer.alloc(6 + 16 * icoPngs.length);
+head.writeUInt16LE(0, 0); head.writeUInt16LE(1, 2); head.writeUInt16LE(icoPngs.length, 4);
+let offset = head.length;
+icoPngs.forEach(([s, png], i) => {
+  const e = 6 + 16 * i;
+  head.writeUInt8(s, e); head.writeUInt8(s, e + 1); head.writeUInt16LE(1, e + 4); head.writeUInt16LE(32, e + 6);
+  head.writeUInt32LE(png.length, e + 8); head.writeUInt32LE(offset, e + 12); offset += png.length;
+});
+writeFileSync(path.join(root, 'public/favicon.ico'), Buffer.concat([head, ...icoPngs.map(([, png]) => png)]));
+console.log('wrote public/favicon.ico');
 await browser.close();

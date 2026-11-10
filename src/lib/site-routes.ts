@@ -20,6 +20,7 @@ export function getSiteRoutes(): SiteRoute[] {
     { path: '/pricing', title: 'Pricing', priority: 0.9, changeFrequency: 'monthly' },
     { path: '/compare', title: 'Compare', priority: 0.8, changeFrequency: 'monthly' },
     { path: '/developers', title: 'Developers', priority: 0.8, changeFrequency: 'monthly' },
+    { path: '/wordpress', title: 'WordPress & WooCommerce plugin', priority: 0.9, changeFrequency: 'monthly' },
     { path: '/solutions', title: 'Solutions', priority: 0.7, changeFrequency: 'monthly' },
     ...solutions.map((s) => ({
       path: s.href,

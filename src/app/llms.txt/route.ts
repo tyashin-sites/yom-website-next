@@ -47,15 +47,16 @@ ${k1.shared} Headquarters: ${company.hq.city}, ${company.hq.region}, ${company.h
 - Revenue reconciliation (orders by API or CSV matched to purchase events by order id) and an opt-out evidence report.
 - GA4 migration: a gtag shim in the SDK and an import of daily totals from a GA4 BigQuery export.
 - Partner API: management keys create and suspend projects and mint keys; they cannot read analytics data.
+- WordPress and WooCommerce plugin "YOM Analytics", free on wordpress.org (https://wordpress.org/plugins/yom-analytics/): one-click Connect YOM, cookieless page analytics until consent, server-side form leads (Contact Form 7, Gravity Forms, WPForms, Fluent Forms) and server-side WooCommerce purchases and refunds deduplicated on the order id. Details: ${siteUrl('/wordpress')}
 
 ## Early access
-- WordPress and WooCommerce plugin (submitted to wordpress.org, waiting for review). Shopify is coming soon.
 - Looker Studio community connector (self-deployed; not in the public gallery).
 
 ## Exact vs estimated
 Only conversion counts are exact. Funnels, attribution and unique-visitor counts are statistical estimates.
 
 ## Coming soon (not shipped)
+- Shopify
 - Google Ads Enhanced Conversions
 
 ## Not offered
@@ -79,6 +80,7 @@ ${rates}
 - Compare (vs GA4, Mixpanel/Amplitude, Segment/RudderStack): ${siteUrl('/compare')}
 - Pricing and calculator: ${siteUrl('/pricing')}
 - Developers: ${siteUrl('/developers')}
+- WordPress & WooCommerce plugin: ${siteUrl('/wordpress')}
 ${solutions.map((s) => `- ${s.label}: ${siteUrl(s.href)}`).join('\n')}
 - Security: ${siteUrl('/security')}
 - FAQ: ${siteUrl('/faq')}

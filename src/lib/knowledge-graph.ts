@@ -171,6 +171,14 @@ export interface GraphPage {
     keywords?: string[];
     section?: string;
   };
+  /** A downloadable plugin page: adds a SoftwareApplication node for it, published by the org. */
+  plugin?: {
+    name: string;
+    description: string;
+    downloadUrl: string;
+    operatingSystem: string;
+    requirements?: string;
+  };
   /** A listing: adds an ItemList of these URLs (e.g. the blog index). */
   items?: { name: string; path: string }[];
 }
@@ -228,6 +236,27 @@ export function buildGraph(page?: GraphPage): { '@context': string; '@graph': No
       };
       webPage['mainEntity'] = { '@id': `${url}#article` };
       nodes.push(article);
+    }
+    if (page.plugin) {
+      const pl = page.plugin;
+      nodes.push({
+        '@type': 'SoftwareApplication',
+        '@id': `${url}#plugin`,
+        name: pl.name,
+        description: pl.description,
+        applicationCategory: 'BusinessApplication',
+        applicationSubCategory: 'Web analytics',
+        operatingSystem: pl.operatingSystem,
+        ...(pl.requirements ? { softwareRequirements: pl.requirements } : {}),
+        downloadUrl: pl.downloadUrl,
+        installUrl: pl.downloadUrl,
+        url,
+        isAccessibleForFree: true,
+        license: 'https://www.gnu.org/licenses/gpl-2.0.html',
+        publisher: { '@id': ORG_ID },
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', url: pl.downloadUrl },
+      });
+      webPage['about'] = { '@id': `${url}#plugin` };
     }
     if (page.items?.length) {
       const list: Node = {

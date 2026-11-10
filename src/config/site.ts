@@ -117,6 +117,7 @@ export const footerNav: { heading: string; links: NavItem[] }[] = [
       { label: 'Multi-tenant', href: '/product#multi-tenant' },
       { label: 'Pricing', href: '/pricing' },
       { label: 'Developers', href: '/developers' },
+      { label: 'WordPress plugin', href: '/wordpress' },
     ],
   },
   {
