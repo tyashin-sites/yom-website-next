@@ -254,7 +254,6 @@ export function buildGraph(page?: GraphPage): { '@context': string; '@graph': No
         isAccessibleForFree: true,
         license: 'https://www.gnu.org/licenses/gpl-2.0.html',
         publisher: { '@id': ORG_ID },
-        isRelatedTo: { '@id': APP_ID },
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', url: pl.downloadUrl },
       });
       webPage['about'] = { '@id': `${url}#plugin` };
