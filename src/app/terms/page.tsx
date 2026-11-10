@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { pageMetadata, siteUrl } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { LegalPage } from '@/components/LegalPage';
-import { LEGAL_UPDATED_3_NOV, legalEntities, legalOfficer } from '@/config/legal';
+import { LEGAL_UPDATED_10_NOV, legalEntities, legalOfficer } from '@/config/legal';
 import { EntityBlock } from '@/components/LegalEntities';
 
 const TITLE = 'Terms of Service';
@@ -48,7 +48,7 @@ export default function TermsPage() {
       <JsonLd page={{ path: '/terms', title: TITLE, description: DESCRIPTION }} />
       <LegalPage
         title={TITLE}
-        updated={LEGAL_UPDATED_3_NOV}
+        updated={LEGAL_UPDATED_10_NOV}
         path="/terms"
         toc={TOC}
         intro={
@@ -77,7 +77,8 @@ export default function TermsPage() {
         <p>
           The agreement is made up of: any order form or other document signed by both parties (an &ldquo;Order&rdquo;);
           the <a href="/dpa">Data Processing Addendum</a> (&ldquo;DPA&rdquo;), together with the{' '}
-          <a href="/intent-addendum">YOM Intent Addendum</a> if you turn on YOM Intent; these Terms; and the{' '}
+          <a href="/intent-addendum">YOM Intent Addendum</a> if you turn on YOM Intent, and the{' '}
+          <a href="/partner-terms">YOM Partner Terms</a> if you join the partner program; these Terms; and the{' '}
           <a href="/acceptable-use">Acceptable Use Policy</a>. If they conflict, that order applies, except that the DPA
           (and, for YOM Intent, the Intent Addendum) controls on the processing of personal data. You accept these Terms
           by creating an account, clicking to accept them, or using the Service.

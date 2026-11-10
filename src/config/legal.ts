@@ -15,6 +15,7 @@ export const LEGAL_UPDATED_ISO = '2026-11-02';
 /** 3 November 2026: accounts a partner opens (terms 3, DPA 1, privacy 4; en + hi). Only those documents carry it. */
 export const LEGAL_UPDATED_3_NOV = { label: '3 November 2026', iso: '2026-11-03' } as const;
 /** Documents whose text did not change on 2 November 2026 (acceptable use, cookies, vulnerability disclosure). */
+export const LEGAL_UPDATED_10_NOV = { label: '10 November 2026', iso: '2026-11-10' } as const;
 export const LEGAL_UPDATED_27_OCT = { label: '27 October 2026', iso: '2026-10-27' } as const;
 
 export const legalDocs = [
@@ -22,6 +23,7 @@ export const legalDocs = [
   { href: '/privacy', label: 'Privacy Policy' },
   { href: '/dpa', label: 'Data Processing Addendum' },
   { href: '/intent-addendum', label: 'YOM Intent Addendum' },
+  { href: '/partner-terms', label: 'YOM Partner Terms' },
   { href: '/acceptable-use', label: 'Acceptable Use Policy' },
   { href: '/cookies', label: 'Cookie Policy' },
   { href: '/subprocessors', label: 'Sub-processors' },

@@ -39,6 +39,7 @@ export function getSiteRoutes(): SiteRoute[] {
     { path: '/privacy/hi', title: 'गोपनीयता नीति (Privacy Policy, Hindi)', priority: 0.2, changeFrequency: 'yearly' },
     { path: '/dpa', title: 'Data Processing Addendum', priority: 0.3, changeFrequency: 'yearly' },
     { path: '/intent-addendum', title: 'YOM Intent Addendum', priority: 0.3, changeFrequency: 'yearly' },
+    { path: '/partner-terms', title: 'YOM Partner Terms', priority: 0.3, changeFrequency: 'yearly' },
     { path: '/acceptable-use', title: 'Acceptable Use Policy', priority: 0.2, changeFrequency: 'yearly' },
     { path: '/cookies', title: 'Cookie Policy', priority: 0.2, changeFrequency: 'yearly' },
     { path: '/subprocessors', title: 'Sub-processors', priority: 0.3, changeFrequency: 'monthly' },
