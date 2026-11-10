@@ -86,7 +86,7 @@ Every capability or factual claim on yom.aapastech.com (pages, metadata, JSON-LD
 | C60 | Report API with read-scoped keys | product, faq | `reports.ts:241` `requireScope('read')` | VERIFIED-IN-PROD |
 | C61 | GA4 gtag shim in the SDK; GA4 BigQuery daily-totals import API with a script you run | product, developers, llms | SDK `src/gtag-shim.ts` (export `./gtag-shim`); `api/src/routes/v2/imports.ts:46`; `scripts/ga4-import/` | VERIFIED-IN-PROD |
 | C62 | Looker Studio community connector, early access, self-deployed from the repo | product, developers, home, llms | `integrations/looker-studio/` (clasp deploy README), not in gallery | VERIFIED-IN-PROD (as early access) |
-| C63 | WooCommerce plugin, early access, not on wordpress.org; we install it with you | product, ecommerce, faq, developers, home, llms | `integrations/woocommerce/yom-analytics` (zip via `npm run zip`) | VERIFIED-IN-PROD (as early access) |
+| C63 | WordPress/WooCommerce plugin "YOM Analytics" is free on wordpress.org: one-click Connect YOM, cookieless page analytics until consent, server-side form leads (CF7, Gravity Forms, WPForms, Fluent Forms), server-side WooCommerce purchases and refunds deduplicated on the order id, checkout consent + GPC on the order, HPOS and cart/checkout blocks | wordpress, product, ecommerce, faq, developers, llms | Approved by the wordpress.org plugin team 2026-11-10; SVN r3794657 (trunk + tags/0.2.1, by adiyom); plugins API `yom-analytics` version 0.2.1; public zip byte-identical to the approved upload; source YOM repo `integrations/woocommerce/yom-analytics` (develop 58bc2b1), certified on WP 7.1.4 / WC 11.2.2 / PHP 8.3 (12/12 harness checks) | VERIFIED-IN-PROD (2026-11-10: listed, was early access) |
 | C64 | Shopify app in early access (we set it up with you) | ecommerce, product, faq, developers, home, llms | `integrations/shopify/shopify.app.toml:3` `client_id = "<shopify app client id>"`; `shopify.yourownmetrics.aapastech.com` does not resolve; no deploy job | NOT-TRUE → COPY CHANGED 2026-11-03 (Aditya: no Shopify for now; revisit after 2026-12-31, backlog T-0685). Copy now says WordPress/WooCommerce plugin in wordpress.org review + "Shopify is coming soon". client_id placeholder, app host unresolved; needs the Shopify Partner app |
 | C65 | Google Ads Enhanced Conversions not built | home, product, faq, developers, ecommerce, llms | `shared/.../adplatforms/google-ads.ts:2` "config schema ONLY"; create → 400 | VERIFIED-IN-PROD (as Coming soon) |
 | C66 | No session replay, feature flags or experiments | home, compare, faq, llms | no such code on main | VERIFIED-IN-PROD |
@@ -190,6 +190,9 @@ Every capability or factual claim on yom.aapastech.com (pages, metadata, JSON-LD
 | `gtag shim\|gtag-shim` | C61 |
 | `Looker Studio` | C62 |
 | `WooCommerce` | C63 |
+| `wordpress\.org\|YOM Analytics\|WordPress plugin` | C63 |
+| `Contact Form 7\|Gravity Forms\|WPForms\|Fluent Forms` | C63 |
+| `HPOS\|High-Performance Order Storage\|checkout blocks` | C63 |
 | `Shopify app` | C64 |
 | `Enhanced Conversions` | C65 |
 | `session replay` | C66 |

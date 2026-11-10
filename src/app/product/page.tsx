@@ -237,7 +237,7 @@ export default function ProductPage() {
             ['Enrichment', 'Channel from UTM + referrer, device / browser / OS, country and region from the edge.'],
             ['Bot filtering', 'User-agent rules and missing-UA checks at the edge; webdriver detection in the SDK.'],
             ['SDK', 'Browser, React and Node, from one npm package, around 12 KB gzipped with every plugin.'],
-            ['Commerce connectors', 'WordPress and WooCommerce plugin, waiting for review on wordpress.org, so for now we set it up with you. Shopify is coming soon.'],
+            ['Commerce connectors', 'YOM Analytics, the free WordPress and WooCommerce plugin on wordpress.org, with one-click connect. Shopify is coming soon.'],
           ]}
         />
       </Block>

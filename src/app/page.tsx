@@ -245,7 +245,6 @@ export default function HomePage() {
               {[
                 'Google Ads Enhanced Conversions',
                 'Shopify',
-                'WooCommerce plugin on wordpress.org (in review today)',
                 'Looker Studio connector in the public gallery',
               ].map((t) => (
                 <li key={t} className="flex items-center justify-between gap-4 py-3 text-[0.95rem]">
